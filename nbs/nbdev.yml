@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "CanvasGroupy"
+  site-url: "https://FleischerResearchLab.github.io/CanvasGroupy"
+  description: "Canvas Grouping Python Script"
+  repo-branch: main
+  repo-url: "https://github.com/FleischerResearchLab/CanvasGroupy"
