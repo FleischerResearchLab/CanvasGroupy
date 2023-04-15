@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Canvas Grouping Python Script">
+<meta name="description" content="Create GitHub group based on the provided group information">
 
-<title>CanvasGroupy</title>
+<title>CanvasGroupy - GitHub Group Creation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -96,11 +96,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <link rel="stylesheet" href="styles.css">
-<meta property="og:title" content="CanvasGroupy">
-<meta property="og:description" content="Canvas Grouping Python Script">
+<meta property="og:title" content="CanvasGroupy - GitHub Group Creation">
+<meta property="og:description" content="Create GitHub group based on the provided group information">
 <meta property="og:site-name" content="CanvasGroupy">
-<meta name="twitter:title" content="CanvasGroupy">
-<meta name="twitter:description" content="Canvas Grouping Python Script">
+<meta name="twitter:title" content="CanvasGroupy - GitHub Group Creation">
+<meta name="twitter:description" content="Create GitHub group based on the provided group information">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -125,7 +125,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">CanvasGroupy</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./gh_group_creation.html">GitHub Group Creation</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -139,7 +139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">CanvasGroupy</span></a>
   </div>
 </li>
@@ -157,7 +157,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./gh_group_creation.html" class="sidebar-item-text sidebar-link">
+  <a href="./gh_group_creation.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">GitHub Group Creation</span></a>
   </div>
 </li>
@@ -171,8 +171,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#install" id="toc-install" class="nav-link active" data-scroll-target="#install">Install</a></li>
-  <li><a href="#how-to-use" id="toc-how-to-use" class="nav-link" data-scroll-target="#how-to-use">How to use</a></li>
+  <li><a href="#command" id="toc-command" class="nav-link active" data-scroll-target="#command">command</a></li>
+  <li><a href="#check_gh_auth" id="toc-check_gh_auth" class="nav-link" data-scroll-target="#check_gh_auth">check_gh_auth</a></li>
+  <li><a href="#creat_repo_cmd" id="toc-creat_repo_cmd" class="nav-link" data-scroll-target="#creat_repo_cmd">creat_repo_cmd</a></li>
+  <li><a href="#manage_access_cmd" id="toc-manage_access_cmd" class="nav-link" data-scroll-target="#manage_access_cmd">manage_access_cmd</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -181,12 +183,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">CanvasGroupy</h1>
+<h1 class="title">GitHub Group Creation</h1>
 </div>
 
 <div>
   <div class="description">
-    Canvas Grouping Python Script
+    Create GitHub group based on the provided group information
   </div>
 </div>
 
@@ -202,20 +204,187 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
-<p>This module will use <code>GroupEng</code> to create canvas and github groups.</p>
-<section id="install" class="level2">
-<h2 class="anchored" data-anchor-id="install">Install</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install CanvasGroupy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L7" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<section id="command" class="level3">
+<h3 class="anchored" data-anchor-id="command">command</h3>
+<blockquote class="blockquote">
+<pre><code> command (cmd:str)</code></pre>
+</blockquote>
+<p>Execute the given command in shell</p>
+<table class="table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 38%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>cmd</td>
+<td>str</td>
+<td>command to call in bash</td>
+</tr>
+<tr class="even">
+<td><strong>Returns</strong></td>
+<td><strong>(&lt;class ‘bool’&gt;, &lt;class ‘str’&gt;)</strong></td>
+<td><strong>success, output</strong></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L24" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
-<section id="how-to-use" class="level2">
-<h2 class="anchored" data-anchor-id="how-to-use">How to use</h2>
-<p>Please visit <a href="https://groupeng.org/">GroupEng Official Website</a> to see the documnetation of how to use GroupEng.</p>
+<section id="check_gh_auth" class="level3">
+<h3 class="anchored" data-anchor-id="check_gh_auth">check_gh_auth</h3>
+<blockquote class="blockquote">
+<pre><code> check_gh_auth ()</code></pre>
+</blockquote>
+<p>Check whether you have gh auth configured</p>
+<hr>
+<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L32" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="creat_repo_cmd" class="level3">
+<h3 class="anchored" data-anchor-id="creat_repo_cmd">creat_repo_cmd</h3>
+<blockquote class="blockquote">
+<pre><code> creat_repo_cmd (repo_name:str, repo_org:str, template_repo:str,
+                 private_repo=True)</code></pre>
+</blockquote>
+<p>Generate the appropriate command for creating GitHub repository</p>
+<table class="table">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 25%">
+<col style="width: 34%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>repo_name</td>
+<td>str</td>
+<td></td>
+<td>the name of the created repository</td>
+</tr>
+<tr class="even">
+<td>repo_org</td>
+<td>str</td>
+<td></td>
+<td>the GitHub organization name</td>
+</tr>
+<tr class="odd">
+<td>template_repo</td>
+<td>str</td>
+<td></td>
+<td>the template repository that the new repo will use</td>
+</tr>
+<tr class="even">
+<td>private_repo</td>
+<td>bool</td>
+<td>True</td>
+<td>the visibility of the repository</td>
+</tr>
+<tr class="odd">
+<td><strong>Returns</strong></td>
+<td><strong>str</strong></td>
+<td></td>
+<td><strong>the command of repo creation</strong></td>
+</tr>
+</tbody>
+</table>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>assign_groups(<span class="st">"example/sample_group_specification.groupeng"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>NameError: name 'GroupEng' is not defined</code></pre>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#｜ hide</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>test_eq(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'gh repo create --template COGS108/group_template --private --clone COGS108/Group01_SP23'</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    creat_repo_cmd(<span class="st">"Group01_SP23"</span>, <span class="st">"COGS108"</span>, <span class="st">"COGS108/group_template"</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>test_eq(</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'gh repo create --private --clone COGS108/Group01_SP23'</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    creat_repo_cmd(<span class="st">"Group01_SP23"</span>, <span class="st">"COGS108"</span>, <span class="va">None</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>test_eq(</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'gh repo create --clone COGS108/Group01_SP23'</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    creat_repo_cmd(<span class="st">"Group01_SP23"</span>, <span class="st">"COGS108"</span>, <span class="va">None</span>, private_repo<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
+<hr>
+<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L47" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="manage_access_cmd" class="level3">
+<h3 class="anchored" data-anchor-id="manage_access_cmd">manage_access_cmd</h3>
+<blockquote class="blockquote">
+<pre><code> manage_access_cmd (repo_name:str, repo_org:str, collaorator_id:str,
+                    permission='push', add_team=False)</code></pre>
+</blockquote>
+<p>GitHub CLI Command for modifying access priviliges of repo</p>
+<table class="table">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 25%">
+<col style="width: 34%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>repo_name</td>
+<td>str</td>
+<td></td>
+<td>the name of the created repository</td>
+</tr>
+<tr class="even">
+<td>repo_org</td>
+<td>str</td>
+<td></td>
+<td>the GitHub organization name that the repo belongs to</td>
+</tr>
+<tr class="odd">
+<td>collaorator_id</td>
+<td>str</td>
+<td></td>
+<td>the GitHub id of the collaborator, or team name if <code>add_team=True</code></td>
+</tr>
+<tr class="even">
+<td>permission</td>
+<td>str</td>
+<td>push</td>
+<td>the permission to that collaborator</td>
+</tr>
+<tr class="odd">
+<td>add_team</td>
+<td>bool</td>
+<td>False</td>
+<td>add access to github org’s team</td>
+</tr>
+<tr class="even">
+<td><strong>Returns</strong></td>
+<td><strong>str</strong></td>
+<td></td>
+<td><strong>the command of repo creation</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The team must be in the same organization with the repos’ parent organization.</p>
 
 
 </section>

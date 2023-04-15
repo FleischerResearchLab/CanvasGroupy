@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Canvas Grouping Python Script">
+<meta name="description" content="Invoke Package Group Eng to Assign Student in Groups">
 
-<title>CanvasGroupy</title>
+<title>CanvasGroupy - GroupEngAssign</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -93,14 +93,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="styles.css">
-<meta property="og:title" content="CanvasGroupy">
-<meta property="og:description" content="Canvas Grouping Python Script">
+<meta property="og:title" content="CanvasGroupy - GroupEngAssign">
+<meta property="og:description" content="Invoke Package Group Eng to Assign Student in Groups">
 <meta property="og:site-name" content="CanvasGroupy">
-<meta name="twitter:title" content="CanvasGroupy">
-<meta name="twitter:description" content="Canvas Grouping Python Script">
+<meta name="twitter:title" content="CanvasGroupy - GroupEngAssign">
+<meta name="twitter:description" content="Invoke Package Group Eng to Assign Student in Groups">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -125,7 +128,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">CanvasGroupy</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./groupengassign.html">GroupEngAssign</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -139,7 +142,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">CanvasGroupy</span></a>
   </div>
 </li>
@@ -151,7 +154,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./groupengassign.html" class="sidebar-item-text sidebar-link">
+  <a href="./groupengassign.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">GroupEngAssign</span></a>
   </div>
 </li>
@@ -171,8 +174,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#install" id="toc-install" class="nav-link active" data-scroll-target="#install">Install</a></li>
-  <li><a href="#how-to-use" id="toc-how-to-use" class="nav-link" data-scroll-target="#how-to-use">How to use</a></li>
+  <li><a href="#assign_groups" id="toc-assign_groups" class="nav-link active" data-scroll-target="#assign_groups">assign_groups</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -181,12 +183,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">CanvasGroupy</h1>
+<h1 class="title">GroupEngAssign</h1>
 </div>
 
 <div>
   <div class="description">
-    Canvas Grouping Python Script
+    Invoke Package Group Eng to Assign Student in Groups
   </div>
 </div>
 
@@ -202,20 +204,170 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
-<p>This module will use <code>GroupEng</code> to create canvas and github groups.</p>
-<section id="install" class="level2">
-<h2 class="anchored" data-anchor-id="install">Install</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install CanvasGroupy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="how-to-use" class="level2">
-<h2 class="anchored" data-anchor-id="how-to-use">How to use</h2>
-<p>Please visit <a href="https://groupeng.org/">GroupEng Official Website</a> to see the documnetation of how to use GroupEng.</p>
+<hr>
+<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/assign.py#L9" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<section id="assign_groups" class="level3">
+<h3 class="anchored" data-anchor-id="assign_groups">assign_groups</h3>
+<blockquote class="blockquote">
+<pre><code> assign_groups (groupeng_config:str)</code></pre>
+</blockquote>
+<table class="table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 38%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>groupeng_config</td>
+<td>str</td>
+<td>Directory for the GroupEng config yml file</td>
+</tr>
+<tr class="even">
+<td><strong>Returns</strong></td>
+<td><strong>(&lt;class ‘bool’&gt;, &lt;class ‘str’&gt;)</strong></td>
+<td><strong>Status and output directory of the compile file.</strong></td>
+</tr>
+</tbody>
+</table>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>assign_groups(<span class="st">"example/sample_group_specification.groupeng"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>NameError: name 'GroupEng' is not defined</code></pre>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(os.listdir(<span class="st">"example"</span>)) <span class="co"># take a look at the example files name</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['sample_group_specification.groupeng', '.DS_Store', 'sample_group_specification_annotated.groupeng', 'sample_class_1.csv', '.ipynb_checkpoints']</code></pre>
 </div>
 </div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>status, outdir <span class="op">=</span> assign_groups(<span class="st">"example/sample_group_specification.groupeng"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># take a look at the output</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>status, outdir</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>(False, 'groups_example_2023-04-14_17-36-01')</code></pre>
+</div>
+</div>
+<p>The false means that at least one requirment is not satisfied. We can take a look at the file that was generated.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>details <span class="op">=</span> pd.read_csv(os.path.join(outdir, <span class="st">"example_details.csv"</span>), on_bad_lines<span class="op">=</span><span class="st">'skip'</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>details.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">ID</th>
+<th data-quarto-table-cell-role="th">GPA</th>
+<th data-quarto-table-cell-role="th">Gender</th>
+<th data-quarto-table-cell-role="th">Ethnicity</th>
+<th data-quarto-table-cell-role="th">Major</th>
+<th data-quarto-table-cell-role="th">Skill1</th>
+<th data-quarto-table-cell-role="th">Skill2</th>
+<th data-quarto-table-cell-role="th">Skill3</th>
+<th data-quarto-table-cell-role="th">Project choice</th>
+<th data-quarto-table-cell-role="th">Group Number</th>
+<th data-quarto-table-cell-role="th">Unnamed: 10</th>
+<th data-quarto-table-cell-role="th">group GPA mean</th>
+<th data-quarto-table-cell-role="th">Rules Broken</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>37</td>
+<td>2.636350</td>
+<td>M</td>
+<td>-</td>
+<td>Civ E</td>
+<td>y</td>
+<td>y</td>
+<td>-</td>
+<td>nanotech</td>
+<td>1.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>41</td>
+<td>2.225582</td>
+<td>F</td>
+<td>-</td>
+<td>Civ E</td>
+<td>y</td>
+<td>y</td>
+<td>y</td>
+<td>robotics</td>
+<td>1.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>61</td>
+<td>4.220161</td>
+<td>M</td>
+<td>-</td>
+<td>Mech E</td>
+<td>-</td>
+<td>-</td>
+<td>y</td>
+<td>statistics</td>
+<td>1.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>63</td>
+<td>2.976609</td>
+<td>F</td>
+<td>-</td>
+<td>EE</td>
+<td>y</td>
+<td>-</td>
+<td>y</td>
+<td>automotive</td>
+<td>1.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>75</td>
+<td>3.775685</td>
+<td>F</td>
+<td>-</td>
+<td>CS</td>
+<td>y</td>
+<td>y</td>
+<td>y</td>
+<td>statistics</td>
+<td>1.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>The following package will generate Canvas and GitHub groups based on this generated csv files.</p>
 
 
 </section>

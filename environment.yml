@@ -1,0 +1,22 @@
+name: CanvasGroupy
+
+channels:
+  - anaconda
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.10.9
+  - numpy
+  - toolz
+  - matplotlib
+  - dill
+  - pandas
+  - jupyterlab
+  - partd
+  - bokeh
+  - nbdev
+  - gh
+  - pip
+  - pip:
+    - git+https://github.com/scott-yj-yang/groupeng.git

@@ -1,0 +1,44 @@
+Ran GroupEng on: example/sample_group_specification.groupeng with students from sample_class_1.csv
+
+Made 21 groups
+
+0 groups failed: <Cluster Gender ['F']>
+
+3 groups failed: <Cluster Ethnicity ('B', 'H')>
+
+5 groups failed: <Aggregate Project choice ['statistics', 'nanotech', 'renewable energy', 'automotive', 'robotics']>
+
+2 groups failed: <Distribute Major ['Mech E', 'CS', 'Civ E', 'EE']>
+
+0 groups failed: <Distribute Skill1 ['-', 'y']>
+
+1 groups failed: <Distribute Skill2 ['-', 'y']>
+
+1 groups failed: <Distribute Skill3 ['-', 'y']>
+
+0 groups failed:<Balance : 3.102212121978093 : tol 0.2521189328870355>: Class GPA Mean: 3.10, Class GPA Std Dev: 0.50, Std Dev of Group GPA Means: 0.12
+
+Group Summaries
+---------------
+Group 1: 
+Group 2: 
+Group 3: Failed <Aggregate Project choice ['statistics', 'nanotech', 'renewable energy', 'automotive', 'robotics']>
+Group 4: Failed <Distribute Major ['Mech E', 'CS', 'Civ E', 'EE']>
+Group 5: Failed <Distribute Major ['Mech E', 'CS', 'Civ E', 'EE']>
+Group 6: Failed <Aggregate Project choice ['statistics', 'nanotech', 'renewable energy', 'automotive', 'robotics']>
+Group 7: Failed <Aggregate Project choice ['statistics', 'nanotech', 'renewable energy', 'automotive', 'robotics']>
+Group 8: Failed <Distribute Skill3 ['-', 'y']>
+Group 9: 
+Group 10: Failed <Cluster Ethnicity ('B', 'H')>
+Group 11: 
+Group 12: Failed <Aggregate Project choice ['statistics', 'nanotech', 'renewable energy', 'automotive', 'robotics']>
+Group 13: Failed <Cluster Ethnicity ('B', 'H')>
+Group 14: Failed <Distribute Skill2 ['-', 'y']>
+Group 15: Failed <Cluster Ethnicity ('B', 'H')>
+Group 16: 
+Group 17: 
+Group 18: 
+Group 19: 
+Group 20: 
+Group 21: Failed <Aggregate Project choice ['statistics', 'nanotech', 'renewable energy', 'automotive', 'robotics']>
+

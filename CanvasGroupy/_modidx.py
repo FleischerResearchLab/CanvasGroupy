@@ -5,4 +5,12 @@ d = { 'settings': { 'branch': 'main',
                 'doc_host': 'https://FleischerResearchLab.github.io',
                 'git_url': 'https://github.com/FleischerResearchLab/CanvasGroupy',
                 'lib_path': 'CanvasGroupy'},
-  'syms': {'CanvasGroupy.core': {'CanvasGroupy.core.foo': ('core.html#foo', 'CanvasGroupy/core.py')}}}
+  'syms': { 'CanvasGroupy.assign': {'CanvasGroupy.assign.assign_groups': ('groupengassign.html#assign_groups', 'CanvasGroupy/assign.py')},
+            'CanvasGroupy.core': {},
+            'CanvasGroupy.gh_group': { 'CanvasGroupy.gh_group.check_gh_auth': ( 'gh_group_creation.html#check_gh_auth',
+                                                                                'CanvasGroupy/gh_group.py'),
+                                       'CanvasGroupy.gh_group.command': ('gh_group_creation.html#command', 'CanvasGroupy/gh_group.py'),
+                                       'CanvasGroupy.gh_group.creat_repo_cmd': ( 'gh_group_creation.html#creat_repo_cmd',
+                                                                                 'CanvasGroupy/gh_group.py'),
+                                       'CanvasGroupy.gh_group.manage_access_cmd': ( 'gh_group_creation.html#manage_access_cmd',
+                                                                                    'CanvasGroupy/gh_group.py')}}}
