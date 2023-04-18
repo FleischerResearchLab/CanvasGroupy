@@ -131,3 +131,4 @@ dmypy.json
 # additional files
 .DS_Store
 nbs/groups_example*
+_proc/groups_example*
