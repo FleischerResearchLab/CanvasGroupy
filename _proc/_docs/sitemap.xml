@@ -2,18 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://FleischerResearchLab.github.io/CanvasGroupy/core.html</loc>
-    <lastmod>2023-04-18T20:12:00.368Z</lastmod>
+    <lastmod>2023-04-19T08:31:33.436Z</lastmod>
   </url>
   <url>
-    <loc>https://FleischerResearchLab.github.io/CanvasGroupy/groupengassign.html</loc>
-    <lastmod>2023-04-18T20:12:00.699Z</lastmod>
+    <loc>https://FleischerResearchLab.github.io/CanvasGroupy/canvas_group_creation.html</loc>
+    <lastmod>2023-04-19T08:36:23.888Z</lastmod>
   </url>
   <url>
     <loc>https://FleischerResearchLab.github.io/CanvasGroupy/gh_group_creation.html</loc>
-    <lastmod>2023-04-18T20:12:01.021Z</lastmod>
+    <lastmod>2023-04-19T08:36:22.350Z</lastmod>
+  </url>
+  <url>
+    <loc>https://FleischerResearchLab.github.io/CanvasGroupy/groupeng_assign.html</loc>
+    <lastmod>2023-04-19T08:36:18.198Z</lastmod>
   </url>
   <url>
     <loc>https://FleischerResearchLab.github.io/CanvasGroupy/index.html</loc>
-    <lastmod>2023-04-18T20:12:03.549Z</lastmod>
+    <lastmod>2023-04-19T08:36:16.315Z</lastmod>
+  </url>
+  <url>
+    <loc>https://FleischerResearchLab.github.io/CanvasGroupy/clean_up.html</loc>
+    <lastmod>2023-04-19T08:33:52.013Z</lastmod>
   </url>
 </urlset>

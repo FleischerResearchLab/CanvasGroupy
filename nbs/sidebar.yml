@@ -3,5 +3,6 @@ website:
     contents:
       - index.ipynb
       - 00_core.ipynb
-      - 01_GroupEngAssign.ipynb
+      - 01_GroupEng_assign.ipynb
       - 02_gh_group_creation.ipynb
+      - 03_canvas_group_creation.ipynb

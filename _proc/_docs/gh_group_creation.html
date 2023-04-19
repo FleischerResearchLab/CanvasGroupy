@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.475">
+<meta name="generator" content="quarto-1.3.313">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -18,9 +18,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -47,43 +48,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -144,54 +115,72 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <span class="navbar-title">CanvasGroupy</span>
     </a>
   </div>
+        <div class="quarto-navbar-tools ms-auto">
+</div>
           <div id="quarto-search" class="" title="Search"></div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">GitHub Group Creation</h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./gh_group_creation.html">GitHub Group Creation</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">CanvasGroupy</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CanvasGroupy</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./core.html" class="sidebar-item-text sidebar-link">core</a>
+  <a href="./core.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">core</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./groupengassign.html" class="sidebar-item-text sidebar-link">GroupEngAssign</a>
+  <a href="./groupeng_assign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GroupEngAssign</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./gh_group_creation.html" class="sidebar-item-text sidebar-link active">GitHub Group Creation</a>
+  <a href="./gh_group_creation.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">GitHub Group Creation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./canvas_group_creation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Canvas Group Creation</span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#command" id="toc-command" class="nav-link active" data-scroll-target="#command">command</a></li>
+  <li><a href="#githubgroup" id="toc-githubgroup" class="nav-link active" data-scroll-target="#githubgroup">GitHubGroup</a></li>
+  <li><a href="#if-you-wish-to-use-gh" id="toc-if-you-wish-to-use-gh" class="nav-link" data-scroll-target="#if-you-wish-to-use-gh">If you wish to use <code>gh</code></a>
+  <ul class="collapse">
+  <li><a href="#command" id="toc-command" class="nav-link" data-scroll-target="#command">command</a></li>
   <li><a href="#check_gh_auth" id="toc-check_gh_auth" class="nav-link" data-scroll-target="#check_gh_auth">check_gh_auth</a></li>
   <li><a href="#git_creat_repo_cmd" id="toc-git_creat_repo_cmd" class="nav-link" data-scroll-target="#git_creat_repo_cmd">git_creat_repo_cmd</a></li>
   <li><a href="#git_manage_access_cmd" id="toc-git_manage_access_cmd" class="nav-link" data-scroll-target="#git_manage_access_cmd">git_manage_access_cmd</a></li>
@@ -200,6 +189,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#git_commit" id="toc-git_commit" class="nav-link" data-scroll-target="#git_commit">git_commit</a></li>
   <li><a href="#git_add_all" id="toc-git_add_all" class="nav-link" data-scroll-target="#git_add_all">git_add_all</a></li>
   <li><a href="#delete_directory" id="toc-delete_directory" class="nav-link" data-scroll-target="#delete_directory">delete_directory</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -208,7 +198,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">GitHub Group Creation</h1>
+<h1 class="title">GitHub Group Creation</h1>
 </div>
 
 <div>
@@ -230,7 +220,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
 <hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L8" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L11" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<section id="githubgroup" class="level3">
+<h3 class="anchored" data-anchor-id="githubgroup">GitHubGroup</h3>
+<blockquote class="blockquote">
+<pre><code> GitHubGroup (token='', org='')</code></pre>
+</blockquote>
+<p>Initialize self. See help(type(self)) for accurate signature.</p>
+</section>
+<section id="if-you-wish-to-use-gh" class="level1">
+<h1>If you wish to use <code>gh</code></h1>
+<hr>
+<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L19" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="command" class="level3">
 <h3 class="anchored" data-anchor-id="command">command</h3>
 <blockquote class="blockquote">
@@ -264,7 +265,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L25" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L36" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="check_gh_auth" class="level3">
 <h3 class="anchored" data-anchor-id="check_gh_auth">check_gh_auth</h3>
@@ -273,7 +274,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <p>Check whether you have gh auth configured</p>
 <hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L33" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L44" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="git_creat_repo_cmd" class="level3">
 <h3 class="anchored" data-anchor-id="git_creat_repo_cmd">git_creat_repo_cmd</h3>
@@ -331,22 +332,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#｜ hide</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>test_eq(</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'gh repo create --template COGS108/group_template --private --clone COGS108/Group01_SP23'</span>,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    git_creat_repo_cmd(<span class="st">"Group01_SP23"</span>, <span class="st">"COGS108"</span>, <span class="st">"COGS108/group_template"</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>test_eq(</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'gh repo create --private --clone COGS108/Group01_SP23'</span>,</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    git_creat_repo_cmd(<span class="st">"Group01_SP23"</span>, <span class="st">"COGS108"</span>, <span class="va">None</span>)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>test_eq(</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'gh repo create --clone COGS108/Group01_SP23'</span>,</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    git_creat_repo_cmd(<span class="st">"Group01_SP23"</span>, <span class="st">"COGS108"</span>, <span class="va">None</span>, private_repo<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#｜ hide</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>test_eq(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'gh repo create --template COGS108/group_template --private --clone COGS108/Group01_SP23'</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    git_creat_repo_cmd(<span class="st">"Group01_SP23"</span>, <span class="st">"COGS108"</span>, <span class="st">"COGS108/group_template"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>test_eq(</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'gh repo create --private --clone COGS108/Group01_SP23'</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    git_creat_repo_cmd(<span class="st">"Group01_SP23"</span>, <span class="st">"COGS108"</span>, <span class="va">None</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>test_eq(</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'gh repo create --clone COGS108/Group01_SP23'</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    git_creat_repo_cmd(<span class="st">"Group01_SP23"</span>, <span class="st">"COGS108"</span>, <span class="va">None</span>, private_repo<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L48" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L59" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="git_manage_access_cmd" class="level3">
 <h3 class="anchored" data-anchor-id="git_manage_access_cmd">git_manage_access_cmd</h3>
@@ -411,7 +412,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 <p>The team must be in the same organization with the repos’ parent organization.</p>
 <hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L63" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L74" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="cd_cmd" class="level3">
 <h3 class="anchored" data-anchor-id="cd_cmd">cd_cmd</h3>
@@ -441,7 +442,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L69" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L80" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="git_rename_cmd" class="level3">
 <h3 class="anchored" data-anchor-id="git_rename_cmd">git_rename_cmd</h3>
@@ -476,7 +477,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L76" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L87" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="git_commit" class="level3">
 <h3 class="anchored" data-anchor-id="git_commit">git_commit</h3>
@@ -506,7 +507,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L82" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L93" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="git_add_all" class="level3">
 <h3 class="anchored" data-anchor-id="git_add_all">git_add_all</h3>
@@ -514,7 +515,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code> git_add_all ()</code></pre>
 </blockquote>
 <hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L86" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L97" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="delete_directory" class="level3">
 <h3 class="anchored" data-anchor-id="delete_directory">delete_directory</h3>
@@ -545,6 +546,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 </section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -574,9 +576,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -641,6 +657,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

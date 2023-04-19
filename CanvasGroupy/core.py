@@ -6,7 +6,3 @@ __all__ = []
 # %% ../nbs/00_core.ipynb 3
 from .assign import *
 from .gh_group import * 
-
-# %% ../nbs/00_core.ipynb 4
-#| export
-
