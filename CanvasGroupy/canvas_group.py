@@ -52,7 +52,7 @@ class CanvasGroup():
             self.group_category = self.group_categories[category_name]
         except KeyError:
             raise KeyError(f"{category_name} did not found in the group categories."
-                           f"\n Try to create one with CanvasGroup.create_group_category")
+                           f"Try to create one with CanvasGroup.create_group_category")
         return self.group_category
         
     def get_course(self):

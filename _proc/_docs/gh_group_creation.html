@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.313">
+<meta name="generator" content="quarto-1.2.475">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -18,10 +18,9 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -48,13 +47,43 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
+    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -115,62 +144,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <span class="navbar-title">CanvasGroupy</span>
     </a>
   </div>
-        <div class="quarto-navbar-tools ms-auto">
-</div>
           <div id="quarto-search" class="" title="Search"></div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">GitHub Group Creation</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./gh_group_creation.html">GitHub Group Creation</a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">CanvasGroupy</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">CanvasGroupy</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./core.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">core</span></a>
+  <a href="./groupeng_assign.html" class="sidebar-item-text sidebar-link">GroupEngAssign</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./groupeng_assign.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">GroupEngAssign</span></a>
+  <a href="./gh_group_creation.html" class="sidebar-item-text sidebar-link active">GitHub Group Creation</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./gh_group_creation.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">GitHub Group Creation</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./canvas_group_creation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Canvas Group Creation</span></a>
+  <a href="./canvas_group_creation.html" class="sidebar-item-text sidebar-link">Canvas Group Creation</a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -178,17 +192,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#githubgroup" id="toc-githubgroup" class="nav-link active" data-scroll-target="#githubgroup">GitHubGroup</a></li>
-  <li><a href="#if-you-wish-to-use-gh" id="toc-if-you-wish-to-use-gh" class="nav-link" data-scroll-target="#if-you-wish-to-use-gh">If you wish to use <code>gh</code></a>
+  <li><a href="#github-authentication" id="toc-github-authentication" class="nav-link" data-scroll-target="#github-authentication">GitHub Authentication</a>
   <ul class="collapse">
-  <li><a href="#command" id="toc-command" class="nav-link" data-scroll-target="#command">command</a></li>
-  <li><a href="#check_gh_auth" id="toc-check_gh_auth" class="nav-link" data-scroll-target="#check_gh_auth">check_gh_auth</a></li>
-  <li><a href="#git_creat_repo_cmd" id="toc-git_creat_repo_cmd" class="nav-link" data-scroll-target="#git_creat_repo_cmd">git_creat_repo_cmd</a></li>
-  <li><a href="#git_manage_access_cmd" id="toc-git_manage_access_cmd" class="nav-link" data-scroll-target="#git_manage_access_cmd">git_manage_access_cmd</a></li>
-  <li><a href="#cd_cmd" id="toc-cd_cmd" class="nav-link" data-scroll-target="#cd_cmd">cd_cmd</a></li>
-  <li><a href="#git_rename_cmd" id="toc-git_rename_cmd" class="nav-link" data-scroll-target="#git_rename_cmd">git_rename_cmd</a></li>
-  <li><a href="#git_commit" id="toc-git_commit" class="nav-link" data-scroll-target="#git_commit">git_commit</a></li>
-  <li><a href="#git_add_all" id="toc-git_add_all" class="nav-link" data-scroll-target="#git_add_all">git_add_all</a></li>
-  <li><a href="#delete_directory" id="toc-delete_directory" class="nav-link" data-scroll-target="#delete_directory">delete_directory</a></li>
+  <li><a href="#githubgroup.auth_github" id="toc-githubgroup.auth_github" class="nav-link" data-scroll-target="#githubgroup.auth_github">GitHubGroup.auth_github</a></li>
+  </ul></li>
+  <li><a href="#github-organization-settings" id="toc-github-organization-settings" class="nav-link" data-scroll-target="#github-organization-settings">GitHub Organization Settings</a>
+  <ul class="collapse">
+  <li><a href="#githubgroup.set_org" id="toc-githubgroup.set_org" class="nav-link" data-scroll-target="#githubgroup.set_org">GitHubGroup.set_org</a></li>
+  </ul></li>
+  <li><a href="#create-github-group-in-one-call" id="toc-create-github-group-in-one-call" class="nav-link" data-scroll-target="#create-github-group-in-one-call">Create GitHub Group in one Call</a>
+  <ul class="collapse">
+  <li><a href="#githubgroup.create_group_repo" id="toc-githubgroup.create_group_repo" class="nav-link" data-scroll-target="#githubgroup.create_group_repo">GitHubGroup.create_group_repo</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -198,7 +212,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">GitHub Group Creation</h1>
+<h1 class="title d-none d-lg-block">GitHub Group Creation</h1>
 </div>
 
 <div>
@@ -220,24 +234,54 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
 <hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L11" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L12" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="githubgroup" class="level3">
 <h3 class="anchored" data-anchor-id="githubgroup">GitHubGroup</h3>
 <blockquote class="blockquote">
-<pre><code> GitHubGroup (token='', org='')</code></pre>
+<pre><code> GitHubGroup (credentials_fp='', org='')</code></pre>
 </blockquote>
 <p>Initialize self. See help(type(self)) for accurate signature.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>credentials_fp</td>
+<td>str</td>
+<td></td>
+<td>the file path to the credential json</td>
+</tr>
+<tr class="even">
+<td>org</td>
+<td>str</td>
+<td></td>
+<td>the organization name</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="if-you-wish-to-use-gh" class="level1">
-<h1>If you wish to use <code>gh</code></h1>
+<section id="github-authentication" class="level2">
+<h2 class="anchored" data-anchor-id="github-authentication">GitHub Authentication</h2>
+<p>View this <a href="https://docs.google.com/document/d/1RvZnOX6nh0bXn6Zh4U-Yxazukuez5oGrtcP8mN-Roco/edit?usp=sharing">document</a> for how to set up your GitHub Personal Access Token. (TODO: be sure to specify scopes)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>credentials_fp <span class="op">=</span> <span class="st">"credentials.json"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> GitHubGroup(credentials_fp<span class="op">=</span><span class="st">"../../credentials.json"</span>, org<span class="op">=</span><span class="st">"COGS118A"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Optionally, you can instansiate a GitHubGroup object and authenticate yourself by calling the following method.</p>
 <hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L19" target="_blank" style="float:right; font-size:smaller">source</a></p>
-<section id="command" class="level3">
-<h3 class="anchored" data-anchor-id="command">command</h3>
+<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L25" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<section id="githubgroup.auth_github" class="level3">
+<h3 class="anchored" data-anchor-id="githubgroup.auth_github">GitHubGroup.auth_github</h3>
 <blockquote class="blockquote">
-<pre><code> command (cmd:str)</code></pre>
+<pre><code> GitHubGroup.auth_github (credentials_fp:str)</code></pre>
 </blockquote>
-<p>Execute the given command in shell</p>
+<p>Authenticate GitHub account with the provided credentials</p>
 <table class="table">
 <colgroup>
 <col style="width: 9%">
@@ -253,109 +297,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>cmd</td>
+<td>credentials_fp</td>
 <td>str</td>
-<td>command to call in bash</td>
-</tr>
-<tr class="even">
-<td><strong>Returns</strong></td>
-<td><strong>(&lt;class ‘bool’&gt;, &lt;class ‘str’&gt;)</strong></td>
-<td><strong>success, output</strong></td>
-</tr>
-</tbody>
-</table>
-<hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L36" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
-<section id="check_gh_auth" class="level3">
-<h3 class="anchored" data-anchor-id="check_gh_auth">check_gh_auth</h3>
-<blockquote class="blockquote">
-<pre><code> check_gh_auth ()</code></pre>
-</blockquote>
-<p>Check whether you have gh auth configured</p>
-<hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L44" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
-<section id="git_creat_repo_cmd" class="level3">
-<h3 class="anchored" data-anchor-id="git_creat_repo_cmd">git_creat_repo_cmd</h3>
-<blockquote class="blockquote">
-<pre><code> git_creat_repo_cmd (repo_name:str, repo_org:str, template_repo:str,
-                     private_repo=True)</code></pre>
-</blockquote>
-<p>Generate the appropriate command for creating GitHub repository</p>
-<table class="table">
-<colgroup>
-<col style="width: 6%">
-<col style="width: 25%">
-<col style="width: 34%">
-<col style="width: 34%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>repo_name</td>
-<td>str</td>
-<td></td>
-<td>the name of the created repository</td>
-</tr>
-<tr class="even">
-<td>repo_org</td>
-<td>str</td>
-<td></td>
-<td>the GitHub organization name</td>
-</tr>
-<tr class="odd">
-<td>template_repo</td>
-<td>str</td>
-<td></td>
-<td>the template repository that the new repo will use</td>
-</tr>
-<tr class="even">
-<td>private_repo</td>
-<td>bool</td>
-<td>True</td>
-<td>the visibility of the repository</td>
-</tr>
-<tr class="odd">
-<td><strong>Returns</strong></td>
-<td><strong>str</strong></td>
-<td></td>
-<td><strong>the command of repo creation</strong></td>
+<td>the personal access token generated at GitHub Settings</td>
 </tr>
 </tbody>
 </table>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#｜ hide</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>test_eq(</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'gh repo create --template COGS108/group_template --private --clone COGS108/Group01_SP23'</span>,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    git_creat_repo_cmd(<span class="st">"Group01_SP23"</span>, <span class="st">"COGS108"</span>, <span class="st">"COGS108/group_template"</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>test_eq(</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'gh repo create --private --clone COGS108/Group01_SP23'</span>,</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    git_creat_repo_cmd(<span class="st">"Group01_SP23"</span>, <span class="st">"COGS108"</span>, <span class="va">None</span>)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>test_eq(</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'gh repo create --clone COGS108/Group01_SP23'</span>,</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    git_creat_repo_cmd(<span class="st">"Group01_SP23"</span>, <span class="st">"COGS108"</span>, <span class="va">None</span>, private_repo<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> GitHubGroup()</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>g.auth_github(<span class="st">"../../credentials.json"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>g.github.get_user().name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>'Scott Yang'</code></pre>
 </div>
-<hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L59" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</div>
 </section>
-<section id="git_manage_access_cmd" class="level3">
-<h3 class="anchored" data-anchor-id="git_manage_access_cmd">git_manage_access_cmd</h3>
+</section>
+<section id="github-organization-settings" class="level2">
+<h2 class="anchored" data-anchor-id="github-organization-settings">GitHub Organization Settings</h2>
+<p>Usually, you want to create students repositories under a course GitHub organization. To set the target organization, you can call the following function.</p>
+<hr>
+<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L35" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<section id="githubgroup.set_org" class="level3">
+<h3 class="anchored" data-anchor-id="githubgroup.set_org">GitHubGroup.set_org</h3>
 <blockquote class="blockquote">
-<pre><code> git_manage_access_cmd (repo_name:str, repo_org:str, collaorator_id:str,
-                        permission='push', add_team=False)</code></pre>
+<pre><code> GitHubGroup.set_org (org:str)</code></pre>
 </blockquote>
-<p>GitHub CLI Command for modifying access priviliges of repo</p>
+<p>Set the target organization for repo creation</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>org</td>
+<td>str</td>
+<td>the target organization name</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>g.set_org(<span class="st">"COGS118A"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>g.org</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>Organization(login="COGS118A")</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="create-github-group-in-one-call" class="level2">
+<h2 class="anchored" data-anchor-id="create-github-group-in-one-call">Create GitHub Group in one Call</h2>
+<hr>
+<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L93" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<section id="githubgroup.create_group_repo" class="level3">
+<h3 class="anchored" data-anchor-id="githubgroup.create_group_repo">GitHubGroup.create_group_repo</h3>
+<blockquote class="blockquote">
+<pre><code> GitHubGroup.create_group_repo (repo_name:str,
+                                collaborators:[&lt;class'str'&gt;],
+                                permission:str, rename_files={},
+                                repo_template='', private=True,
+                                description='')</code></pre>
+</blockquote>
+<p>Create a Group Repository</p>
 <table class="table">
 <colgroup>
 <col style="width: 6%">
@@ -376,173 +383,58 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>repo_name</td>
 <td>str</td>
 <td></td>
-<td>the name of the created repository</td>
+<td>group repository name</td>
 </tr>
 <tr class="even">
-<td>repo_org</td>
-<td>str</td>
+<td>collaborators</td>
+<td>[&lt;class ‘str’&gt;]</td>
 <td></td>
-<td>the GitHub organization name that the repo belongs to</td>
+<td>list of collaborators GitHub id</td>
 </tr>
 <tr class="odd">
-<td>collaorator_id</td>
-<td>str</td>
-<td></td>
-<td>the GitHub id of the collaborator, or team name if <code>add_team=True</code></td>
-</tr>
-<tr class="even">
 <td>permission</td>
 <td>str</td>
-<td>push</td>
-<td>the permission to that collaborator</td>
-</tr>
-<tr class="odd">
-<td>add_team</td>
-<td>bool</td>
-<td>False</td>
-<td>add access to github org’s team</td>
-</tr>
-<tr class="even">
-<td><strong>Returns</strong></td>
-<td><strong>str</strong></td>
 <td></td>
-<td><strong>the command of repo creation</strong></td>
+<td>the permission of collaborators</td>
 </tr>
-</tbody>
-</table>
-<p>The team must be in the same organization with the repos’ parent organization.</p>
-<hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L74" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
-<section id="cd_cmd" class="level3">
-<h3 class="anchored" data-anchor-id="cd_cmd">cd_cmd</h3>
-<blockquote class="blockquote">
-<pre><code> cd_cmd (target_dir:str)</code></pre>
-</blockquote>
-<p>Unix command for change directory</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Details</strong></th>
+<tr class="even">
+<td>rename_files</td>
+<td>dict</td>
+<td>{}</td>
+<td>dictionary of files renames {<og_name>:<new_name>}</new_name></og_name></td>
 </tr>
-</thead>
-<tbody>
 <tr class="odd">
-<td>target_dir</td>
+<td>repo_template</td>
 <td>str</td>
-<td>the target directory we want to change to</td>
+<td></td>
+<td>If empty string, an empty repo will be created. Put in the format of “<owner>/<repo>”</repo></owner></td>
+</tr>
+<tr class="even">
+<td>private</td>
+<td>bool</td>
+<td>True</td>
+<td>visibility of the created repository</td>
+</tr>
+<tr class="odd">
+<td>description</td>
+<td>str</td>
+<td></td>
+<td>description for the GitHub repository</td>
 </tr>
 <tr class="even">
 <td><strong>Returns</strong></td>
-<td><strong>str</strong></td>
-<td><strong>the command of cd</strong></td>
+<td><strong>Repository</strong></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
-<hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L80" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
-<section id="git_rename_cmd" class="level3">
-<h3 class="anchored" data-anchor-id="git_rename_cmd">git_rename_cmd</h3>
-<blockquote class="blockquote">
-<pre><code> git_rename_cmd (source:str, target:str)</code></pre>
-</blockquote>
-<p>GitHub mv command to rename file in the directory</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>source</td>
-<td>str</td>
-<td>the original name of the file</td>
-</tr>
-<tr class="even">
-<td>target</td>
-<td>str</td>
-<td>the target name of the file</td>
-</tr>
-<tr class="odd">
-<td><strong>Returns</strong></td>
-<td><strong>str</strong></td>
-<td><strong>the command of git rename file</strong></td>
-</tr>
-</tbody>
-</table>
-<hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L87" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
-<section id="git_commit" class="level3">
-<h3 class="anchored" data-anchor-id="git_commit">git_commit</h3>
-<blockquote class="blockquote">
-<pre><code> git_commit (commit_msg:str)</code></pre>
-</blockquote>
-<p>GitHub commit command</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>commit_msg</td>
-<td>str</td>
-<td>Commit Message</td>
-</tr>
-<tr class="even">
-<td><strong>Returns</strong></td>
-<td><strong>str</strong></td>
-<td><strong>the command for git commit</strong></td>
-</tr>
-</tbody>
-</table>
-<hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L93" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
-<section id="git_add_all" class="level3">
-<h3 class="anchored" data-anchor-id="git_add_all">git_add_all</h3>
-<blockquote class="blockquote">
-<pre><code> git_add_all ()</code></pre>
-</blockquote>
-<hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/gh_group.py#L97" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
-<section id="delete_directory" class="level3">
-<h3 class="anchored" data-anchor-id="delete_directory">delete_directory</h3>
-<blockquote class="blockquote">
-<pre><code> delete_directory (dir_name:str)</code></pre>
-</blockquote>
-<table class="table">
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>dir_name</td>
-<td>str</td>
-<td>the directory that we want to delete</td>
-</tr>
-<tr class="even">
-<td><strong>Returns</strong></td>
-<td><strong>str</strong></td>
-<td><strong>the command for delete dir</strong></td>
-</tr>
-</tbody>
-</table>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>g.create_group_repo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>&lt;bound method GitHubGroup.create_group_repo of &lt;__main__.GitHubGroup object&gt;&gt;</code></pre>
+</div>
+</div>
 
 
 </section>
@@ -576,23 +468,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
+    target: function(trigger) {
+      return trigger.previousElementSibling;
     }
   });
   clipboard.on('success', function(e) {
@@ -657,92 +535,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
