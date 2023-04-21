@@ -21,7 +21,7 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-# %% ../nbs/02_gh_group_creation.ipynb 6
+# %% ../nbs/02_gh_group_creation.ipynb 5
 class GitHubGroup:
     def __init__(self,
                  credentials_fp="", # the file path to the credential json
@@ -173,7 +173,7 @@ class GitHubGroup:
             print(f"Group Repo: {bcolors.OKGREEN} {repo_name} {bcolors.ENDC} successfuly created!")
         return repo
 
-# %% ../nbs/02_gh_group_creation.ipynb 8
+# %% ../nbs/02_gh_group_creation.ipynb 6
 class GitHubGroup:
     def __init__(self,
                  credentials_fp="", # the file path to the credential json
