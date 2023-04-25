@@ -2,6 +2,9 @@ website:
   sidebar:
     contents:
       - index.ipynb
-      - 01_GroupEng_assign.ipynb
-      - 02_gh_group_creation.ipynb
-      - 03_canvas_group_creation.ipynb
+      - 02_1_github_example.ipynb
+      - section: api
+        contents:
+          - api/01_GroupEng_assign.ipynb
+          - api/02_gh_group_creation.ipynb
+          - api/03_canvas_group_creation.ipynb
