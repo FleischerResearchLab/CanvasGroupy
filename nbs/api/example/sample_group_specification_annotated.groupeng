@@ -1,0 +1,75 @@
+# Example input file for GroupEng
+ 
+# Lines that start with a # are comments and GroupEng ignores them
+
+# The file that containes the student list.  This should be a csv
+# file as exported from excel
+# Either store the input deck in the same directory as the class
+# file,  or give the full path to the class file here
+classlist : sample_class_1.csv
+
+# Student Identifier (name, id number, ...) should be unique
+student_identifier : ID
+
+# group_size: number of students per group immediately followed by + or -
+# If the students don't divide evenly into group_size person groups,
+# group size can be + (have an extra person in some groups), or 
+# - (have one less person in some groups)
+group_size : 4+
+
+# Alternatively, you can specify a number_of_groups to tell groupeng to make
+# exactly that many groups and pick the group size automatically. Do not use
+# both group_size and number_of_groups. If you do, your group_size will be ignored
+# number_of_groups : 14
+
+# Don't isolate women
+- cluster : Gender
+  values : M
+
+# Don't isolate minorities
+- cluster : Ethnicity
+# a , b for a list where each value is clustered individually
+# c = d for union of values, treat them both as one value,
+# you can chain equals (c = d = f = ...) for larger unions
+  values : B = H
+
+# Put students on the same project choice together
+- aggregate : Project choice
+
+# Multidisciplinary teams
+- distribute : Major
+  values : Mech E, CS, Civ E, EE
+
+# Ensure Teams have all needed skills
+- distribute : Skill1
+  value : y
+- distribute : Skill2
+  value : y
+- distribute : Skill3
+  value : y
+
+# You will usually want to put the balance rule last.  It turn out the
+# program is pretty good at meeting balance rules even with low
+# priority, but locking in groups by gpa balance at high priority
+# makes it hard to meet other rules
+- balance : GPA
+
+# you can specifiy a tol (tolerance) argument (below, commented out),
+# but generally that is not necessary, the default value of .5
+# generally works well, but tweaking this value may allow you to coax
+# better balanced groups. It controls how many standard deviations the
+# mean GPA of a group is allowed to be from the mean GPA of the class
+# before the balance rule is considered "broken". Putting a tight
+# (small number)tolerance balance early will remove most of GroupEng's
+# freedom to operate and lead to bad groups. However, putting a tight
+# tolerance late is generally safe, and will cause groupeng to try hard
+# to make well balanced groups, though it may lead to many reports of
+# the balance rule failing (because, while tightly balanced, they may not
+# quite meet the tolerance specified. You can also apply multiple balance
+# rules on the same attribute, one loose tolerance early to establish a
+# required baseline for how balanced groups absolutely have to be and then
+# a tighter one at the end to get groupeng to do any further optimization
+# it can given the other rules
+  tol : .2
+
+

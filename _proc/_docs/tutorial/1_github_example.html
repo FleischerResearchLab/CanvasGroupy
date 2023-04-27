@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Canvas Grouping Python Script">
+<meta name="description" content="A step by step example of using the GitHub Group Module">
 
-<title>CanvasGroupy</title>
+<title>CanvasGroupy - GitHub Group Example</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,59 +21,25 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -95,12 +61,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
-<meta property="og:title" content="CanvasGroupy">
-<meta property="og:description" content="Canvas Grouping Python Script">
+<link rel="stylesheet" href="../styles.css">
+<meta property="og:title" content="CanvasGroupy - GitHub Group Example">
+<meta property="og:description" content="A step by step example of using the GitHub Group Module">
 <meta property="og:site-name" content="CanvasGroupy">
-<meta name="twitter:title" content="CanvasGroupy">
-<meta name="twitter:description" content="Canvas Grouping Python Script">
+<meta name="twitter:title" content="CanvasGroupy - GitHub Group Example">
+<meta name="twitter:description" content="A step by step example of using the GitHub Group Module">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -111,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">CanvasGroupy</span>
     </a>
   </div>
@@ -125,7 +91,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">CanvasGroupy</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorial/1_github_example.html">tutorial</a></li><li class="breadcrumb-item"><a href="../tutorial/1_github_example.html">GitHub Group Example</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -139,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">CanvasGroupy</span></a>
   </div>
 </li>
@@ -154,19 +120,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./api/groupeng_assign.html" class="sidebar-item-text sidebar-link">
+  <a href="../api/groupeng_assign.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GroupEngAssign</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./api/gh_group_creation.html" class="sidebar-item-text sidebar-link">
+  <a href="../api/gh_group_creation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GitHub Group Creation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./api/canvas_group_creation.html" class="sidebar-item-text sidebar-link">
+  <a href="../api/canvas_group_creation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Canvas Group Creation</span></a>
   </div>
 </li>
@@ -183,13 +149,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorial/1_github_example.html" class="sidebar-item-text sidebar-link">
+  <a href="../tutorial/1_github_example.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">GitHub Group Example</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorial/canvas_group_example.html" class="sidebar-item-text sidebar-link">
+  <a href="../tutorial/canvas_group_example.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Canvas Group Example</span></a>
   </div>
 </li>
@@ -201,26 +167,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#install" id="toc-install" class="nav-link active" data-scroll-target="#install">Install</a></li>
-  <li><a href="#how-to-use" id="toc-how-to-use" class="nav-link" data-scroll-target="#how-to-use">How to use</a></li>
-  </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">CanvasGroupy</h1>
+<h1 class="title">GitHub Group Example</h1>
 </div>
 
 <div>
   <div class="description">
-    Canvas Grouping Python Script
+    A step by step example of using the GitHub Group Module
   </div>
 </div>
 
@@ -236,67 +195,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
-<p>View our documentation <a href="https://fleischerresearchlab.github.io/CanvasGroupy/">at this link</a></p>
-<p>This module will use <code>GroupEng</code> to create canvas and github groups.</p>
-<section id="install" class="level2">
-<h2 class="anchored" data-anchor-id="install">Install</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install CanvasGroupy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="how-to-use" class="level2">
-<h2 class="anchored" data-anchor-id="how-to-use">How to use</h2>
-<p>Please visit <a href="https://groupeng.org/">GroupEng Official Website</a> to see the documnetation of how to use GroupEng.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>assign_groups(<span class="st">"example/sample_group_specification.groupeng"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>['-', '-', 'B', '-', '-']
-['B', '-', 'H', '-', '-']
-['H', '-', '-', '-', '-']
-['-', 'H', '-', 'B', 'H']
-['-', '-', '-', 'B', '-']
-['-', '-', 'H', '-', '-']
-['nanotech', 'renewable energy', 'nanotech', 'nanotech', 'nanotech']
-['automotive', 'automotive', 'robotics', 'automotive', 'renewable energy']
-['automotive', 'statistics', 'automotive', 'renewable energy', 'renewable energy']
-['automotive', 'automotive', 'statistics', 'renewable energy', 'renewable energy']
-['automotive', 'automotive', 'renewable energy', 'statistics', 'renewable energy']
-['renewable energy', 'automotive', 'automotive', 'statistics', 'renewable energy']
-['CS', 'EE', 'Mech E', 'CS', 'EE']
-['CS', 'EE', 'Mech E', 'Mech E', 'EE']
-['CS', 'Civ E', 'EE', 'Mech E', 'Mech E']
-['EE', 'Civ E', 'Civ E', 'EE', 'Mech E']
-['EE', 'Mech E', 'CS', 'EE', 'EE']
-['Civ E', 'Mech E', 'CS', 'Mech E', 'EE']
-['y', 'y', 'y', 'y', 'y']
-['y', 'y', 'y', 'y', 'y']
-['y', 'y', 'y', 'y', 'y']
-['y', 'y', 'y', 'y', 'y']
-['y', 'y', 'y', 'y', 'y']
-['-', '-', 'y', '-', 'y']
-['y', 'y', 'y', 'y', 'y']
-['y', 'y', 'y', 'y', 'y']
-['y', 'y', 'y', 'y', 'y']
-['y', 'y', 'y', 'y', 'y']
-['y', 'y', 'y', 'y', 'y']
-['y', '-', '-', 'y', 'y']
-['y', 'y', 'y', '-', '-']
-['y', 'y', '-', 'y', '-']
-['-', '-', '-', 'y', 'y']
-['y', '-', 'y', '-', 'y']
-['-', '-', 'y', '-', 'y']
-[3.2579174234, 3.5995299693, 3.2756432963, 4.220160605, 2.5723254477]
-[3.2579174234, 3.2756432963, 2.5723254477, 3.5995299693, 4.220160605]
-[4.220160605, 3.5995299693, 3.2756432963, 3.2579174234, 2.5723254477]
-[3.2756432963, 4.220160605, 3.2579174234, 2.5723254477, 3.5995299693]
-[3.5995299693, 4.220160605, 3.2756432963, 3.2579174234, 2.5723254477]
-[3.5995299693, 3.2756432963, 2.5723254477, 3.2579174234, 4.220160605]</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<pre><code>(False, 'groups_example_2023-04-18_13-00-35')</code></pre>
-</div>
-</div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -536,4 +436,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/issues/new" class="toc-action">Report an issue</a></p></div></div></div></div></footer></body></html>

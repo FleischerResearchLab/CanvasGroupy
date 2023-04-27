@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Canvas Grouping Python Script">
 
-<title>CanvasGroupy</title>
+<title>CanvasGroupy – proposal_feedback</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,59 +20,25 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -95,13 +60,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
-<meta property="og:title" content="CanvasGroupy">
-<meta property="og:description" content="Canvas Grouping Python Script">
-<meta property="og:site-name" content="CanvasGroupy">
-<meta name="twitter:title" content="CanvasGroupy">
-<meta name="twitter:description" content="Canvas Grouping Python Script">
-<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="../../../styles.css">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -111,7 +70,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">CanvasGroupy</span>
     </a>
   </div>
@@ -125,7 +84,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">CanvasGroupy</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -139,7 +98,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">CanvasGroupy</span></a>
   </div>
 </li>
@@ -154,19 +113,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./api/groupeng_assign.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../api/groupeng_assign.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GroupEngAssign</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./api/gh_group_creation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../api/gh_group_creation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GitHub Group Creation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./api/canvas_group_creation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../api/canvas_group_creation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Canvas Group Creation</span></a>
   </div>
 </li>
@@ -183,13 +142,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorial/1_github_example.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../tutorial/1_github_example.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GitHub Group Example</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorial/canvas_group_example.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../tutorial/canvas_group_example.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Canvas Group Example</span></a>
   </div>
 </li>
@@ -205,97 +164,185 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#install" id="toc-install" class="nav-link active" data-scroll-target="#install">Install</a></li>
-  <li><a href="#how-to-use" id="toc-how-to-use" class="nav-link" data-scroll-target="#how-to-use">How to use</a></li>
+  <li><a href="#project-proposal-feedback" id="toc-project-proposal-feedback" class="nav-link active" data-scroll-target="#project-proposal-feedback">Project Proposal Feedback</a>
+  <ul class="collapse">
+  <li><a href="#feedback" id="toc-feedback" class="nav-link" data-scroll-target="#feedback">Feedback:</a></li>
+  <li><a href="#rubric" id="toc-rubric" class="nav-link" data-scroll-target="#rubric">Rubric</a></li>
+  <li><a href="#other-comments" id="toc-other-comments" class="nav-link" data-scroll-target="#other-comments">Other Comments</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">CanvasGroupy</h1>
-</div>
-
-<div>
-  <div class="description">
-    Canvas Grouping Python Script
-  </div>
-</div>
 
 
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-</header>
-
-<!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
-<p>View our documentation <a href="https://fleischerresearchlab.github.io/CanvasGroupy/">at this link</a></p>
-<p>This module will use <code>GroupEng</code> to create canvas and github groups.</p>
-<section id="install" class="level2">
-<h2 class="anchored" data-anchor-id="install">Install</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install CanvasGroupy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="project-proposal-feedback" class="level1">
+<h1>Project Proposal Feedback</h1>
+<section id="feedback" class="level2">
+<h2 class="anchored" data-anchor-id="feedback">Feedback:</h2>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Full Score</th>
+<th>Your Score</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Abstract</td>
+<td>1</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Background</td>
+<td>1.5</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Research problem &amp; Significance</td>
+<td>1.5</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Data</td>
+<td>1.5</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Proposed Solution</td>
+<td>1.5</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Metrics</td>
+<td>1.5</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Team expectations</td>
+<td>0.25</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Timeline</td>
+<td>0.25</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>9</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="how-to-use" class="level2">
-<h2 class="anchored" data-anchor-id="how-to-use">How to use</h2>
-<p>Please visit <a href="https://groupeng.org/">GroupEng Official Website</a> to see the documnetation of how to use GroupEng.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>assign_groups(<span class="st">"example/sample_group_specification.groupeng"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>['-', '-', 'B', '-', '-']
-['B', '-', 'H', '-', '-']
-['H', '-', '-', '-', '-']
-['-', 'H', '-', 'B', 'H']
-['-', '-', '-', 'B', '-']
-['-', '-', 'H', '-', '-']
-['nanotech', 'renewable energy', 'nanotech', 'nanotech', 'nanotech']
-['automotive', 'automotive', 'robotics', 'automotive', 'renewable energy']
-['automotive', 'statistics', 'automotive', 'renewable energy', 'renewable energy']
-['automotive', 'automotive', 'statistics', 'renewable energy', 'renewable energy']
-['automotive', 'automotive', 'renewable energy', 'statistics', 'renewable energy']
-['renewable energy', 'automotive', 'automotive', 'statistics', 'renewable energy']
-['CS', 'EE', 'Mech E', 'CS', 'EE']
-['CS', 'EE', 'Mech E', 'Mech E', 'EE']
-['CS', 'Civ E', 'EE', 'Mech E', 'Mech E']
-['EE', 'Civ E', 'Civ E', 'EE', 'Mech E']
-['EE', 'Mech E', 'CS', 'EE', 'EE']
-['Civ E', 'Mech E', 'CS', 'Mech E', 'EE']
-['y', 'y', 'y', 'y', 'y']
-['y', 'y', 'y', 'y', 'y']
-['y', 'y', 'y', 'y', 'y']
-['y', 'y', 'y', 'y', 'y']
-['y', 'y', 'y', 'y', 'y']
-['-', '-', 'y', '-', 'y']
-['y', 'y', 'y', 'y', 'y']
-['y', 'y', 'y', 'y', 'y']
-['y', 'y', 'y', 'y', 'y']
-['y', 'y', 'y', 'y', 'y']
-['y', 'y', 'y', 'y', 'y']
-['y', '-', '-', 'y', 'y']
-['y', 'y', 'y', '-', '-']
-['y', 'y', '-', 'y', '-']
-['-', '-', '-', 'y', 'y']
-['y', '-', 'y', '-', 'y']
-['-', '-', 'y', '-', 'y']
-[3.2579174234, 3.5995299693, 3.2756432963, 4.220160605, 2.5723254477]
-[3.2579174234, 3.2756432963, 2.5723254477, 3.5995299693, 4.220160605]
-[4.220160605, 3.5995299693, 3.2756432963, 3.2579174234, 2.5723254477]
-[3.2756432963, 4.220160605, 3.2579174234, 2.5723254477, 3.5995299693]
-[3.5995299693, 4.220160605, 3.2756432963, 3.2579174234, 2.5723254477]
-[3.5995299693, 3.2756432963, 2.5723254477, 3.2579174234, 4.220160605]</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<pre><code>(False, 'groups_example_2023-04-18_13-00-35')</code></pre>
-</div>
-</div>
+<section id="rubric" class="level2">
+<h2 class="anchored" data-anchor-id="rubric">Rubric</h2>
+<table class="table">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 22%">
+<col style="width: 25%">
+<col style="width: 19%">
+<col style="width: 27%">
+<col style="width: 0%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Unsatisfactory</th>
+<th>Developing</th>
+<th>Proficient</th>
+<th>Exellent</th>
+<th>Full Score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Abstract</td>
+<td>Abstract is confusing or fails to offer important details about the issue, variables, context, or methods of the project.</td>
+<td>Abstract lacks relevance or fails to offer appropriate details about the issue, variables, context, or methods of the project.</td>
+<td>Abstract is relevant, offering details about the research project.</td>
+<td>Abstract is informative, succinct, and clear. It offers specific details about the educational issue, variables, context, and proposed methods of the study.</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Background</td>
+<td>Did not have at least 3 reliable and relevant sources. Or relevant sources were not used in relevant ways</td>
+<td>A key component was not connected to the research literature. Selected literature was from unreliable sources. Literary supports were vague or ambiguous.</td>
+<td>Key research components were connected to relevant, reliable theoretical and research literature.</td>
+<td>Narrative integrates critical and logical details from the peer-reviewed theoretical and research literature. Each key research component is grounded to the literature. Attention is given to different perspectives, threats to validity, and opinion vs.&nbsp;evidence.</td>
+<td>1.5</td>
+</tr>
+<tr class="odd">
+<td>Research problem (&amp; Significance, Purpose of the project)</td>
+<td>Research issue remains unclear. The research purpose, questions, hypotheses, definitions or variables and controls are still largely undefined, or when they are are poorly formed, ambiguous, or not logically connected to the description of the problem. Unclear connections to the literature.</td>
+<td>Research issue is identified, but statement is too broad or fails to establish the importance of the problem. The research purpose, questions, hypotheses, definitions or variables and controls are poorly formed, ambiguous, or not logically connected to the description of the problem. Unclear connections to the literature.</td>
+<td>Identifies a relevant research issue. Research questions are succinctly stated, connected to the research issue, and supported by the literature. Variables and controls have been identified and described. Connections are established with the literature.</td>
+<td>Presents a significant research problem related to the data sciences. Articulates clear, reasonable research questions given the purpose, design, and methods of the project. All variables and controls have been appropriately defined. Proposals are clearly supported from the research and theoretical literature. All elements are mutually supportive.</td>
+<td>1.5</td>
+</tr>
+<tr class="even">
+<td>Data</td>
+<td>Did not have references to relevant data sources for this problem. Did not describe the data obtained at those sources</td>
+<td>A key data source was not referenced or described in satisfactory level of detail</td>
+<td>All relevant data sources were referenced and described in terms of their key variables and size</td>
+<td>Multiple data sources for each aspect of the project, All data sources are fully described and referenced. The details of the descriptions also make it clear how they support the needs ot the project.</td>
+<td>1.5</td>
+</tr>
+<tr class="odd">
+<td>Proposed Solution</td>
+<td>Lacks most details needed to undersstand the process. Or seems completely unrealistic to accomplish in the scope of this class</td>
+<td>A key detail to understand the process was not described well enough</td>
+<td>All elements needed to understand the process were described in sufficient detail</td>
+<td>The elements of the process were described succintly and with clarity about how they are connected to each other</td>
+<td>1.5</td>
+</tr>
+<tr class="even">
+<td>Metrics</td>
+<td>Lacks any metrics or at least metrics that are relevant to the problem</td>
+<td>Some metrics selected are not appropriate for the problem or the metrics selected are not described sufficiently</td>
+<td>All metrics described are appropriate and and described sufficiently</td>
+<td>The metrics are described clearly and succinctly. Their appropriateness for addressing the research problem is clearly described.</td>
+<td>1.5</td>
+</tr>
+<tr class="odd">
+<td>Team expectations</td>
+<td>Lack of expectations</td>
+<td>The list of expectations feels incomplete and perfunctory</td>
+<td>It feels like the list of expectations is complete and seems appropriate</td>
+<td>The list clearly was the subject of a thoughtful approach and already indicates a well-working team</td>
+<td>0.25</td>
+</tr>
+<tr class="even">
+<td>Timeline</td>
+<td>Lack of timeline. Or timeline is completely unrealistic</td>
+<td>The timeline feels incomplete and perfunctory. The timeline feels either too fast or too slow for the progress you expect a group can make</td>
+<td>It feels like the timeline is complete and approriate. it can likely be completed as is in the available amount of time</td>
+<td>The timeline was clearly the subject of a thoughtful approach and indicates that the team has a detailed plan that seems approriate and completeable in the allotted time.</td>
+<td>0.25</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="other-comments" class="level2">
+<h2 class="anchored" data-anchor-id="other-comments">Other Comments</h2>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
