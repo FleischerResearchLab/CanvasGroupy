@@ -9,5 +9,5 @@ website:
           - api/03_canvas_group_creation.ipynb
       - section: tutorial
         contents:
-          - tutorial/02_1_github_example.ipynb
-          - tutorial/canvas_group_example.ipynb
+          - tutorial/canvas_example.ipynb
+          - tutorial/github_example.ipynb

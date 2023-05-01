@@ -5,6 +5,7 @@ __all__ = ['bcolors', 'CanvasGroup']
 
 # %% ../nbs/api/03_canvas_group_creation.ipynb 3
 from canvasapi import Canvas
+from github import Github
 import canvasapi
 import json
 import requests
@@ -32,7 +33,7 @@ class CanvasGroup():
                  credentials_fp = "", # credential file path. [Template of the credentials.json](https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/nbs/credentials.json)
                  API_URL="https://canvas.ucsd.edu", # the domain name of canvas
                  course_id="", # Course ID, can be found in the course url
-                 verbosity=0 # Controls the verbosity: 0 = Silent, 1 = print all messages
+                 verbosity=1 # Controls the verbosity: 0 = Silent, 1 = print all messages
                 ):
         "Initialize Canvas Group within a Group Set and its appropriate memberships"
         self.API_URL = API_URL
@@ -45,7 +46,8 @@ class CanvasGroup():
         self.email_to_canvas_id = None
         self.canvas_id_to_email = None
         self.API_KEY = None
-        self.GitHubToken = None
+        self.github = None
+        self.credentials_fp = None
         self.verbosity = verbosity
         
         # initialize by the input parameter
@@ -59,10 +61,10 @@ class CanvasGroup():
                     credentials_fp: str # the Authenticator key generated from canvas
                    ):
         "Authorize the canvas module with API_KEY"
+        self.credentials_fp = credentials_fp
         with open(credentials_fp, "r") as f:
             credentials = json.load(f)
         self.API_KEY = credentials["Canvas Token"]
-        self.GITHUB_TOKEN = credentials["GitHub Token"]
         self.canvas = Canvas(self.API_URL, self.API_KEY)
         # test authorization
         _ = self.canvas.get_activity_stream_summary()
@@ -149,9 +151,11 @@ class CanvasGroup():
     
     def fetch_username_from_quiz(self,
                                  quiz_id: int, # quiz id of the username quiz
-                                 csv_name="github_id.csv", # csv output name.
+                                 csv_name="github_username.csv", # csv output name.
                                  col_index=7, # canvas quiz generated csv's question field column index
-                                ) -> dict: # {SIS Login ID: github} dictionary
+                                 check=False, # check the authenticity of the github username
+                                 
+                                ) -> dict: # {SIS Login ID: github username} dictionary
         "Fetch the GitHub user name from the canvas quiz"
         header = {'Authorization': 'Bearer ' + self.API_KEY}
         quiz = self.course.get_quiz(quiz_id)
@@ -184,21 +188,60 @@ class CanvasGroup():
                   f"Make sure this is the correct question where you asked student for their GitHub id.\n"
                   f"If you need to change the index of columns, change the col_index argument of this call."
                  )
-        col[col_index] = "GitHub ID"
+        col[col_index] = "GitHub Username"
         df.columns = col
-        small = df[["id", "GitHub ID"]].copy()
+        small = df[["id", "GitHub Username"]].copy()
         small["email"] = small["id"].apply(lambda x: self.canvas_id_to_email[x])
-        small = small[["email", "GitHub ID"]].set_index("email")
+        small = small[["email", "GitHub Username"]].set_index("email")
         small.to_csv(csv_name)
-        return small.to_dict()["GitHub ID"]
+        return small.to_dict()["GitHub Username"]
     
-    def check_github_username(self,
-                              github_username: str # the student input we want to test
-                             ):
-        ...
+    def _check_single_github_username(self,
+                              email:str, # Student email
+                              github_username:str, # student input we want to test
+                             ) -> bool: # whether the username is valid
+        "Check a single github username on github"
+        if self.credentials_fp is None:
+            raise ValueError("Credentials not set. Set it via self.auth_canvas")
+        if self.github is None:
+            # if the github object has not been initialized
+            with open(self.credentials_fp, "r") as f:
+                credentials = json.load(f)
+            github_token = credentials["GitHub Token"]
+            self.github = Github(github_token)
+        try:
+            self.github.get_user(github_username)
+        except Exception as e:
+            print(f"User: {bcolors.WARNING+github_username+bcolors.ENDC} Not Found on GitHub")
+            return False
+        return True
 
+    def check_github_usernames(self,
+                               github_usernames:dict, # {email: github username} of student inputs, generated from self.fetch_username_from_quiz
+                               sent_canvas_email=False, # whether send a reminder for students who has an invalid github username
+                               quiz_url="", # include a quiz url in the conversation for student to quickly complete the quiz.
+                              ) -> dict: # {email: github username} of unreasonable github id
+        "batch check github username from student inputs."
+        unsuccessful = {}
+        for email, github_username in github_usernames.items():
+            valid = self._check_single_github_username(email, github_username)
+            if not valid:
+                unsuccessful[email] = github_username
+                if sent_canvas_email:
+                    # send canvas emal
+                    self.create_conversation(
+                        self.email_to_canvas_id[email],
+                        subject="Unidentifiable GitHub Username",
+                        body=(f"Hi {email}, \n Your GitHub Username: {github_username} "
+                              f"is unidentifiable on github.com. \n Please complete the quiz GitHub Username Quiz again.\n"
+                              f"{quiz_url} \n"
+                              f"Thank You."
+                             )
+                    )
+        return unsuccessful
+    
     def _progress(self,
-                  percentage
+                  percentage:int # percentage of the progress
                  ):
         sys.stdout.write('\r')
         # the exact output you're looking for:
@@ -215,4 +258,13 @@ class CanvasGroup():
         group = self.create_group({"name": group_name})
         unsuccessful_join = self.join_canvas_group(group, group_members)
         return group, unsuccessful_join
+    
+    def create_conversation(self,
+                            recipients:int, #  recipient ids. These may be user ids or course/group ids prefixed with ‘course_’ or ‘group_’ respectively,
+                            subject:str, # subject of the conversation
+                            body:str, # The message to be sent
+                           ) -> canvasapi.conversation.Conversation: # created conversation
+        "Create a conversation with the target user"
+        conv = self.canvas.create_conversation([recipients], body=body, subject=subject)
+        return conv
 

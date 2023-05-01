@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Create canvas group via Canvas API">
+<meta name="description" content="Examples of a workflow of creating canvas groups.">
 
-<title>CanvasGroupy - Canvas Group Creation</title>
+<title>CanvasGroupy - Canvas Group Example</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -96,12 +96,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <link rel="stylesheet" href="../styles.css">
-<meta property="og:title" content="CanvasGroupy - Canvas Group Creation">
-<meta property="og:description" content="Create canvas group via Canvas API">
+<meta property="og:title" content="CanvasGroupy - Canvas Group Example">
+<meta property="og:description" content="Examples of a workflow of creating canvas groups.">
+<meta property="og:image" content="https://FleischerResearchLab.github.io/CanvasGroupy/tutorial/imgs/quiz_example.png">
 <meta property="og:site-name" content="CanvasGroupy">
-<meta name="twitter:title" content="CanvasGroupy - Canvas Group Creation">
-<meta name="twitter:description" content="Create canvas group via Canvas API">
-<meta name="twitter:card" content="summary">
+<meta property="og:image:height" content="892">
+<meta property="og:image:width" content="1756">
+<meta name="twitter:title" content="CanvasGroupy - Canvas Group Example">
+<meta name="twitter:description" content="Examples of a workflow of creating canvas groups.">
+<meta name="twitter:image" content="https://FleischerResearchLab.github.io/CanvasGroupy/tutorial/imgs/quiz_example.png">
+<meta name="twitter:image-height" content="892">
+<meta name="twitter:image-width" content="1756">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -125,7 +131,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../api/groupeng_assign.html">api</a></li><li class="breadcrumb-item"><a href="../api/canvas_group_creation.html">Canvas Group Creation</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorial/canvas_example.html">tutorial</a></li><li class="breadcrumb-item"><a href="../tutorial/canvas_example.html">Canvas Group Example</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -166,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../api/canvas_group_creation.html" class="sidebar-item-text sidebar-link active">
+  <a href="../api/canvas_group_creation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Canvas Group Creation</span></a>
   </div>
 </li>
@@ -183,7 +189,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorial/canvas_example.html" class="sidebar-item-text sidebar-link">
+  <a href="../tutorial/canvas_example.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Canvas Group Example</span></a>
   </div>
 </li>
@@ -205,24 +211,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#canvasgroup" id="toc-canvasgroup" class="nav-link active" data-scroll-target="#canvasgroup">CanvasGroup</a></li>
-  <li><a href="#lower-level-methods" id="toc-lower-level-methods" class="nav-link" data-scroll-target="#lower-level-methods">Lower Level Methods</a>
+  <li><a href="#canvas-authentication" id="toc-canvas-authentication" class="nav-link active" data-scroll-target="#canvas-authentication">Canvas Authentication</a></li>
+  <li><a href="#create-assign-group-in-one-call" id="toc-create-assign-group-in-one-call" class="nav-link" data-scroll-target="#create-assign-group-in-one-call">Create / Assign Group in One Call</a>
   <ul class="collapse">
-  <li><a href="#canvasgroup.auth_canvas" id="toc-canvasgroup.auth_canvas" class="nav-link" data-scroll-target="#canvasgroup.auth_canvas">CanvasGroup.auth_canvas</a></li>
-  <li><a href="#canvasgroup.set_course" id="toc-canvasgroup.set_course" class="nav-link" data-scroll-target="#canvasgroup.set_course">CanvasGroup.set_course</a></li>
-  <li><a href="#create-set-target-group-category-set" id="toc-create-set-target-group-category-set" class="nav-link" data-scroll-target="#create-set-target-group-category-set">Create / Set Target Group Category (Set)</a>
+  <li><a href="#canvasgroup.assign_canvas_group" id="toc-canvasgroup.assign_canvas_group" class="nav-link" data-scroll-target="#canvasgroup.assign_canvas_group">CanvasGroup.assign_canvas_group</a></li>
+  <li><a href="#fetch-students-github-username" id="toc-fetch-students-github-username" class="nav-link" data-scroll-target="#fetch-students-github-username">Fetch Students’ GitHub username</a>
   <ul class="collapse">
-  <li><a href="#canvasgroup.get_group_categories" id="toc-canvasgroup.get_group_categories" class="nav-link" data-scroll-target="#canvasgroup.get_group_categories">CanvasGroup.get_group_categories</a></li>
-  <li><a href="#canvasgroup.create_group_category" id="toc-canvasgroup.create_group_category" class="nav-link" data-scroll-target="#canvasgroup.create_group_category">CanvasGroup.create_group_category</a></li>
-  <li><a href="#canvasgroup.set_group_category" id="toc-canvasgroup.set_group_category" class="nav-link" data-scroll-target="#canvasgroup.set_group_category">CanvasGroup.set_group_category</a></li>
-  </ul></li>
-  <li><a href="#create-a-group-inside-the-target-group-category" id="toc-create-a-group-inside-the-target-group-category" class="nav-link" data-scroll-target="#create-a-group-inside-the-target-group-category">Create a Group Inside the Target Group Category</a>
-  <ul class="collapse">
-  <li><a href="#canvasgroup.create_group" id="toc-canvasgroup.create_group" class="nav-link" data-scroll-target="#canvasgroup.create_group">CanvasGroup.create_group</a></li>
-  </ul></li>
-  <li><a href="#assign-student-to-the-group" id="toc-assign-student-to-the-group" class="nav-link" data-scroll-target="#assign-student-to-the-group">Assign Student to the Group</a>
-  <ul class="collapse">
-  <li><a href="#canvasgroup.join_canvas_group" id="toc-canvasgroup.join_canvas_group" class="nav-link" data-scroll-target="#canvasgroup.join_canvas_group">CanvasGroup.join_canvas_group</a></li>
+  <li><a href="#canvasgroup.fetch_username_from_quiz" id="toc-canvasgroup.fetch_username_from_quiz" class="nav-link" data-scroll-target="#canvasgroup.fetch_username_from_quiz">CanvasGroup.fetch_username_from_quiz</a></li>
+  <li><a href="#canvasgroup.check_github_usernames" id="toc-canvasgroup.check_github_usernames" class="nav-link" data-scroll-target="#canvasgroup.check_github_usernames">CanvasGroup.check_github_usernames</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -233,12 +229,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Canvas Group Creation</h1>
+<h1 class="title">Canvas Group Example</h1>
 </div>
 
 <div>
   <div class="description">
-    Create canvas group via Canvas API
+    Examples of a workflow of creating canvas groups.
   </div>
 </div>
 
@@ -254,262 +250,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
-<hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/canvas.py#L31" target="_blank" style="float:right; font-size:smaller">source</a></p>
-<section id="canvasgroup" class="level3">
-<h3 class="anchored" data-anchor-id="canvasgroup">CanvasGroup</h3>
-<blockquote class="blockquote">
-<pre><code> CanvasGroup (credentials_fp='', API_URL='https://canvas.ucsd.edu',
-              course_id='', verbosity=1)</code></pre>
-</blockquote>
-<p>Initialize Canvas Group within a Group Set and its appropriate memberships</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>credentials_fp</td>
-<td>str</td>
-<td></td>
-<td>credential file path. <a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/nbs/credentials.json">Template of the credentials.json</a></td>
-</tr>
-<tr class="even">
-<td>API_URL</td>
-<td>str</td>
-<td>https://canvas.ucsd.edu</td>
-<td>the domain name of canvas</td>
-</tr>
-<tr class="odd">
-<td>course_id</td>
-<td>str</td>
-<td></td>
-<td>Course ID, can be found in the course url</td>
-</tr>
-<tr class="even">
-<td>verbosity</td>
-<td>int</td>
-<td>1</td>
-<td>Controls the verbosity: 0 = Silent, 1 = print all messages</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="lower-level-methods" class="level1">
-<h1>Lower Level Methods</h1>
-<p>Alternatively, you can manually set them after you created the <a href="https://FleischerResearchLab.github.io/CanvasGroupy/api/canvas_group_creation.html#canvasgroup"><code>CanvasGroup</code></a> object</p>
-<hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/canvas.py#L60" target="_blank" style="float:right; font-size:smaller">source</a></p>
-<section id="canvasgroup.auth_canvas" class="level3">
-<h3 class="anchored" data-anchor-id="canvasgroup.auth_canvas">CanvasGroup.auth_canvas</h3>
-<blockquote class="blockquote">
-<pre><code> CanvasGroup.auth_canvas (credentials_fp:str)</code></pre>
-</blockquote>
-<p>Authorize the canvas module with API_KEY</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>credentials_fp</td>
-<td>str</td>
-<td>the Authenticator key generated from canvas</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/canvas.py#L74" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
-<section id="canvasgroup.set_course" class="level3">
-<h3 class="anchored" data-anchor-id="canvasgroup.set_course">CanvasGroup.set_course</h3>
-<blockquote class="blockquote">
-<pre><code> CanvasGroup.set_course (course_id:int)</code></pre>
-</blockquote>
-<p>Set the target course by the course ID</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>course_id</td>
-<td>int</td>
-<td>the course id of the target course</td>
-</tr>
-</tbody>
-</table>
-<p>The following tutorial and examples demonstrates how to create and set a Group Category within a course context.</p>
-</section>
-<section id="create-set-target-group-category-set" class="level2">
-<h2 class="anchored" data-anchor-id="create-set-target-group-category-set">Create / Set Target Group Category (Set)</h2>
-<hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/canvas.py#L111" target="_blank" style="float:right; font-size:smaller">source</a></p>
-<section id="canvasgroup.get_group_categories" class="level3">
-<h3 class="anchored" data-anchor-id="canvasgroup.get_group_categories">CanvasGroup.get_group_categories</h3>
-<blockquote class="blockquote">
-<pre><code> CanvasGroup.get_group_categories ()</code></pre>
-</blockquote>
-<p>Grab all existing group category (group set) in this course</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># list all current group category</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(cg.get_group_categories().keys())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>['Final Project', 'Student Groups', 'Test']</code></pre>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import module</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> CanvasGroupy.canvas <span class="im">import</span> CanvasGroup</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<section id="canvas-authentication" class="level1">
+<h1>Canvas Authentication</h1>
+<p>All the credentials should be stored at a json file in the following format.</p>
+<p>If <code>API_KEY</code> and/or <code>course_id</code> was passed into the initializer, it will call the following methods to load the relevant information about your canvas and your canvas course.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>credentials_fp <span class="op">=</span> <span class="st">"../credentials.json"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># instansiate a new Canvas Group Object </span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># if your class size is large, it will take around 2 minutes to grab all student info.</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>API_URL <span class="op">=</span> <span class="st">"https://canvas.ucsd.edu/"</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># your canvas course id, found on the top of canvas url</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>course_id <span class="op">=</span> ...</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>cg <span class="op">=</span> CanvasGroup(credentials_fp,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                 API_URL,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                 course_id<span class="op">=</span>course_id,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>                 verbosity<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="create-assign-group-in-one-call" class="level1">
+<h1>Create / Assign Group in One Call</h1>
 <hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/canvas.py#L117" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
-<section id="canvasgroup.create_group_category" class="level3">
-<h3 class="anchored" data-anchor-id="canvasgroup.create_group_category">CanvasGroup.create_group_category</h3>
+<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/canvas.py#LNone" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<section id="canvasgroup.assign_canvas_group" class="level3">
+<h3 class="anchored" data-anchor-id="canvasgroup.assign_canvas_group">CanvasGroup.assign_canvas_group</h3>
 <blockquote class="blockquote">
-<pre><code> CanvasGroup.create_group_category (params:dict)</code></pre>
+<pre><code> CanvasGroup.assign_canvas_group (group_name:str,
+                                  group_members:[&lt;class'str'&gt;],
+                                  in_group_category:str)</code></pre>
 </blockquote>
-<p>Create group category (group set) in this course</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>params</td>
-<td>dict</td>
-<td>the parameter of canvas group category API @ <a href="https://canvas.instructure.com/doc/api/group_categories.html#method.group_categories.create">this link</a></td>
-</tr>
-<tr class="even">
-<td><strong>Returns</strong></td>
-<td><strong>GroupCategory</strong></td>
-<td><strong>the generated group category object</strong></td>
-</tr>
-</tbody>
-</table>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> {</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"name"</span>: <span class="st">"TEST-GroupProject"</span>,</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"group_limit"</span>: <span class="dv">5</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a new category</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>group_category <span class="op">=</span> cg.create_group_category(params)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check whether we successfully create a new group</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(cg.get_group_categories().keys())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>['Final Project', 'Student Groups', 'Test', 'TEST-GroupProject']</code></pre>
-</div>
-</div>
-<p>When a group category is already created, we cannot create another group with the same name. To switch the group category destination of group creation, use the <code>set_group_category</code> methods.</p>
-<hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/canvas.py#L97" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
-<section id="canvasgroup.set_group_category" class="level3">
-<h3 class="anchored" data-anchor-id="canvasgroup.set_group_category">CanvasGroup.set_group_category</h3>
-<blockquote class="blockquote">
-<pre><code> CanvasGroup.set_group_category (category_name:str)</code></pre>
-</blockquote>
-<table class="table">
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>category_name</td>
-<td>str</td>
-<td>the target group category</td>
-</tr>
-<tr class="even">
-<td><strong>Returns</strong></td>
-<td><strong>GroupCategory</strong></td>
-<td><strong>target group category object</strong></td>
-</tr>
-</tbody>
-</table>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>group_category <span class="op">=</span> cg.set_group_category(<span class="st">"TEST-GroupProject"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-</section>
-<section id="create-a-group-inside-the-target-group-category" class="level2">
-<h2 class="anchored" data-anchor-id="create-a-group-inside-the-target-group-category">Create a Group Inside the Target Group Category</h2>
-<hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/canvas.py#L124" target="_blank" style="float:right; font-size:smaller">source</a></p>
-<section id="canvasgroup.create_group" class="level3">
-<h3 class="anchored" data-anchor-id="canvasgroup.create_group">CanvasGroup.create_group</h3>
-<blockquote class="blockquote">
-<pre><code> CanvasGroup.create_group (params:dict)</code></pre>
-</blockquote>
-<p>Create canvas group under the target group category</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>params</td>
-<td>dict</td>
-<td>the parameter of canvas group create API at <a href="https://canvas.instructure.com/doc/api/groups.html#method.groups.create">this link</a></td>
-</tr>
-<tr class="even">
-<td><strong>Returns</strong></td>
-<td><strong>Group</strong></td>
-<td><strong>the generated target group object</strong></td>
-</tr>
-</tbody>
-</table>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> {</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"name"</span>: <span class="st">"TEST-GROUP1"</span>,</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"join_level"</span>: <span class="st">"invitation_only"</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>group1 <span class="op">=</span> cg.create_group(params)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(group1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>In Group Set: TEST-GroupProject,
-Group TEST-GROUP1 Created!
-TEST-GROUP1 (122854)</code></pre>
-</div>
-</div>
-</section>
-</section>
-<section id="assign-student-to-the-group" class="level2">
-<h2 class="anchored" data-anchor-id="assign-student-to-the-group">Assign Student to the Group</h2>
-<hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/canvas.py#L136" target="_blank" style="float:right; font-size:smaller">source</a></p>
-<section id="canvasgroup.join_canvas_group" class="level3">
-<h3 class="anchored" data-anchor-id="canvasgroup.join_canvas_group">CanvasGroup.join_canvas_group</h3>
-<blockquote class="blockquote">
-<pre><code> CanvasGroup.join_canvas_group (group:canvasapi.group.Group,
-                                group_members:[&lt;class'str'&gt;])</code></pre>
-</blockquote>
-<p>Add membership access of each group member into the group</p>
+<p>Create new groups and assign group member into the class in the <code>self.group_category</code></p>
 <table class="table">
 <colgroup>
 <col style="width: 9%">
@@ -525,30 +300,207 @@ TEST-GROUP1 (122854)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td>group</td>
-<td>Group</td>
-<td>the group that students will join</td>
+<td>group_name</td>
+<td>str</td>
+<td>group name, display on canvas</td>
 </tr>
 <tr class="even">
 <td>group_members</td>
 <td>[&lt;class ‘str’&gt;]</td>
-<td>list of group member’s SIS Login (email prefix, before the @.)</td>
+<td>list of group member’s SIS Login</td>
 </tr>
 <tr class="odd">
+<td>in_group_category</td>
+<td>str</td>
+<td>specify which group category the group belongs to</td>
+</tr>
+<tr class="even">
 <td><strong>Returns</strong></td>
-<td><strong>[&lt;class ‘str’&gt;]</strong></td>
+<td><strong>(&lt;class ‘canvasapi.group.Group’&gt;, [&lt;class ‘str’&gt;])</strong></td>
 <td><strong>list of unsuccessful join</strong></td>
 </tr>
 </tbody>
 </table>
+<p>In this way, we could directly create canvas group by specifying the group name, members info, and the group category directly.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>member1 <span class="op">=</span> <span class="st">"email"</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>cg.join_canvas_group(group1, [member1])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>member1 <span class="op">=</span> <span class="st">"email"</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>group, unsuccessful <span class="op">=</span> cg.assign_canvas_group(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    group_name<span class="op">=</span><span class="st">"TestGroup000"</span>, </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    group_members<span class="op">=</span>[member1], </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    in_group_category<span class="op">=</span><span class="st">"Test"</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">len</span>(unsuccessful)<span class="op">==</span><span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>In Group Set: Test,
+Group TestGroup000 Created!</code></pre>
+</div>
+</div>
+<p>Note that it will throw a Key Error if the target <code>in_group_category</code> did not exist in the course.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>cg.assign_canvas_group(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    group_name<span class="op">=</span><span class="st">"Failed"</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    group_members<span class="op">=</span>[member1],</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    in_group_category<span class="op">=</span><span class="st">"Group Project 2"</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>KeyError: 'Group Project 2 did not found in the group categories. Try to create one with CanvasGroup.create_group_category'</code></pre>
+</div>
+</div>
+</section>
+<section id="fetch-students-github-username" class="level2">
+<h2 class="anchored" data-anchor-id="fetch-students-github-username">Fetch Students’ GitHub username</h2>
+<hr>
+<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/canvas.py#LNone" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<section id="canvasgroup.fetch_username_from_quiz" class="level3">
+<h3 class="anchored" data-anchor-id="canvasgroup.fetch_username_from_quiz">CanvasGroup.fetch_username_from_quiz</h3>
+<blockquote class="blockquote">
+<pre><code> CanvasGroup.fetch_username_from_quiz (quiz_id:int,
+                                       csv_name='github_username.csv',
+                                       col_index=7, check=False)</code></pre>
+</blockquote>
+<p>Fetch the GitHub user name from the canvas quiz</p>
+<table class="table">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 25%">
+<col style="width: 34%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>quiz_id</td>
+<td>int</td>
+<td></td>
+<td>quiz id of the username quiz</td>
+</tr>
+<tr class="even">
+<td>csv_name</td>
+<td>str</td>
+<td>github_username.csv</td>
+<td>csv output name.</td>
+</tr>
+<tr class="odd">
+<td>col_index</td>
+<td>int</td>
+<td>7</td>
+<td>canvas quiz generated csv’s question field column index</td>
+</tr>
+<tr class="even">
+<td>check</td>
+<td>bool</td>
+<td>False</td>
+<td>check the authenticity of the github username</td>
+</tr>
+<tr class="odd">
+<td><strong>Returns</strong></td>
+<td><strong>dict</strong></td>
+<td></td>
+<td><strong>{SIS Login ID: github username} dictionary</strong></td>
+</tr>
+</tbody>
+</table>
+<p>An example of the quiz question looks like the followings</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/quiz_example.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">quiz_screenshot</figcaption>
+</figure>
+</div>
+<p>On canvas, this is a <em>fill in the blank</em> question with the following raw format:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/raw_question.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">quiz_raw</figcaption>
+</figure>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>quiz_id <span class="op">=</span> <span class="dv">139061</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>github_ids <span class="op">=</span> cg.fetch_username_from_quiz(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    quiz_id<span class="op">=</span>quiz_id</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Quiz: GitHub ID fetch! 
+Generating Student Analaysis...
+[====================] 100%
+Report Generated!
+The Question asked is 1389031: What is your GitHub ID? Absolutely No Typo Please.. 
+Make sure this is the correct question where you asked student for their GitHub id.
+If you need to change the index of columns, change the col_index argument of this call.</code></pre>
+</div>
+</div>
+<hr>
+<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/canvas.py#LNone" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="canvasgroup.check_github_usernames" class="level3">
+<h3 class="anchored" data-anchor-id="canvasgroup.check_github_usernames">CanvasGroup.check_github_usernames</h3>
+<blockquote class="blockquote">
+<pre><code> CanvasGroup.check_github_usernames (github_usernames:dict,
+                                     sent_canvas_email=False, quiz_url='')</code></pre>
+</blockquote>
+<p>batch check github username from student inputs.</p>
+<table class="table">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 25%">
+<col style="width: 34%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>github_usernames</td>
+<td>dict</td>
+<td></td>
+<td>{email: github username} of student inputs, generated from self.fetch_username_from_quiz</td>
+</tr>
+<tr class="even">
+<td>sent_canvas_email</td>
+<td>bool</td>
+<td>False</td>
+<td>whether send a reminder for students who has an invalid github username</td>
+</tr>
+<tr class="odd">
+<td>quiz_url</td>
+<td>str</td>
+<td></td>
+<td>include a quiz url in the conversation for student to quickly complete the quiz.</td>
+</tr>
+<tr class="even">
+<td><strong>Returns</strong></td>
+<td><strong>dict</strong></td>
+<td></td>
+<td><strong>{email: github username} of unreasonable github id</strong></td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>cg.check_github_usernames(github_ids, <span class="st">"../../../credentials.json"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>User: 64987902 Not Found on GitHub
+User: 122977555 Not Found on GitHub
+User: 10285923 Not Found on GitHub</code></pre>
+</div>
 <div class="cell-output cell-output-display">
-<pre><code>[]</code></pre>
+<pre><code>{'gng': '64987902', 'y3guo': '122977555', 'nyanekch': '10285923'}</code></pre>
 </div>
 </div>
+<p>Since some students did not put their github username correctly.</p>
 
 
 </section>
