@@ -132,3 +132,4 @@ dmypy.json
 .DS_Store
 nbs/groups_example*
 _proc/groups_example*
+nbs/api/github_username.csv

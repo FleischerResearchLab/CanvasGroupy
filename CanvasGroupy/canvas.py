@@ -79,9 +79,9 @@ class CanvasGroup():
         if self.verbosity != 0:
             print(f"Course Set: {bcolors.OKGREEN} {self.course.name} {bcolors.ENDC}")
             print(f"Getting List of Users... This might take a while...")
-        self.users = list(self.course.get_users())
+        self.users = list(self.course.get_users(enrollment_type=['student']))
         if self.verbosity != 0:
-            print(f"Users Fetch Complete! The course has {bcolors.OKBLUE}{len(self.users)}{bcolors.ENDC} users.")
+            print(f"Users Fetch Complete! The course has {bcolors.OKBLUE}{len(self.users)}{bcolors.ENDC} students.")
         self.email_to_canvas_id = {}
         self.canvas_id_to_email = {}
         for u in self.users:
@@ -153,8 +153,6 @@ class CanvasGroup():
                                  quiz_id: int, # quiz id of the username quiz
                                  csv_name="github_username.csv", # csv output name.
                                  col_index=7, # canvas quiz generated csv's question field column index
-                                 check=False, # check the authenticity of the github username
-                                 
                                 ) -> dict: # {SIS Login ID: github username} dictionary
         "Fetch the GitHub user name from the canvas quiz"
         header = {'Authorization': 'Bearer ' + self.API_KEY}
@@ -218,7 +216,8 @@ class CanvasGroup():
 
     def check_github_usernames(self,
                                github_usernames:dict, # {email: github username} of student inputs, generated from self.fetch_username_from_quiz
-                               sent_canvas_email=False, # whether send a reminder for students who has an invalid github username
+                               send_canvas_email=False, # whether send a reminder for students who has an invalid github username
+                               send_undone_reminder=False, # send quiz undone reminder using canvas email
                                quiz_url="", # include a quiz url in the conversation for student to quickly complete the quiz.
                               ) -> dict: # {email: github username} of unreasonable github id
         "batch check github username from student inputs."
@@ -227,8 +226,7 @@ class CanvasGroup():
             valid = self._check_single_github_username(email, github_username)
             if not valid:
                 unsuccessful[email] = github_username
-                if sent_canvas_email:
-                    # send canvas emal
+                if send_canvas_email:
                     self.create_conversation(
                         self.email_to_canvas_id[email],
                         subject="Unidentifiable GitHub Username",
@@ -238,6 +236,29 @@ class CanvasGroup():
                               f"Thank You."
                              )
                     )
+                    if self.verbosity != 0:
+                        print(f"{bcolors.OKGREEN}Notification Sent!{bcolors.ENDC}")
+        if send_undone_reminder:
+            submitted = github_usernames.keys()
+            for email in self.email_to_canvas_id.keys():
+                if email not in submitted:
+                    if self.verbosity != 0:
+                        print(f"Student {bcolors.WARNING}{email}{bcolors.ENDC} did not"
+                              f" submit their github username."
+                             )
+                    # means student did not submit the quiz
+                    if send_canvas_email:
+                        self.create_conversation(
+                            self.email_to_canvas_id[email],
+                            subject="GitHub Username Quiz Not Completed",
+                            body=(f"Hi {email}, \n You did not complete the GitHub Quiz."
+                                  f"\n Please complete the quiz GitHub Username Quiz ASAP\n"
+                                  f"{quiz_url} \n"
+                                  f"Thank You."
+                                 )
+                        )
+                        if self.verbosity != 0:
+                            print(f"{bcolors.OKGREEN}Notification Sent!{bcolors.ENDC}")
         return unsuccessful
     
     def _progress(self,
@@ -265,6 +286,11 @@ class CanvasGroup():
                             body:str, # The message to be sent
                            ) -> canvasapi.conversation.Conversation: # created conversation
         "Create a conversation with the target user"
-        conv = self.canvas.create_conversation([recipients], body=body, subject=subject)
+        conv = self.canvas.create_conversation(
+            [recipients],
+            body=body,
+            subject=subject,
+            context_code=f"course_{cg.course.id}",
+        )
         return conv
 
