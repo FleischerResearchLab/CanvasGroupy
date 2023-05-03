@@ -10,6 +10,7 @@ import json
 import time
 import os
 import glob
+from pprint import pprint
 
 # %% ../nbs/api/02_gh_group_creation.ipynb 4
 class bcolors:
@@ -154,7 +155,7 @@ class GitHubGroup:
         for p in pendings:
             repo.remove_invitation(p.id)
             if self.verbosity != 0:
-                print(f"{bcolors.WARNING} {p.invitee.login} Invite Revoked {p.invitee.login} {bcolors.ENDC}")
+                print(f"{bcolors.WARNING}{bcolors.UNDERLINE}{p.invitee.login}{bcolors.ENDC} {bcolors.FAIL}Invite Revoked {bcolors.ENDC}")
             self.add_collaborator(repo, p.invitee.login, p.permissions)
             if self.verbosity != 0:
                 print(f"{bcolors.OKGREEN} Invite Resent to {p.invitee.login} {bcolors.ENDC}")
@@ -169,7 +170,11 @@ class GitHubGroup:
         for repo in repos:
             if self.verbosity != 0:
                 print(f"Repository {bcolors.OKCYAN} {repo.name} {bcolors.ENDC}:")
-            _ = self.resend_invitations(repo)
+            try:
+                _ = self.resend_invitations(repo)
+            except Exception as e:
+                print(f"{bcolors.WARNING}Make sure to have proper rights to the target repo{bcolors.ENDC}\n")
+                print(e)
         
     def add_team(self,
                   repo: github.Repository.Repository, # target repository

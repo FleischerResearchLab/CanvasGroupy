@@ -14,9 +14,7 @@ dependencies:
   - pandas
   - jupyterlab
   - partd
-  - bokeh
   - nbdev
-  - gh
   - pip
   - pip:
     - git+https://github.com/scott-yj-yang/groupeng.git@dev
