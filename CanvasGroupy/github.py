@@ -130,7 +130,10 @@ class GitHubGroup:
                           permission:str # `pull`, `push` or `admin`
                          ):
         "Add collaborator to the repository with specified permission"
-        repo.add_to_collaborators(collaborator, permission)
+        try:
+            repo.add_to_collaborators(collaborator, permission)
+        except Exception as e:
+            print(f"{bcolors.WARNING}Add Failed for {collaborator}{bcolors.ENDC}")
         if self.verbosity != 0:
             print(f"Added Collaborator: {bcolors.OKGREEN} {collaborator} {bcolors.ENDC}"
                   f" to: {bcolors.OKGREEN} {repo.name} {bcolors.ENDC} with "
@@ -275,6 +278,7 @@ class GitHubGroup:
             self.add_team(repo, team_slug, team_permission)
         if self.verbosity != 0:
             print(f"Group Repo: {bcolors.OKGREEN} {repo_name} {bcolors.ENDC} successfuly created!")
+            print(f"Repo URL: https://github.com/{self.org.login}/{repo_name}")
         if feedback_dir:
             if feedback_template_fp == "":
                 raise ValueError("You have to specify the template files.")

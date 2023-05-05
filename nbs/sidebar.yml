@@ -6,8 +6,7 @@ website:
         contents:
           - api/01_GroupEng_assign.ipynb
           - api/02_gh_group_creation.ipynb
-          - api/03_canvas_group_creation.ipynb
+          - api/03_canvas.ipynb
       - section: tutorial
         contents:
-          - tutorial/canvas_example.ipynb
-          - tutorial/github_example.ipynb
+          - tutorial/Create GitHub Group from Canvas Group.ipynb
