@@ -1,0 +1,23 @@
+classlist : 195_class.csv
+
+student_identifier : ID
+
+group_size : 3-
+
+- cluster : Gender
+  values : F
+
+- cluster : Ethnicity
+  values : (B = H)
+
+- distribute : Major
+  values : COGS, DSC, MATH
+
+- distribute : Math Skills
+  values : 5, 4
+- distribute : Programming Skills
+  value : 5, 4
+- distribute : Statistic Skills
+  value : 5, 4
+
+- balance : GPA 

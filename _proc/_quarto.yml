@@ -16,5 +16,13 @@ website:
     search: true
   sidebar:
     style: floating
+    contents:
+      - auto: "/index.ipynb"
+      - section: Tutorials
+        contents: tutorials/*
+      - section: API
+        contents: api/*
+      - section: Project Feedback Template
+        contents: feedback_template/*
 
-metadata-files: [nbdev.yml, sidebar.yml]
+metadata-files: [nbdev.yml]
