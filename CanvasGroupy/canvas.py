@@ -33,6 +33,7 @@ class CanvasGroup():
                  credentials_fp = "", # credential file path. [Template of the credentials.json](https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/nbs/credentials.json)
                  API_URL="https://canvas.ucsd.edu", # the domain name of canvas
                  course_id="", # Course ID, can be found in the course url
+                 group_category="", # target group category (set) of interests
                  verbosity=1 # Controls the verbosity: 0 = Silent, 1 = print all messages
                 ):
         "Initialize Canvas Group within a Group Set and its appropriate memberships"
@@ -59,6 +60,8 @@ class CanvasGroup():
         if course_id != "":
             self.set_course(course_id)
             self.get_group_categories()
+        if group_category != "":
+            self.set_group_category(group_category)
             
     def auth_canvas(self,
                     credentials_fp: str # the Authenticator key generated from canvas
@@ -122,6 +125,8 @@ class CanvasGroup():
             group.name: [
                 u.login_id for u in list(group.get_users())
             ] for group in self.groups}
+        if self.verbosity != 0:
+            print(f"Group Category: {bcolors.OKGREEN+category_name+bcolors.ENDC} Set!")
         return self.group_category
     
     def get_groups(self,
@@ -172,15 +177,16 @@ class CanvasGroup():
             try:
                 canvas_id = self.email_to_canvas_id[group_member]
                 group.create_membership(canvas_id)
-            except KeyError:
+                if self.verbosity != 0:
+                    print(f"Member {bcolors.OKGREEN}{group_member}{bcolors.ENDC} Joined group {bcolors.OKGREEN}{group.name}{bcolors.ENDC}")
+            except KeyError as e:
                 unsuccessful_join.append(group_member)
                 print(f"Error adding student {bcolors.WARNING+group_member+bcolors.ENDC} \n into group {group.name}")
-            group.create_membership(canvas_id)
+                print(e)
         return unsuccessful_join
     
     def fetch_username_from_quiz(self,
                                  quiz_id: int, # quiz id of the username quiz
-                                 csv_name="github_username.csv", # csv output name.
                                  col_index=7, # canvas quiz generated csv's question field column index
                                 ) -> dict: # {SIS Login ID: github username} dictionary
         "Fetch the GitHub user name from the canvas quiz"
@@ -220,18 +226,17 @@ class CanvasGroup():
         small = df[["id", "GitHub Username"]].copy()
         small["email"] = small["id"].apply(lambda x: self.canvas_id_to_email[x])
         small = small[["email", "GitHub Username"]].set_index("email")
-        small.to_csv(csv_name)
         return small.to_dict()["GitHub Username"]
     
     def _check_single_github_username(self,
                               email:str, # Student email
                               github_username:str, # student input we want to test
                              ) -> bool: # whether the username is valid
-        "Check a single github username on github"
+        "Check a single GitHub username on GitHub"
         if self.credentials_fp is None:
             raise ValueError("Credentials not set. Set it via self.auth_canvas")
         if self.github is None:
-            # if the github object has not been initialized
+            # if the GitHub object has not been initialized
             with open(self.credentials_fp, "r") as f:
                 credentials = json.load(f)
             github_token = credentials["GitHub Token"]
@@ -245,11 +250,11 @@ class CanvasGroup():
 
     def check_github_usernames(self,
                                github_usernames:dict, # {email: github username} of student inputs, generated from self.fetch_username_from_quiz
-                               send_canvas_email=False, # whether send a reminder for students who has an invalid github username
+                               send_canvas_email=False, # whether send a reminder for students who have an invalid GitHub username
                                send_undone_reminder=False, # send quiz undone reminder using canvas email
                                quiz_url="", # include a quiz url in the conversation for student to quickly complete the quiz.
-                              ) -> dict: # {email: github username} of unreasonable github id
-        "batch check github username from student inputs."
+                              ) -> dict: # {email: github username} of unreasonable GitHub id
+        "batch check GitHub username from student inputs."
         unsuccessful = {}
         for email, github_username in github_usernames.items():
             valid = self._check_single_github_username(email, github_username)
@@ -307,10 +312,12 @@ class CanvasGroup():
         self.set_group_category(in_group_category)
         group = self.create_group({"name": group_name})
         unsuccessful_join = self.join_canvas_group(group, group_members)
+        if self.verbosity != 0:
+            print(f"Group {bcolors.OKGREEN+group_name+bcolors.ENDC} created!")
         return group, unsuccessful_join
     
     def create_conversation(self,
-                            recipients:int, #  recipient ids. These may be user ids or course/group ids prefixed with ‘course_’ or ‘group_’ respectively,
+                            recipients:int, #  recipient ids. These may be user ids or course/group ids prefixed with ‘course_’ or ‘group_’ respectively.
                             subject:str, # subject of the conversation
                             body:str, # The message to be sent
                            ) -> canvasapi.conversation.Conversation: # created conversation

@@ -3,17 +3,17 @@
 # %% auto 0
 __all__ = ['Grading']
 
-# %% ../nbs/api/04_project_grading.ipynb 3
+# %% ../nbs/api/04_project_grading.ipynb 5
 from .github import GitHubGroup
 from .canvas import CanvasGroup
 import github
 import canvasapi
 from ast import literal_eval
 
-# %% ../nbs/api/04_project_grading.ipynb 4
+# %% ../nbs/api/04_project_grading.ipynb 6
 class Grading:
     def __init__(self,
-                 gh: github.Github, # authenticated github object
+                 gh: github.Github, # authenticated GitHub object
                  canvas: canvasapi.canvas, # authenticated canvas object
                 ):
         self.github = gh

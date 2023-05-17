@@ -29,7 +29,7 @@ class GitHubGroup:
     def __init__(self,
                  credentials_fp="", # the file path to the credential json
                  org="", # the organization name
-                 verbosity=0 # Controls the verbosity: 0=silent, 1=print status
+                 verbosity=1 # Controls the verbosity: 0=silent, 1=print status
                 ):
         self.github = None
         self.org = None

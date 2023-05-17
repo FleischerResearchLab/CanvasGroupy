@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Invoke Package Group Eng to Assign Students in Groups">
+<meta name="description" content="Manage grading rubrics and grade posting on the groups grade.">
 
-<title>CanvasGroupy - GroupEngAssign</title>
+<title>CanvasGroupy - Project Grading</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -93,14 +93,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../styles.css">
-<meta property="og:title" content="CanvasGroupy - GroupEngAssign">
-<meta property="og:description" content="Invoke Package Group Eng to Assign Students in Groups">
+<meta property="og:title" content="CanvasGroupy - Project Grading">
+<meta property="og:description" content="Manage grading rubrics and grade posting on the groups grade.">
 <meta property="og:site-name" content="CanvasGroupy">
-<meta name="twitter:title" content="CanvasGroupy - GroupEngAssign">
-<meta name="twitter:description" content="Invoke Package Group Eng to Assign Students in Groups">
+<meta name="twitter:title" content="CanvasGroupy - Project Grading">
+<meta name="twitter:description" content="Manage grading rubrics and grade posting on the groups grade.">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -125,7 +128,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../api/index.html">API</a></li><li class="breadcrumb-item"><a href="../api/groupeng_assign.html">GroupEngAssign</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../api/index.html">API</a></li><li class="breadcrumb-item"><a href="../api/project_grading.html">Project Grading</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -177,7 +180,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../api/groupeng_assign.html" class="sidebar-item-text sidebar-link active">
+  <a href="../api/groupeng_assign.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GroupEngAssign</span></a>
   </div>
 </li>
@@ -201,7 +204,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../api/project_grading.html" class="sidebar-item-text sidebar-link">
+  <a href="../api/project_grading.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Project Grading</span></a>
   </div>
 </li>
@@ -252,13 +255,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#api-doc" id="toc-api-doc" class="nav-link active" data-scroll-target="#api-doc">API Doc</a>
-  <ul class="collapse">
-  <li><a href="#assigngroup" id="toc-assigngroup" class="nav-link" data-scroll-target="#assigngroup">AssignGroup</a></li>
-  <li><a href="#assigngroup.assign_groups" id="toc-assigngroup.assign_groups" class="nav-link" data-scroll-target="#assigngroup.assign_groups">AssignGroup.assign_groups</a></li>
-  <li><a href="#assigngroup.create_canvas_group" id="toc-assigngroup.create_canvas_group" class="nav-link" data-scroll-target="#assigngroup.create_canvas_group">AssignGroup.create_canvas_group</a></li>
-  <li><a href="#assigngroup.create_github_group" id="toc-assigngroup.create_github_group" class="nav-link" data-scroll-target="#assigngroup.create_github_group">AssignGroup.create_github_group</a></li>
-  </ul></li>
+  <li><a href="#grading" id="toc-grading" class="nav-link active" data-scroll-target="#grading">Grading</a></li>
+  <li><a href="#fetch-github-issues-and-parse-the-score" id="toc-fetch-github-issues-and-parse-the-score" class="nav-link" data-scroll-target="#fetch-github-issues-and-parse-the-score">Fetch GitHub Issues and Parse the <code>Score</code></a></li>
+  <li><a href="#link-canvas-assignment-to-post-score" id="toc-link-canvas-assignment-to-post-score" class="nav-link" data-scroll-target="#link-canvas-assignment-to-post-score">Link Canvas Assignment to Post Score</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -267,12 +266,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">GroupEngAssign</h1>
+<h1 class="title">Project Grading</h1>
 </div>
 
 <div>
   <div class="description">
-    Invoke Package Group Eng to Assign Students in Groups
+    Manage grading rubrics and grade posting on the groups grade.
   </div>
 </div>
 
@@ -289,277 +288,253 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create authenticated objects</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>ghg <span class="op">=</span> GitHubGroup(<span class="st">"../../../credentials.json"</span>,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"COGS118A"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                 )</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>cg <span class="op">=</span> CanvasGroup(<span class="st">"../../../credentials.json"</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                 course_id<span class="op">=</span><span class="dv">45532</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                 )</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># create assign group object</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>ag <span class="op">=</span> AssignGroup(ghg, cg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">"../data/195_class.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">ID</th>
+<th data-quarto-table-cell-role="th">GPA</th>
+<th data-quarto-table-cell-role="th">Gender</th>
+<th data-quarto-table-cell-role="th">Ethnicity</th>
+<th data-quarto-table-cell-role="th">Major</th>
+<th data-quarto-table-cell-role="th">Math Skills</th>
+<th data-quarto-table-cell-role="th">Programming Skills</th>
+<th data-quarto-table-cell-role="th">Statistic Skills</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>dol005</td>
+<td>3.9</td>
+<td>M</td>
+<td>-</td>
+<td>COGS</td>
+<td>5</td>
+<td>5</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>nmackler</td>
+<td>3.4</td>
+<td>F</td>
+<td>B</td>
+<td>COGS</td>
+<td>2</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>xiw013</td>
+<td>3.1</td>
+<td>M</td>
+<td>-</td>
+<td>DSC</td>
+<td>3</td>
+<td>1</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>jiz100</td>
+<td>2.5</td>
+<td>M</td>
+<td>H</td>
+<td>MATH</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>jiz088</td>
+<td>2.1</td>
+<td>F</td>
+<td>-</td>
+<td>DSC</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<hr>
+<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/grading.py#L14" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<section id="grading" class="level3">
+<h3 class="anchored" data-anchor-id="grading">Grading</h3>
+<blockquote class="blockquote">
+<pre><code> Grading (gh:github.MainClass.Github, canvas:&lt;module'canvasapi.canvas'from
+          '/Users/scottyang/anaconda3/envs/CanvasGroupy/lib/python3.10/sit
+          e-packages/canvasapi/canvas.py'&gt;)</code></pre>
+</blockquote>
+<p>Initialize self. See help(type(self)) for accurate signature.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>gh</td>
+<td>Github</td>
+<td>authenticated GitHub object</td>
+</tr>
+<tr class="even">
+<td>canvas</td>
+<td>canvasapi.canvas</td>
+<td>authenticated canvas object</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="fetch-github-issues-and-parse-the-score" class="level1">
+<h1>Fetch GitHub Issues and Parse the <code>Score</code></h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>gh <span class="op">=</span> GitHubGroup(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    credentials_fp<span class="op">=</span><span class="st">"../../../credentials.json"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    org<span class="op">=</span><span class="st">"COGS118A"</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    verbosity<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Successfully Authenticated. GitHub account:  scott-yj-yang 
-Target Organization Set:  COGS118A 
-Authorization Successful!
+Target Organization Set:  COGS118A </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>repo <span class="op">=</span> gh.create_repo(repo_name<span class="op">=</span><span class="st">"TestAPI"</span>, private<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>GithubException: 422 {"message": "Repository creation failed.", "errors": [{"resource": "Repository", "code": "custom", "field": "name", "message": "name already exists on this account"}], "documentation_url": "https://docs.github.com/rest/reference/repos#create-an-organization-repository"}</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>repo <span class="op">=</span> gh.get_repo(<span class="st">"TestAPI"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"../feedback_template/proposal_feedback.md"</span>, <span class="st">"r"</span>) <span class="im">as</span> f:</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    content <span class="op">=</span> f.read()</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>gh.create_issue(repo, <span class="st">"Project Proposal Feedback"</span>, content)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>In the repo: TestAPI,
+Issue Project Proposal Feedback Created!</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre><code>Issue(title="Project Proposal Feedback", number=1)</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>issues <span class="op">=</span> <span class="bu">list</span>(repo.get_issues())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>issues[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>Issue(title="Project Proposal Feedback", number=1)</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>body <span class="op">=</span> issues[<span class="dv">0</span>].body</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> line <span class="kw">in</span> body.split(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>):</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">"Score ="</span> <span class="kw">in</span> line <span class="kw">and</span> <span class="st">"[comment]"</span> <span class="kw">not</span> <span class="kw">in</span> line:</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>        score <span class="op">=</span> literal_eval(line.split(<span class="st">"="</span>)[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>score</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>9</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>re <span class="op">=</span> gh.get_repo(<span class="st">"Group001-SP23"</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>re.full_name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>'COGS118A/Group001-SP23'</code></pre>
+</div>
+</div>
+</section>
+<section id="link-canvas-assignment-to-post-score" class="level1">
+<h1>Link Canvas Assignment to Post Score</h1>
+<p>The group repository names are consistent with their canvas group name.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>canvas <span class="op">=</span> CanvasGroup(<span class="st">"../../../credentials.json"</span>,</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>                     course_id<span class="op">=</span><span class="dv">45532</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Authorization Successful!
 Course Set:  COGS 195 - Instructional Apprenticeship - Fleischer [SP23] 
 Getting List of Users... This might take a while...
 Users Fetch Complete! The course has 5 students.</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a group category to hold students</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>cg.create_group_category({<span class="st">"name"</span>: <span class="st">"Project 1"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>canvas.create_group_category({<span class="st">"name"</span>: <span class="st">"Project 1"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<pre><code>GroupCategory(_requester=&lt;canvasapi.requester.Requester object&gt;, id=16456, name=Project 1, role=None, self_signup=None, group_limit=None, auto_leader=None, created_at=2023-05-17T20:38:56Z, created_at_date=2023-05-17 20:38:56+00:00, context_type=Course, course_id=45532, groups_count=0, unassigned_users_count=5, protected=False, allows_multiple_memberships=False, is_member=False)</code></pre>
+<pre><code>GroupCategory(_requester=&lt;canvasapi.requester.Requester object&gt;, id=16441, name=Project 1, role=None, self_signup=None, group_limit=None, auto_leader=None, created_at=2023-05-17T16:46:37Z, created_at_date=2023-05-17 16:46:37+00:00, context_type=Course, course_id=45532, groups_count=0, unassigned_users_count=5, protected=False, allows_multiple_memberships=False, is_member=False)</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assign, create both Canvas and GitHub Group in one call</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>status, out_dir <span class="op">=</span> ag.assign_groups(<span class="st">"../data/195_group_specification.groupeng"</span>,</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                                   assign_canvas_group<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                                   create_gh_repo<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                                   username_quiz_id<span class="op">=</span><span class="dv">139925</span>,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                                   in_group_category<span class="op">=</span><span class="st">"Project 1"</span>,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                                   suffix<span class="op">=</span><span class="st">"-SP23-Testing"</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>                                   )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>['H', 'B', '-']
-['B', 'H', '-']
-['-', 'H', 'B']
-['B', 'H', '-']
-['B', '-', 'H']
-['-', 'B', 'H']
-[None, 3.9, 3.1]
-[3.9, 3.1, None]
-[3.4, 2.5, 2.1]
-[3.9, None, 3.1]
-[3.4, 2.1, 2.5]
-[3.4, 2.1, 2.5]
-In Group Set: Project 1,
-Group Group1-SP23-Testing Created!
-Member dol005 Joined group Group1-SP23-Testing
-Member xiw013 Joined group Group1-SP23-Testing
-In Group Set: Project 1,
-Group Group2-SP23-Testing Created!
-Member jiz088 Joined group Group2-SP23-Testing
-Member jiz100 Joined group Group2-SP23-Testing
-Member nmackler Joined group Group2-SP23-Testing
-Quiz: GitHub Username fetch! 
-Generating Student Analaysis...
-[====================] 100%
-Report Generated!
-The Question asked is 1399692: In plain text, what is your GitHub Username? Absolutely no typo, no extra space, no hyperlink please.. 
-Make sure this is the correct question where you asked student for their GitHub id.
-If you need to change the index of columns, change the col_index argument of this call.
-dol005's GitHub Username not found
-xiw013's GitHub Username not found
-Repo  Group1-SP23-Testing  Created... Wait for 3 sec to updates
-File Successfully Renamed from   Checkpoint_groupXXX.ipynb   to  Checkpoint_Group1-SP23-Testing.ipynb 
-File Successfully Renamed from   FinalProject_groupXXX.ipynb   to  FinalProject_Group1-SP23-Testing.ipynb 
-File Successfully Renamed from   Proposal_groupXXX.ipynb   to  Proposal_Group1-SP23-Testing.ipynb 
-Team  Instructors_Sp23  added to  Group1-SP23-Testing  with permission  admin 
-Group Repo:  Group1-SP23-Testing  successfuly created!
-Repo URL: https://github.com/COGS118A/Group1-SP23-Testing
-
-jiz100's GitHub Username not found
-jiz088's GitHub Username not found
-Repo  Group2-SP23-Testing  Created... Wait for 3 sec to updates
-File Successfully Renamed from   Checkpoint_groupXXX.ipynb   to  Checkpoint_Group2-SP23-Testing.ipynb 
-File Successfully Renamed from   FinalProject_groupXXX.ipynb   to  FinalProject_Group2-SP23-Testing.ipynb 
-File Successfully Renamed from   Proposal_groupXXX.ipynb   to  Proposal_Group2-SP23-Testing.ipynb 
-Added Collaborator:  nmackler  to:  Group2-SP23-Testing  with permission:  write 
-Team  Instructors_Sp23  added to  Group2-SP23-Testing  with permission  admin 
-Group Repo:  Group2-SP23-Testing  successfuly created!
-Repo URL: https://github.com/COGS118A/Group2-SP23-Testing
-</code></pre>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>canvas.get_groups()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>{'Group001-SP23': ['h5he', 'zmao', 'xiw013', 'j6wen', 'j5zhu'],
+ 'Group002-SP23': ['cmcmanig', 'jup006', 'ssuthar', 'd3yu'],
+ 'Group003-SP23': ['yic055', 'yuz191', 'xiz068'],
+ 'Group004-SP23': ['dac020', 'nilu', 'tyap', 'g6zhu'],
+ 'Group005-SP23': ['kechen', 'a8chu', 'cdelira', 'wolee', 'arshukla'],
+ 'Group006-SP23': ['ax008707', 'ax008724', 'ax008777'],
+ 'Group007-SP23': ['yuchi', 'j3dong', 'y3ge', 'x6he', 'xiz031'],
+ 'Group008-SP23': ['zifeng', 'ax008740', 'jul121', 'yuy047'],
+ 'Group009-SP23': ['ax008573', 'ckavanagh', 'v1lu', 'vvishnus'],
+ 'Group010-SP23': ['jwc002', 'tjamal', 'jsliang', 'tdn003'],
+ 'Group011-SP23': ['khchuang', 'emdavis', 'jejiang', 'nrejai'],
+ 'Group012-SP23': ['afleschn', 'rlharsono', 'jjsanchez', 'asengupt'],
+ 'Group013-SP23': ['kehu', 'jnhuang', 'shperry', 'alvalenc'],
+ 'Group014-SP23': ['gsroberts', 'cvillafa', 'shw089', 'yiz095'],
+ 'Group015-SP23': ['aanna', 'sdsilva', 'asivayog', 'nyanekch'],
+ 'Group016-SP23': ['yuche', 'y3guo', 'e1hu', 'zhl023', 'qil012'],
+ 'Group017-SP23': ['s3chowdhury', 'llennema', 'psodhi', 'svirk'],
+ 'Group018-SP23': ['ajcagle', 'ahewig', 's2malik', 'mnodini', 'musman'],
+ 'Group019-SP23': ['sasingh', 'nsit', 'dsun'],
+ 'Group020-SP23': ['akaji', 'm1manzan', 'j3mendez', 'mpareek', 'atrapena'],
+ 'Group021-SP23': ['jkrentse', 'jmlai', 'zel012', 'sserafin'],
+ 'Group022-SP23': ['ax008708', 'anc024', 'gng', 'reyang'],
+ 'Group023-SP23': ['raguinakang', 'phelcl', 'vjayanan', 'crochez', 'kpstern'],
+ 'Group024-SP23': ['nabansal', 'ccaban', 'mvfang', 'asim'],
+ 'Group025-SP23': ['nschaefe', 'hshaikh', 'jww001', 'bjyan'],
+ 'Group026-SP23': ['e1dong', 'aaolivas', 'h5park', 'yuz821'],
+ 'Group027-SP23': ['jddeleon', 'ndnguyen', 'ttp007', 'jzs002'],
+ 'Group028-SP23': ['shc007', 'yuh045', 'ktnakai', 'jonza'],
+ 'Group029-SP23': ['lmitbo', 'jsalce', 'lskerrett', 'jubamadu'],
+ 'Group030-SP23': ['ruc003', 'shh035', 'btn003', 'knino'],
+ 'Group031-SP23': ['n6garcia', 'ken010', 'mmpak'],
+ 'Group032-SP23': ['zachao', 'smurase', 'j1xu', 'z5zhang'],
+ 'Group033-SP23': ['sbodhisartha', 'ndeepak', 'arlu', 'trucker', 'jaxu'],
+ 'Group034-SP23': ['kabalaji', 'rchaklas', 'vspillai', 'jmvillal'],
+ 'Group035-SP23': ['cantoniohernandez', 'rpuranam', 'rsedano', 'zshao'],
+ 'Group036-SP23': ['malkhalifah', 'djjani', 'rkohli', 'smtrived'],
+ 'Group037-SP23': ['nazpeitia', 'g2hong', 'gkweon'],
+ 'Group038-SP23': ['qil016', 'msherrick', 'yiw085', 'r4zhou'],
+ 'Group039-SP23': ['cgutierrezgodoy', 'z8jiang', 'dar005', 'jtaolan']}</code></pre>
 </div>
 </div>
-<p>The false means that at least one requirement is not satisfied. We can take a look at the file that was generated.</p>
-<section id="api-doc" class="level2">
-<h2 class="anchored" data-anchor-id="api-doc">API Doc</h2>
-<hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/assign.py#L13" target="_blank" style="float:right; font-size:smaller">source</a></p>
-<section id="assigngroup" class="level3">
-<h3 class="anchored" data-anchor-id="assigngroup">AssignGroup</h3>
-<blockquote class="blockquote">
-<pre><code> AssignGroup (ghg:CanvasGroupy.github.GitHubGroup,
-              cg:CanvasGroupy.canvas.CanvasGroup, groupeng_config='')</code></pre>
-</blockquote>
-<p>Initializer for Assign Group</p>
-<table class="table">
-<colgroup>
-<col style="width: 6%">
-<col style="width: 25%">
-<col style="width: 34%">
-<col style="width: 34%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>ghg</td>
-<td>GitHubGroup</td>
-<td></td>
-<td>authenticated GitHub object</td>
-</tr>
-<tr class="even">
-<td>cg</td>
-<td>CanvasGroup</td>
-<td></td>
-<td>authenticated canvas object</td>
-</tr>
-<tr class="odd">
-<td>groupeng_config</td>
-<td>str</td>
-<td></td>
-<td>Directory for the GroupEng config yml file</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/assign.py#L29" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
-<section id="assigngroup.assign_groups" class="level3">
-<h3 class="anchored" data-anchor-id="assigngroup.assign_groups">AssignGroup.assign_groups</h3>
-<blockquote class="blockquote">
-<pre><code> AssignGroup.assign_groups (groupeng_config:str,
-                            assign_canvas_group=False,
-                            create_gh_repo=False, username_quiz_id=-1,
-                            in_group_category='', suffix='')</code></pre>
-</blockquote>
-<table class="table">
-<colgroup>
-<col style="width: 6%">
-<col style="width: 25%">
-<col style="width: 34%">
-<col style="width: 34%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>groupeng_config</td>
-<td>str</td>
-<td></td>
-<td>Directory for the GroupEng config yml file</td>
-</tr>
-<tr class="even">
-<td>assign_canvas_group</td>
-<td>bool</td>
-<td>False</td>
-<td>directly assign canvas groups</td>
-</tr>
-<tr class="odd">
-<td>create_gh_repo</td>
-<td>bool</td>
-<td>False</td>
-<td>directly create GitHub repos</td>
-</tr>
-<tr class="even">
-<td>username_quiz_id</td>
-<td>int</td>
-<td>-1</td>
-<td>username quiz id from canvas course</td>
-</tr>
-<tr class="odd">
-<td>in_group_category</td>
-<td>str</td>
-<td></td>
-<td>specify which group category the group belongs to</td>
-</tr>
-<tr class="even">
-<td>suffix</td>
-<td>str</td>
-<td></td>
-<td>suffix to the group name</td>
-</tr>
-<tr class="odd">
-<td><strong>Returns</strong></td>
-<td><strong>(&lt;class ‘bool’&gt;, &lt;class ‘str’&gt;)</strong></td>
-<td></td>
-<td><strong>Status and output directory of the compiled file.</strong></td>
-</tr>
-</tbody>
-</table>
-<hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/assign.py#L51" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
-<section id="assigngroup.create_canvas_group" class="level3">
-<h3 class="anchored" data-anchor-id="assigngroup.create_canvas_group">AssignGroup.create_canvas_group</h3>
-<blockquote class="blockquote">
-<pre><code> AssignGroup.create_canvas_group (in_group_category='', suffix='')</code></pre>
-</blockquote>
-<p>Create canvas groups based on the generated group configuration</p>
-<table class="table">
-<colgroup>
-<col style="width: 6%">
-<col style="width: 25%">
-<col style="width: 34%">
-<col style="width: 34%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>in_group_category</td>
-<td>str</td>
-<td></td>
-<td>specify which group category the group belongs to</td>
-</tr>
-<tr class="even">
-<td>suffix</td>
-<td>str</td>
-<td></td>
-<td>suffix to the group name</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/assign.py#L76" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
-<section id="assigngroup.create_github_group" class="level3">
-<h3 class="anchored" data-anchor-id="assigngroup.create_github_group">AssignGroup.create_github_group</h3>
-<blockquote class="blockquote">
-<pre><code> AssignGroup.create_github_group (username_quiz_id:int)</code></pre>
-</blockquote>
-<table class="table">
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>username_quiz_id</td>
-<td>int</td>
-<td>username quiz id from canvas course</td>
-</tr>
-</tbody>
-</table>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

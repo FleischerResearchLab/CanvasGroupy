@@ -189,8 +189,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../api/github.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GitHub Group Creation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../api/canvas.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Canvas Group Creation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/project_grading.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project Grading</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/Untitled.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Untitled</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Project Feedback Template</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../feedback_template/checkpoint_feedback.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project Checkpoint Feedback</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../feedback_template/final_project_feedback.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Final Project Feedback</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../feedback_template/proposal_feedback.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project Proposal Feedback</span></a>
   </div>
 </li>
       </ul>
@@ -260,7 +307,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="canvasgroup">CanvasGroup</h3>
 <blockquote class="blockquote">
 <pre><code> CanvasGroup (credentials_fp='', API_URL='https://canvas.ucsd.edu',
-              course_id='', verbosity=1)</code></pre>
+              course_id='', group_category='', verbosity=1)</code></pre>
 </blockquote>
 <p>Initialize Canvas Group within a Group Set and its appropriate memberships</p>
 <table class="table">
@@ -292,6 +339,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>Course ID, can be found in the course url</td>
 </tr>
 <tr class="even">
+<td>group_category</td>
+<td>str</td>
+<td></td>
+<td>target group category (set) of interests</td>
+</tr>
+<tr class="odd">
 <td>verbosity</td>
 <td>int</td>
 <td>1</td>
@@ -304,7 +357,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Lower Level Methods</h1>
 <p>Alternatively, you can manually set them after you created the <a href="https://FleischerResearchLab.github.io/CanvasGroupy/api/canvas.html#canvasgroup"><code>CanvasGroup</code></a> object</p>
 <hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/canvas.py#L63" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/canvas.py#L66" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="canvasgroup.auth_canvas" class="level3">
 <h3 class="anchored" data-anchor-id="canvasgroup.auth_canvas">CanvasGroup.auth_canvas</h3>
 <blockquote class="blockquote">
@@ -328,7 +381,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/canvas.py#L77" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/canvas.py#L80" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="canvasgroup.set_course" class="level3">
 <h3 class="anchored" data-anchor-id="canvasgroup.set_course">CanvasGroup.set_course</h3>
@@ -357,7 +410,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="create-set-target-group-category-set" class="level2">
 <h2 class="anchored" data-anchor-id="create-set-target-group-category-set">Create / Set Target Group Category (Set)</h2>
 <hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/canvas.py#L140" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/canvas.py#L145" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="canvasgroup.get_group_categories" class="level3">
 <h3 class="anchored" data-anchor-id="canvasgroup.get_group_categories">CanvasGroup.get_group_categories</h3>
 <blockquote class="blockquote">
@@ -372,7 +425,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/canvas.py#L146" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/canvas.py#L151" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="canvasgroup.create_group_category" class="level3">
 <h3 class="anchored" data-anchor-id="canvasgroup.create_group_category">CanvasGroup.create_group_category</h3>
@@ -420,7 +473,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>When a group category is already created, we cannot create another group with the same name. To switch the group category destination of group creation, use the <code>set_group_category</code> methods.</p>
 <hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/canvas.py#L111" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/canvas.py#L114" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="canvasgroup.set_group_category" class="level3">
 <h3 class="anchored" data-anchor-id="canvasgroup.set_group_category">CanvasGroup.set_group_category</h3>
@@ -456,7 +509,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="create-a-group-inside-the-target-group-category" class="level2">
 <h2 class="anchored" data-anchor-id="create-a-group-inside-the-target-group-category">Create a Group Inside the Target Group Category</h2>
 <hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/canvas.py#L153" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/canvas.py#L158" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="canvasgroup.create_group" class="level3">
 <h3 class="anchored" data-anchor-id="canvasgroup.create_group">CanvasGroup.create_group</h3>
 <blockquote class="blockquote">
@@ -502,7 +555,7 @@ TEST-GROUP1 (122854)</code></pre>
 <section id="assign-student-to-the-group" class="level2">
 <h2 class="anchored" data-anchor-id="assign-student-to-the-group">Assign Student to the Group</h2>
 <hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/canvas.py#L165" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/canvas.py#L170" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="canvasgroup.join_canvas_group" class="level3">
 <h3 class="anchored" data-anchor-id="canvasgroup.join_canvas_group">CanvasGroup.join_canvas_group</h3>
 <blockquote class="blockquote">
