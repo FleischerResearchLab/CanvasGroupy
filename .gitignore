@@ -133,3 +133,4 @@ dmypy.json
 nbs/groups_example*
 _proc/groups_example*
 nbs/api/github_username.csv
+.idea
