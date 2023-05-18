@@ -52,6 +52,7 @@ class CanvasGroup():
         self.credentials_fp = None
         self.groups = None
         self.group_to_emails = None
+        self.assignment = None
         self.verbosity = verbosity
         
         # initialize by the input parameter
@@ -100,6 +101,41 @@ class CanvasGroup():
                 if self.verbosity != 0:
                     print(f"{bcolors.WARNING}Failed to Parse email and id"
                           f" for {bcolors.UNDERLINE}{u.short_name}{bcolors.ENDC}{bcolors.ENDC}")
+
+    def link_assignment(self,
+                        assignment_id: int # assignment id, found at the url of assignmnet tab
+                       ) -> canvasapi.assignment.Assignment: # target assignment
+        "Link the target assignment on canvas"
+        assignment = self.course.get_assignment(assignment_id)
+        if self.verbosity != 0:
+            print(f"Assignment {bcolors.OKGREEN+assignment.name+bcolors.ENDC} Link!")
+        self.assignment = assignment
+        return assignment
+
+    def post_grade(self,
+                    student_id: int, # canvas student id of student. found in self.email_to_canvas_id
+                    grade: float, # grade of that assignment
+                    text_comment="", # text comment of the submission. Can feed
+                    force=False, # whether force to post grade for all students. If False (default), it will skip post for the same score.
+                  ) -> canvasapi.submission.Submission: # created submission
+        "Post grade and comment to canvas to the target assignment"
+        submission = self.assignment.get_submission(student_id)
+        if not force and submission.score == grade:
+            if self.verbosity != 0:
+                print(f"Grade for {bcolors.OKGREEN+self.canvas_id_to_email[student_id]+bcolors.ENDC} did not change.\n"
+                      f"{bcolors.OKCYAN}Skipped{bcolors.ENDC}.\n"
+                     )
+            return
+        edited = submission.edit(
+            submission={
+                'posted_grade': grade
+            }, comment={
+                'text_comment': text_comment
+            }
+        )
+        if self.verbosity != 0:
+            print(f"Grade for {bcolors.OKGREEN+self.canvas_id_to_email[student_id]+bcolors.ENDC} Posted!")
+        return edited
 
     def get_email_by_name(self,
                           name_fussy: str # search by first name or last name of student

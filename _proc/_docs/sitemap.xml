@@ -1,55 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://FleischerResearchLab.github.io/CanvasGroupy/api/github.html</loc>
+    <lastmod>2023-05-18T04:34:33.724Z</lastmod>
+  </url>
+  <url>
     <loc>https://FleischerResearchLab.github.io/CanvasGroupy/api/canvas.html</loc>
-    <lastmod>2023-05-17T20:46:22.431Z</lastmod>
+    <lastmod>2023-05-18T04:34:34.083Z</lastmod>
   </url>
   <url>
     <loc>https://FleischerResearchLab.github.io/CanvasGroupy/api/index.html</loc>
-    <lastmod>2023-05-05T18:37:49.537Z</lastmod>
-  </url>
-  <url>
-    <loc>https://FleischerResearchLab.github.io/CanvasGroupy/api/gh_group_creation.html</loc>
-    <lastmod>2023-05-06T00:10:28.367Z</lastmod>
-  </url>
-  <url>
-    <loc>https://FleischerResearchLab.github.io/CanvasGroupy/api/groupeng_assign.html</loc>
-    <lastmod>2023-05-17T20:46:23.170Z</lastmod>
-  </url>
-  <url>
-    <loc>https://FleischerResearchLab.github.io/CanvasGroupy/tutorials/create github group from canvas group.html</loc>
-    <lastmod>2023-05-17T20:46:23.550Z</lastmod>
-  </url>
-  <url>
-    <loc>https://FleischerResearchLab.github.io/CanvasGroupy/tutorials/authentications.html</loc>
-    <lastmod>2023-05-05T18:39:51.086Z</lastmod>
-  </url>
-  <url>
-    <loc>https://FleischerResearchLab.github.io/CanvasGroupy/index.html</loc>
-    <lastmod>2023-05-17T20:47:10.506Z</lastmod>
-  </url>
-  <url>
-    <loc>https://FleischerResearchLab.github.io/CanvasGroupy/feedback_template/checkpoint_feedback.html</loc>
-    <lastmod>2023-05-12T19:22:39.051Z</lastmod>
-  </url>
-  <url>
-    <loc>https://FleischerResearchLab.github.io/CanvasGroupy/feedback_template/proposal_feedback.html</loc>
-    <lastmod>2023-05-17T20:46:23.987Z</lastmod>
-  </url>
-  <url>
-    <loc>https://FleischerResearchLab.github.io/CanvasGroupy/feedback_template/final_project_feedback.html</loc>
-    <lastmod>2023-05-12T19:22:35.735Z</lastmod>
-  </url>
-  <url>
-    <loc>https://FleischerResearchLab.github.io/CanvasGroupy/api/Untitled.html</loc>
-    <lastmod>2023-05-17T20:46:21.231Z</lastmod>
-  </url>
-  <url>
-    <loc>https://FleischerResearchLab.github.io/CanvasGroupy/api/github.html</loc>
-    <lastmod>2023-05-17T20:46:22.017Z</lastmod>
+    <lastmod>2023-05-18T04:34:34.412Z</lastmod>
   </url>
   <url>
     <loc>https://FleischerResearchLab.github.io/CanvasGroupy/api/project_grading.html</loc>
-    <lastmod>2023-05-17T20:46:22.804Z</lastmod>
+    <lastmod>2023-05-18T04:37:39.711Z</lastmod>
+  </url>
+  <url>
+    <loc>https://FleischerResearchLab.github.io/CanvasGroupy/api/groupeng_assign.html</loc>
+    <lastmod>2023-05-18T04:39:08.471Z</lastmod>
+  </url>
+  <url>
+    <loc>https://FleischerResearchLab.github.io/CanvasGroupy/tutorials/create github group from canvas group.html</loc>
+    <lastmod>2023-05-18T04:34:35.434Z</lastmod>
+  </url>
+  <url>
+    <loc>https://FleischerResearchLab.github.io/CanvasGroupy/tutorials/authentications.html</loc>
+    <lastmod>2023-05-18T04:34:35.724Z</lastmod>
+  </url>
+  <url>
+    <loc>https://FleischerResearchLab.github.io/CanvasGroupy/tutorials/create template issues.html</loc>
+    <lastmod>2023-05-18T04:47:11.033Z</lastmod>
+  </url>
+  <url>
+    <loc>https://FleischerResearchLab.github.io/CanvasGroupy/index.html</loc>
+    <lastmod>2023-05-18T04:47:08.840Z</lastmod>
+  </url>
+  <url>
+    <loc>https://FleischerResearchLab.github.io/CanvasGroupy/feedback_template/checkpoint_feedback.html</loc>
+    <lastmod>2023-05-18T04:34:36.830Z</lastmod>
+  </url>
+  <url>
+    <loc>https://FleischerResearchLab.github.io/CanvasGroupy/feedback_template/proposal_feedback.html</loc>
+    <lastmod>2023-05-18T04:34:37.172Z</lastmod>
+  </url>
+  <url>
+    <loc>https://FleischerResearchLab.github.io/CanvasGroupy/feedback_template/final_project_feedback.html</loc>
+    <lastmod>2023-05-18T04:34:37.491Z</lastmod>
   </url>
 </urlset>

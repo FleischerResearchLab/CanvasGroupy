@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.340">
+<meta name="generator" content="quarto-1.2.475">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -18,42 +18,8 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -93,9 +59,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -118,129 +81,105 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <span class="navbar-title">CanvasGroupy</span>
     </a>
   </div>
-        <div class="quarto-navbar-tools ms-auto">
-</div>
           <div id="quarto-search" class="" title="Search"></div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Project Grading</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../api/index.html">API</a></li><li class="breadcrumb-item"><a href="../api/project_grading.html">Project Grading</a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">CanvasGroupy</span></a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link">CanvasGroupy</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Tutorials</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Tutorials</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/authentications.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">GitHub / Canvas Authentications</span></a>
+  <a href="../tutorials/authentications.html" class="sidebar-item-text sidebar-link">GitHub / Canvas Authentications</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/create github group from canvas group.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Example Workflow - Create GitHub Group from Canvas Group</span></a>
+  <a href="../tutorials/create github group from canvas group.html" class="sidebar-item-text sidebar-link">Example Workflow - Create GitHub Group from Canvas Group</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/create template issues.html" class="sidebar-item-text sidebar-link">Populate Grading Rubric Template on GitHub Repositories</a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../api/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">API</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <a href="../api/index.html" class="sidebar-item-text sidebar-link">API</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../api/groupeng_assign.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">GroupEngAssign</span></a>
+  <a href="../api/canvas.html" class="sidebar-item-text sidebar-link">Canvas Group Creation</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../api/gh_group_creation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">GitHub Group Creation</span></a>
+  <a href="../api/github.html" class="sidebar-item-text sidebar-link">GitHub Group Creation</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../api/github.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">GitHub Group Creation</span></a>
+  <a href="../api/groupeng_assign.html" class="sidebar-item-text sidebar-link">GroupEngAssign</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../api/canvas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Canvas Group Creation</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../api/project_grading.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Project Grading</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../api/Untitled.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Untitled</span></a>
+  <a href="../api/project_grading.html" class="sidebar-item-text sidebar-link active">Project Grading</a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">Project Feedback Template</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Project Feedback Template</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../feedback_template/checkpoint_feedback.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Project Checkpoint Feedback</span></a>
+  <a href="../feedback_template/final_project_feedback.html" class="sidebar-item-text sidebar-link">Final Project Feedback</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../feedback_template/final_project_feedback.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Final Project Feedback</span></a>
+  <a href="../feedback_template/checkpoint_feedback.html" class="sidebar-item-text sidebar-link">Project Checkpoint Feedback</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../feedback_template/proposal_feedback.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Project Proposal Feedback</span></a>
+  <a href="../feedback_template/proposal_feedback.html" class="sidebar-item-text sidebar-link">Project Proposal Feedback</a>
   </div>
 </li>
       </ul>
@@ -248,7 +187,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -256,8 +194,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#grading" id="toc-grading" class="nav-link active" data-scroll-target="#grading">Grading</a></li>
-  <li><a href="#fetch-github-issues-and-parse-the-score" id="toc-fetch-github-issues-and-parse-the-score" class="nav-link" data-scroll-target="#fetch-github-issues-and-parse-the-score">Fetch GitHub Issues and Parse the <code>Score</code></a></li>
-  <li><a href="#link-canvas-assignment-to-post-score" id="toc-link-canvas-assignment-to-post-score" class="nav-link" data-scroll-target="#link-canvas-assignment-to-post-score">Link Canvas Assignment to Post Score</a></li>
+  <li><a href="#grading.create_issue_from_md" id="toc-grading.create_issue_from_md" class="nav-link" data-scroll-target="#grading.create_issue_from_md">Grading.create_issue_from_md</a></li>
+  <li><a href="#grading.fetch_issue" id="toc-grading.fetch_issue" class="nav-link" data-scroll-target="#grading.fetch_issue">Grading.fetch_issue</a></li>
+  <li><a href="#grading.parse_score_from_issue" id="toc-grading.parse_score_from_issue" class="nav-link" data-scroll-target="#grading.parse_score_from_issue">Grading.parse_score_from_issue</a></li>
+  <li><a href="#grading.update_canvas_score" id="toc-grading.update_canvas_score" class="nav-link" data-scroll-target="#grading.update_canvas_score">Grading.update_canvas_score</a></li>
+  <li><a href="#grading.grade_project" id="toc-grading.grade_project" class="nav-link" data-scroll-target="#grading.grade_project">Grading.grade_project</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -266,7 +207,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Project Grading</h1>
+<h1 class="title d-none d-lg-block">Project Grading</h1>
 </div>
 
 <div>
@@ -287,101 +228,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">"../data/195_class.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-
-
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<hr>
+<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/grading.py#L26" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<section id="grading" class="level3">
+<h3 class="anchored" data-anchor-id="grading">Grading</h3>
+<blockquote class="blockquote">
+<pre><code> Grading (ghg=None, cg=None)</code></pre>
+</blockquote>
+<p>Initialize self. See help(type(self)) for accurate signature.</p>
+<table class="table">
 <thead>
 <tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">ID</th>
-<th data-quarto-table-cell-role="th">GPA</th>
-<th data-quarto-table-cell-role="th">Gender</th>
-<th data-quarto-table-cell-role="th">Ethnicity</th>
-<th data-quarto-table-cell-role="th">Major</th>
-<th data-quarto-table-cell-role="th">Math Skills</th>
-<th data-quarto-table-cell-role="th">Programming Skills</th>
-<th data-quarto-table-cell-role="th">Statistic Skills</th>
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Details</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>dol005</td>
-<td>3.9</td>
-<td>M</td>
-<td>-</td>
-<td>COGS</td>
-<td>5</td>
-<td>5</td>
-<td>3</td>
+<td>ghg</td>
+<td>NoneType</td>
+<td>None</td>
+<td>authenticated GitHub object</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>nmackler</td>
-<td>3.4</td>
-<td>F</td>
-<td>B</td>
-<td>COGS</td>
-<td>2</td>
-<td>3</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>xiw013</td>
-<td>3.1</td>
-<td>M</td>
-<td>-</td>
-<td>DSC</td>
-<td>3</td>
-<td>1</td>
-<td>5</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>jiz100</td>
-<td>2.5</td>
-<td>M</td>
-<td>H</td>
-<td>MATH</td>
-<td>2</td>
-<td>2</td>
-<td>1</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>jiz088</td>
-<td>2.1</td>
-<td>F</td>
-<td>-</td>
-<td>DSC</td>
-<td>4</td>
-<td>4</td>
-<td>4</td>
+<td>cg</td>
+<td>NoneType</td>
+<td>None</td>
+<td>authenticated canvas object</td>
 </tr>
 </tbody>
 </table>
-
-</div>
-</div>
-</div>
 <hr>
-<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/grading.py#L14" target="_blank" style="float:right; font-size:smaller">source</a></p>
-<section id="grading" class="level3">
-<h3 class="anchored" data-anchor-id="grading">Grading</h3>
+</section>
+<section id="grading.create_issue_from_md" class="level3">
+<h3 class="anchored" data-anchor-id="grading.create_issue_from_md">Grading.create_issue_from_md</h3>
 <blockquote class="blockquote">
-<pre><code> Grading (gh:github.MainClass.Github, canvas:&lt;module'canvasapi.canvas'from
-          '/Users/scottyang/anaconda3/envs/CanvasGroupy/lib/python3.10/sit
-          e-packages/canvasapi/canvas.py'&gt;)</code></pre>
+<pre><code> Grading.create_issue_from_md (repo:github.Repository.Repository,
+                               md_fp:str)</code></pre>
 </blockquote>
-<p>Initialize self. See help(type(self)) for accurate signature.</p>
+<p>Create GitHub issue from markdown file.</p>
 <table class="table">
 <thead>
 <tr class="header">
@@ -392,147 +279,214 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>gh</td>
-<td>Github</td>
-<td>authenticated GitHub object</td>
+<td>repo</td>
+<td>Repository</td>
+<td>target repository to create issue</td>
 </tr>
 <tr class="even">
-<td>canvas</td>
-<td>canvasapi.canvas</td>
-<td>authenticated canvas object</td>
+<td>md_fp</td>
+<td>str</td>
+<td>file path of the feedback markdown file</td>
+</tr>
+<tr class="odd">
+<td><strong>Returns</strong></td>
+<td><strong>Issue</strong></td>
+<td><strong>open issue</strong></td>
 </tr>
 </tbody>
 </table>
+<hr>
+<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/grading.py#L41" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
-<section id="fetch-github-issues-and-parse-the-score" class="level1">
-<h1>Fetch GitHub Issues and Parse the <code>Score</code></h1>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>gh <span class="op">=</span> GitHubGroup(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    credentials_fp<span class="op">=</span><span class="st">"../../../credentials.json"</span>,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    org<span class="op">=</span><span class="st">"COGS118A"</span>,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    verbosity<span class="op">=</span><span class="dv">1</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Successfully Authenticated. GitHub account:  scott-yj-yang 
-Target Organization Set:  COGS118A </code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>repo <span class="op">=</span> gh.create_repo(repo_name<span class="op">=</span><span class="st">"TestAPI"</span>, private<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>GithubException: 422 {"message": "Repository creation failed.", "errors": [{"resource": "Repository", "code": "custom", "field": "name", "message": "name already exists on this account"}], "documentation_url": "https://docs.github.com/rest/reference/repos#create-an-organization-repository"}</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>repo <span class="op">=</span> gh.get_repo(<span class="st">"TestAPI"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"../feedback_template/proposal_feedback.md"</span>, <span class="st">"r"</span>) <span class="im">as</span> f:</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    content <span class="op">=</span> f.read()</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>gh.create_issue(repo, <span class="st">"Project Proposal Feedback"</span>, content)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>In the repo: TestAPI,
-Issue Project Proposal Feedback Created!</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<pre><code>Issue(title="Project Proposal Feedback", number=1)</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>issues <span class="op">=</span> <span class="bu">list</span>(repo.get_issues())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>issues[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>Issue(title="Project Proposal Feedback", number=1)</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>body <span class="op">=</span> issues[<span class="dv">0</span>].body</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> line <span class="kw">in</span> body.split(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>):</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">"Score ="</span> <span class="kw">in</span> line <span class="kw">and</span> <span class="st">"[comment]"</span> <span class="kw">not</span> <span class="kw">in</span> line:</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>        score <span class="op">=</span> literal_eval(line.split(<span class="st">"="</span>)[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>score</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>9</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>re <span class="op">=</span> gh.get_repo(<span class="st">"Group001-SP23"</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>re.full_name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>'COGS118A/Group001-SP23'</code></pre>
-</div>
-</div>
+<section id="grading.fetch_issue" class="level3">
+<h3 class="anchored" data-anchor-id="grading.fetch_issue">Grading.fetch_issue</h3>
+<blockquote class="blockquote">
+<pre><code> Grading.fetch_issue (repo:github.Repository.Repository, component:str)</code></pre>
+</blockquote>
+<p>Fetch the issue on GitHub repo and choose related one</p>
+<table class="table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 38%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>repo</td>
+<td>Repository</td>
+<td>target repository to fetch issue</td>
+</tr>
+<tr class="even">
+<td>component</td>
+<td>str</td>
+<td>the component of the project grading, let it be proposal/checkpoint/final. Need to match the issue’s title</td>
+</tr>
+<tr class="odd">
+<td><strong>Returns</strong></td>
+<td><strong>Issue</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/grading.py#L51" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
-<section id="link-canvas-assignment-to-post-score" class="level1">
-<h1>Link Canvas Assignment to Post Score</h1>
-<p>The group repository names are consistent with their canvas group name.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>canvas <span class="op">=</span> CanvasGroup(<span class="st">"../../../credentials.json"</span>,</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>                     course_id<span class="op">=</span><span class="dv">45532</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Authorization Successful!
-Course Set:  COGS 195 - Instructional Apprenticeship - Fleischer [SP23] 
-Getting List of Users... This might take a while...
-Users Fetch Complete! The course has 5 students.</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>canvas.create_group_category({<span class="st">"name"</span>: <span class="st">"Project 1"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>GroupCategory(_requester=&lt;canvasapi.requester.Requester object&gt;, id=16441, name=Project 1, role=None, self_signup=None, group_limit=None, auto_leader=None, created_at=2023-05-17T16:46:37Z, created_at_date=2023-05-17 16:46:37+00:00, context_type=Course, course_id=45532, groups_count=0, unassigned_users_count=5, protected=False, allows_multiple_memberships=False, is_member=False)</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>canvas.get_groups()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>{'Group001-SP23': ['h5he', 'zmao', 'xiw013', 'j6wen', 'j5zhu'],
- 'Group002-SP23': ['cmcmanig', 'jup006', 'ssuthar', 'd3yu'],
- 'Group003-SP23': ['yic055', 'yuz191', 'xiz068'],
- 'Group004-SP23': ['dac020', 'nilu', 'tyap', 'g6zhu'],
- 'Group005-SP23': ['kechen', 'a8chu', 'cdelira', 'wolee', 'arshukla'],
- 'Group006-SP23': ['ax008707', 'ax008724', 'ax008777'],
- 'Group007-SP23': ['yuchi', 'j3dong', 'y3ge', 'x6he', 'xiz031'],
- 'Group008-SP23': ['zifeng', 'ax008740', 'jul121', 'yuy047'],
- 'Group009-SP23': ['ax008573', 'ckavanagh', 'v1lu', 'vvishnus'],
- 'Group010-SP23': ['jwc002', 'tjamal', 'jsliang', 'tdn003'],
- 'Group011-SP23': ['khchuang', 'emdavis', 'jejiang', 'nrejai'],
- 'Group012-SP23': ['afleschn', 'rlharsono', 'jjsanchez', 'asengupt'],
- 'Group013-SP23': ['kehu', 'jnhuang', 'shperry', 'alvalenc'],
- 'Group014-SP23': ['gsroberts', 'cvillafa', 'shw089', 'yiz095'],
- 'Group015-SP23': ['aanna', 'sdsilva', 'asivayog', 'nyanekch'],
- 'Group016-SP23': ['yuche', 'y3guo', 'e1hu', 'zhl023', 'qil012'],
- 'Group017-SP23': ['s3chowdhury', 'llennema', 'psodhi', 'svirk'],
- 'Group018-SP23': ['ajcagle', 'ahewig', 's2malik', 'mnodini', 'musman'],
- 'Group019-SP23': ['sasingh', 'nsit', 'dsun'],
- 'Group020-SP23': ['akaji', 'm1manzan', 'j3mendez', 'mpareek', 'atrapena'],
- 'Group021-SP23': ['jkrentse', 'jmlai', 'zel012', 'sserafin'],
- 'Group022-SP23': ['ax008708', 'anc024', 'gng', 'reyang'],
- 'Group023-SP23': ['raguinakang', 'phelcl', 'vjayanan', 'crochez', 'kpstern'],
- 'Group024-SP23': ['nabansal', 'ccaban', 'mvfang', 'asim'],
- 'Group025-SP23': ['nschaefe', 'hshaikh', 'jww001', 'bjyan'],
- 'Group026-SP23': ['e1dong', 'aaolivas', 'h5park', 'yuz821'],
- 'Group027-SP23': ['jddeleon', 'ndnguyen', 'ttp007', 'jzs002'],
- 'Group028-SP23': ['shc007', 'yuh045', 'ktnakai', 'jonza'],
- 'Group029-SP23': ['lmitbo', 'jsalce', 'lskerrett', 'jubamadu'],
- 'Group030-SP23': ['ruc003', 'shh035', 'btn003', 'knino'],
- 'Group031-SP23': ['n6garcia', 'ken010', 'mmpak'],
- 'Group032-SP23': ['zachao', 'smurase', 'j1xu', 'z5zhang'],
- 'Group033-SP23': ['sbodhisartha', 'ndeepak', 'arlu', 'trucker', 'jaxu'],
- 'Group034-SP23': ['kabalaji', 'rchaklas', 'vspillai', 'jmvillal'],
- 'Group035-SP23': ['cantoniohernandez', 'rpuranam', 'rsedano', 'zshao'],
- 'Group036-SP23': ['malkhalifah', 'djjani', 'rkohli', 'smtrived'],
- 'Group037-SP23': ['nazpeitia', 'g2hong', 'gkweon'],
- 'Group038-SP23': ['qil016', 'msherrick', 'yiw085', 'r4zhou'],
- 'Group039-SP23': ['cgutierrezgodoy', 'z8jiang', 'dar005', 'jtaolan']}</code></pre>
-</div>
-</div>
+<section id="grading.parse_score_from_issue" class="level3">
+<h3 class="anchored" data-anchor-id="grading.parse_score_from_issue">Grading.parse_score_from_issue</h3>
+<blockquote class="blockquote">
+<pre><code> Grading.parse_score_from_issue (repo:github.Repository.Repository,
+                                 component:str)</code></pre>
+</blockquote>
+<p>parse score from the template issue</p>
+<table class="table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 38%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>repo</td>
+<td>Repository</td>
+<td>target repository to create issue</td>
+</tr>
+<tr class="even">
+<td>component</td>
+<td>str</td>
+<td>the component of the project grading, let it be proposal/checkpoint/final. Need to match the issue’s title</td>
+</tr>
+<tr class="odd">
+<td><strong>Returns</strong></td>
+<td><strong>int</strong></td>
+<td><strong>the fetched score of that component</strong></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/grading.py#L66" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="grading.update_canvas_score" class="level3">
+<h3 class="anchored" data-anchor-id="grading.update_canvas_score">Grading.update_canvas_score</h3>
+<blockquote class="blockquote">
+<pre><code> Grading.update_canvas_score (group_name:str, assignment_id, score:float,
+                              post=False)</code></pre>
+</blockquote>
+<p>Post score to canvas</p>
+<table class="table">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 25%">
+<col style="width: 34%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>group_name</td>
+<td>str</td>
+<td></td>
+<td>target group name on canvas group</td>
+</tr>
+<tr class="even">
+<td>assignment_id</td>
+<td></td>
+<td></td>
+<td>assignment id of the related component</td>
+</tr>
+<tr class="odd">
+<td>score</td>
+<td>float</td>
+<td></td>
+<td>score of that component</td>
+</tr>
+<tr class="even">
+<td>post</td>
+<td>bool</td>
+<td>False</td>
+<td>whether to post score via api. for testing purposes</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/grading.py#L87" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="grading.grade_project" class="level3">
+<h3 class="anchored" data-anchor-id="grading.grade_project">Grading.grade_project</h3>
+<blockquote class="blockquote">
+<pre><code> Grading.grade_project (repo:github.Repository.Repository, component:str,
+                        assignment_id:int, canvas_group_name=None,
+                        post=False)</code></pre>
+</blockquote>
+<p>grade github project components</p>
+<table class="table">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 25%">
+<col style="width: 34%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>repo</td>
+<td>Repository</td>
+<td></td>
+<td>target repository to grade</td>
+</tr>
+<tr class="even">
+<td>component</td>
+<td>str</td>
+<td></td>
+<td>the component of the project grading, let it be proposal/checkpoint/final. Need to match the issue’s title</td>
+</tr>
+<tr class="odd">
+<td>assignment_id</td>
+<td>int</td>
+<td></td>
+<td>assignment id that link to that component of the project</td>
+</tr>
+<tr class="even">
+<td>canvas_group_name</td>
+<td>NoneType</td>
+<td>None</td>
+<td>mapping from GitHub repo name to Group name. If not specified, the repository name will be used.</td>
+</tr>
+<tr class="odd">
+<td>post</td>
+<td>bool</td>
+<td>False</td>
+<td>whether to post score via api. For testing purposes</td>
+</tr>
+</tbody>
+</table>
 
 
 </section>
@@ -565,23 +519,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
+    target: function(trigger) {
+      return trigger.previousElementSibling;
     }
   });
   clipboard.on('success', function(e) {
@@ -646,92 +586,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

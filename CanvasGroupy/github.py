@@ -236,7 +236,7 @@ class GitHubGroup:
         md = ""
         with open(md_fp, "r") as f:
             md = f.read()
-        title = md.split("\n")[0][1:]
+        title = md.split("\n")[0][2:]
         content = md
         return self.create_issue(repo, title, content)
     

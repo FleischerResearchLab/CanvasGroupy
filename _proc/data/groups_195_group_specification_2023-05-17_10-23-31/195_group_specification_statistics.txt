@@ -1,0 +1,23 @@
+Ran GroupEng on: ../data/195_group_specification.groupeng with students from 195_class.csv
+
+Made 2 groups
+
+0 groups failed: <Cluster Gender ['F']>
+
+1 groups failed: <Cluster Ethnicity ('B', 'H')>
+
+0 groups failed: <Distribute Major ['MATH', 'COGS', 'DSC']>
+
+0 groups failed: <Distribute Math Skills [5, 4]>
+
+0 groups failed: <Distribute Programming Skills [1, 2, 3, 4, 5]>
+
+0 groups failed: <Distribute Statistic Skills [1, 2, 3, 4, 5]>
+
+2 groups failed:<Balance : 3.0 : tol 0.3193743884534262>: Class GPA Mean: 3.00, Class GPA Std Dev: 0.64, Std Dev of Group GPA Means: 0.42
+
+Group Summaries
+---------------
+Group 1: Failed <Cluster Ethnicity ('B', 'H')>, Failed <Balance : 3.0 : tol 0.3193743884534262>
+Group 2: Failed <Balance : 3.0 : tol 0.3193743884534262>
+

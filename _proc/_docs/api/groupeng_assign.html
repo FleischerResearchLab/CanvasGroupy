@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.340">
+<meta name="generator" content="quarto-1.2.475">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -18,10 +18,9 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -48,13 +47,43 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
+    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -115,129 +144,105 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <span class="navbar-title">CanvasGroupy</span>
     </a>
   </div>
-        <div class="quarto-navbar-tools ms-auto">
-</div>
           <div id="quarto-search" class="" title="Search"></div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">GroupEngAssign</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../api/index.html">API</a></li><li class="breadcrumb-item"><a href="../api/groupeng_assign.html">GroupEngAssign</a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">CanvasGroupy</span></a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link">CanvasGroupy</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Tutorials</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Tutorials</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/authentications.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">GitHub / Canvas Authentications</span></a>
+  <a href="../tutorials/authentications.html" class="sidebar-item-text sidebar-link">GitHub / Canvas Authentications</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/create github group from canvas group.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Example Workflow - Create GitHub Group from Canvas Group</span></a>
+  <a href="../tutorials/create github group from canvas group.html" class="sidebar-item-text sidebar-link">Example Workflow - Create GitHub Group from Canvas Group</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/create template issues.html" class="sidebar-item-text sidebar-link">Populate Grading Rubric Template on GitHub Repositories</a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../api/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">API</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <a href="../api/index.html" class="sidebar-item-text sidebar-link">API</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../api/groupeng_assign.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">GroupEngAssign</span></a>
+  <a href="../api/canvas.html" class="sidebar-item-text sidebar-link">Canvas Group Creation</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../api/gh_group_creation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">GitHub Group Creation</span></a>
+  <a href="../api/github.html" class="sidebar-item-text sidebar-link">GitHub Group Creation</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../api/github.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">GitHub Group Creation</span></a>
+  <a href="../api/groupeng_assign.html" class="sidebar-item-text sidebar-link active">GroupEngAssign</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../api/canvas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Canvas Group Creation</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../api/project_grading.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Project Grading</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../api/Untitled.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Untitled</span></a>
+  <a href="../api/project_grading.html" class="sidebar-item-text sidebar-link">Project Grading</a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">Project Feedback Template</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Project Feedback Template</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../feedback_template/checkpoint_feedback.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Project Checkpoint Feedback</span></a>
+  <a href="../feedback_template/final_project_feedback.html" class="sidebar-item-text sidebar-link">Final Project Feedback</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../feedback_template/final_project_feedback.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Final Project Feedback</span></a>
+  <a href="../feedback_template/checkpoint_feedback.html" class="sidebar-item-text sidebar-link">Project Checkpoint Feedback</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../feedback_template/proposal_feedback.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Project Proposal Feedback</span></a>
+  <a href="../feedback_template/proposal_feedback.html" class="sidebar-item-text sidebar-link">Project Proposal Feedback</a>
   </div>
 </li>
       </ul>
@@ -245,16 +250,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#api-doc" id="toc-api-doc" class="nav-link active" data-scroll-target="#api-doc">API Doc</a>
+  <li><a href="#assigngroup" id="toc-assigngroup" class="nav-link active" data-scroll-target="#assigngroup">AssignGroup</a></li>
+  <li><a href="#api" id="toc-api" class="nav-link" data-scroll-target="#api">API</a>
   <ul class="collapse">
-  <li><a href="#assigngroup" id="toc-assigngroup" class="nav-link" data-scroll-target="#assigngroup">AssignGroup</a></li>
   <li><a href="#assigngroup.assign_groups" id="toc-assigngroup.assign_groups" class="nav-link" data-scroll-target="#assigngroup.assign_groups">AssignGroup.assign_groups</a></li>
   <li><a href="#assigngroup.create_canvas_group" id="toc-assigngroup.create_canvas_group" class="nav-link" data-scroll-target="#assigngroup.create_canvas_group">AssignGroup.create_canvas_group</a></li>
   <li><a href="#assigngroup.create_github_group" id="toc-assigngroup.create_github_group" class="nav-link" data-scroll-target="#assigngroup.create_github_group">AssignGroup.create_github_group</a></li>
@@ -267,7 +271,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">GroupEngAssign</h1>
+<h1 class="title d-none d-lg-block">GroupEngAssign</h1>
 </div>
 
 <div>
@@ -288,96 +292,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create authenticated objects</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>ghg <span class="op">=</span> GitHubGroup(<span class="st">"../../../credentials.json"</span>,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"COGS118A"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                 )</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>cg <span class="op">=</span> CanvasGroup(<span class="st">"../../../credentials.json"</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                 course_id<span class="op">=</span><span class="dv">45532</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                 )</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># create assign group object</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>ag <span class="op">=</span> AssignGroup(ghg, cg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Successfully Authenticated. GitHub account:  scott-yj-yang 
-Target Organization Set:  COGS118A 
-Authorization Successful!
-Course Set:  COGS 195 - Instructional Apprenticeship - Fleischer [SP23] 
-Getting List of Users... This might take a while...
-Users Fetch Complete! The course has 5 students.</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a group category to hold students</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>cg.create_group_category({<span class="st">"name"</span>: <span class="st">"Project 1"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>GroupCategory(_requester=&lt;canvasapi.requester.Requester object&gt;, id=16456, name=Project 1, role=None, self_signup=None, group_limit=None, auto_leader=None, created_at=2023-05-17T20:38:56Z, created_at_date=2023-05-17 20:38:56+00:00, context_type=Course, course_id=45532, groups_count=0, unassigned_users_count=5, protected=False, allows_multiple_memberships=False, is_member=False)</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assign, create both Canvas and GitHub Group in one call</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>status, out_dir <span class="op">=</span> ag.assign_groups(<span class="st">"../data/195_group_specification.groupeng"</span>,</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                                   assign_canvas_group<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                                   create_gh_repo<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                                   username_quiz_id<span class="op">=</span><span class="dv">139925</span>,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                                   in_group_category<span class="op">=</span><span class="st">"Project 1"</span>,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                                   suffix<span class="op">=</span><span class="st">"-SP23-Testing"</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>                                   )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>['H', 'B', '-']
-['B', 'H', '-']
-['-', 'H', 'B']
-['B', 'H', '-']
-['B', '-', 'H']
-['-', 'B', 'H']
-[None, 3.9, 3.1]
-[3.9, 3.1, None]
-[3.4, 2.5, 2.1]
-[3.9, None, 3.1]
-[3.4, 2.1, 2.5]
-[3.4, 2.1, 2.5]
-In Group Set: Project 1,
-Group Group1-SP23-Testing Created!
-Member dol005 Joined group Group1-SP23-Testing
-Member xiw013 Joined group Group1-SP23-Testing
-In Group Set: Project 1,
-Group Group2-SP23-Testing Created!
-Member jiz088 Joined group Group2-SP23-Testing
-Member jiz100 Joined group Group2-SP23-Testing
-Member nmackler Joined group Group2-SP23-Testing
-Quiz: GitHub Username fetch! 
-Generating Student Analaysis...
-[====================] 100%
-Report Generated!
-The Question asked is 1399692: In plain text, what is your GitHub Username? Absolutely no typo, no extra space, no hyperlink please.. 
-Make sure this is the correct question where you asked student for their GitHub id.
-If you need to change the index of columns, change the col_index argument of this call.
-dol005's GitHub Username not found
-xiw013's GitHub Username not found
-Repo  Group1-SP23-Testing  Created... Wait for 3 sec to updates
-File Successfully Renamed from   Checkpoint_groupXXX.ipynb   to  Checkpoint_Group1-SP23-Testing.ipynb 
-File Successfully Renamed from   FinalProject_groupXXX.ipynb   to  FinalProject_Group1-SP23-Testing.ipynb 
-File Successfully Renamed from   Proposal_groupXXX.ipynb   to  Proposal_Group1-SP23-Testing.ipynb 
-Team  Instructors_Sp23  added to  Group1-SP23-Testing  with permission  admin 
-Group Repo:  Group1-SP23-Testing  successfuly created!
-Repo URL: https://github.com/COGS118A/Group1-SP23-Testing
-
-jiz100's GitHub Username not found
-jiz088's GitHub Username not found
-Repo  Group2-SP23-Testing  Created... Wait for 3 sec to updates
-File Successfully Renamed from   Checkpoint_groupXXX.ipynb   to  Checkpoint_Group2-SP23-Testing.ipynb 
-File Successfully Renamed from   FinalProject_groupXXX.ipynb   to  FinalProject_Group2-SP23-Testing.ipynb 
-File Successfully Renamed from   Proposal_groupXXX.ipynb   to  Proposal_Group2-SP23-Testing.ipynb 
-Added Collaborator:  nmackler  to:  Group2-SP23-Testing  with permission:  write 
-Team  Instructors_Sp23  added to  Group2-SP23-Testing  with permission  admin 
-Group Repo:  Group2-SP23-Testing  successfuly created!
-Repo URL: https://github.com/COGS118A/Group2-SP23-Testing
-</code></pre>
-</div>
-</div>
-<p>The false means that at least one requirement is not satisfied. We can take a look at the file that was generated.</p>
-<section id="api-doc" class="level2">
-<h2 class="anchored" data-anchor-id="api-doc">API Doc</h2>
 <hr>
 <p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/assign.py#L13" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="assigngroup" class="level3">
@@ -423,9 +337,11 @@ Repo URL: https://github.com/COGS118A/Group2-SP23-Testing
 </tr>
 </tbody>
 </table>
+</section>
+<section id="api" class="level2">
+<h2 class="anchored" data-anchor-id="api">API</h2>
 <hr>
 <p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/CanvasGroupy/assign.py#L29" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
 <section id="assigngroup.assign_groups" class="level3">
 <h3 class="anchored" data-anchor-id="assigngroup.assign_groups">AssignGroup.assign_groups</h3>
 <blockquote class="blockquote">
@@ -557,6 +473,94 @@ Repo URL: https://github.com/COGS118A/Group2-SP23-Testing
 </tr>
 </tbody>
 </table>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create authenticated objects</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ghg <span class="op">=</span> GitHubGroup(<span class="st">"../../../credentials.json"</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"COGS118A"</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                 )</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>cg <span class="op">=</span> CanvasGroup(<span class="st">"../../../credentials.json"</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                 course_id<span class="op">=</span><span class="dv">45532</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                 )</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># create assign group object</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>ag <span class="op">=</span> AssignGroup(ghg, cg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Successfully Authenticated. GitHub account:  scott-yj-yang 
+Target Organization Set:  COGS118A 
+Authorization Successful!
+Course Set:  COGS 195 - Instructional Apprenticeship - Fleischer [SP23] 
+Getting List of Users... This might take a while...
+Users Fetch Complete! The course has 5 students.</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a group category to hold students</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>cg.create_group_category({<span class="st">"name"</span>: <span class="st">"Project 1"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>GroupCategory(_requester=&lt;canvasapi.requester.Requester object&gt;, id=16456, name=Project 1, role=None, self_signup=None, group_limit=None, auto_leader=None, created_at=2023-05-17T20:38:56Z, created_at_date=2023-05-17 20:38:56+00:00, context_type=Course, course_id=45532, groups_count=0, unassigned_users_count=5, protected=False, allows_multiple_memberships=False, is_member=False)</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assign, create both Canvas and GitHub Group in one call</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>status, out_dir <span class="op">=</span> ag.assign_groups(<span class="st">"../data/195_group_specification.groupeng"</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                                   assign_canvas_group<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                                   create_gh_repo<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>                                   username_quiz_id<span class="op">=</span><span class="dv">139925</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                                   in_group_category<span class="op">=</span><span class="st">"Project 1"</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>                                   suffix<span class="op">=</span><span class="st">"-SP23-Testing"</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>                                   )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['H', 'B', '-']
+['B', 'H', '-']
+['-', 'H', 'B']
+['B', 'H', '-']
+['B', '-', 'H']
+['-', 'B', 'H']
+[None, 3.9, 3.1]
+[3.9, 3.1, None]
+[3.4, 2.5, 2.1]
+[3.9, None, 3.1]
+[3.4, 2.1, 2.5]
+[3.4, 2.1, 2.5]
+In Group Set: Project 1,
+Group Group1-SP23-Testing Created!
+Member dol005 Joined group Group1-SP23-Testing
+Member xiw013 Joined group Group1-SP23-Testing
+In Group Set: Project 1,
+Group Group2-SP23-Testing Created!
+Member jiz088 Joined group Group2-SP23-Testing
+Member jiz100 Joined group Group2-SP23-Testing
+Member nmackler Joined group Group2-SP23-Testing
+Quiz: GitHub Username fetch! 
+Generating Student Analaysis...
+[====================] 100%
+Report Generated!
+The Question asked is 1399692: In plain text, what is your GitHub Username? Absolutely no typo, no extra space, no hyperlink please.. 
+Make sure this is the correct question where you asked student for their GitHub id.
+If you need to change the index of columns, change the col_index argument of this call.
+dol005's GitHub Username not found
+xiw013's GitHub Username not found
+Repo  Group1-SP23-Testing  Created... Wait for 3 sec to updates
+File Successfully Renamed from   Checkpoint_groupXXX.ipynb   to  Checkpoint_Group1-SP23-Testing.ipynb 
+File Successfully Renamed from   FinalProject_groupXXX.ipynb   to  FinalProject_Group1-SP23-Testing.ipynb 
+File Successfully Renamed from   Proposal_groupXXX.ipynb   to  Proposal_Group1-SP23-Testing.ipynb 
+Team  Instructors_Sp23  added to  Group1-SP23-Testing  with permission  admin 
+Group Repo:  Group1-SP23-Testing  successfuly created!
+Repo URL: https://github.com/COGS118A/Group1-SP23-Testing
+
+jiz100's GitHub Username not found
+jiz088's GitHub Username not found
+Repo  Group2-SP23-Testing  Created... Wait for 3 sec to updates
+File Successfully Renamed from   Checkpoint_groupXXX.ipynb   to  Checkpoint_Group2-SP23-Testing.ipynb 
+File Successfully Renamed from   FinalProject_groupXXX.ipynb   to  FinalProject_Group2-SP23-Testing.ipynb 
+File Successfully Renamed from   Proposal_groupXXX.ipynb   to  Proposal_Group2-SP23-Testing.ipynb 
+Added Collaborator:  nmackler  to:  Group2-SP23-Testing  with permission:  write 
+Team  Instructors_Sp23  added to  Group2-SP23-Testing  with permission  admin 
+Group Repo:  Group2-SP23-Testing  successfuly created!
+Repo URL: https://github.com/COGS118A/Group2-SP23-Testing
+</code></pre>
+</div>
+</div>
+<p>The false means that at least one requirement is not satisfied. We can take a look at the file that was generated.</p>
 
 
 </section>
@@ -590,23 +594,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
+    target: function(trigger) {
+      return trigger.previousElementSibling;
     }
   });
   clipboard.on('success', function(e) {
@@ -671,92 +661,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="Create modifiable and gradable GitHub issues for project grading">
 
-<title>CanvasGroupy - api</title>
+<title>CanvasGroupy - Populate Grading Rubric Template on GitHub Repositories</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +21,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -30,8 +94,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-listing/list.min.js"></script>
-<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -60,44 +122,14 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../styles.css">
-<meta property="og:title" content="CanvasGroupy - api">
-<meta property="og:description" content="This section contains API details for each of CanvasGroupy python submodules.">
+<meta property="og:title" content="CanvasGroupy - Populate Grading Rubric Template on GitHub Repositories">
+<meta property="og:description" content="Create modifiable and gradable GitHub issues for project grading">
 <meta property="og:site-name" content="CanvasGroupy">
-<meta name="twitter:title" content="CanvasGroupy - api">
-<meta name="twitter:description" content="This section contains API details for each of CanvasGroupy python submodules.">
+<meta name="twitter:title" content="CanvasGroupy - Populate Grading Rubric Template on GitHub Repositories">
+<meta name="twitter:description" content="Create modifiable and gradable GitHub issues for project grading">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -117,7 +149,7 @@ ul.task-list li input[type="checkbox"] {
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">api</h1>
+      <h1 class="quarto-secondary-nav-title">Populate Grading Rubric Template on GitHub Repositories</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -155,14 +187,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/create template issues.html" class="sidebar-item-text sidebar-link">Populate Grading Rubric Template on GitHub Repositories</a>
+  <a href="../tutorials/create template issues.html" class="sidebar-item-text sidebar-link active">Populate Grading Rubric Template on GitHub Repositories</a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../api/index.html" class="sidebar-item-text sidebar-link active">API</a>
+            <a href="../api/index.html" class="sidebar-item-text sidebar-link">API</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -227,9 +259,14 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">api</h1>
+<h1 class="title d-none d-lg-block">Populate Grading Rubric Template on GitHub Repositories</h1>
 </div>
 
+<div>
+  <div class="description">
+    Create modifiable and gradable GitHub issues for project grading
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -242,64 +279,68 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>This section contains API details for each of CanvasGroupy python submodules. This reference documentation is mainly useful for people looking to customise or build on top of nbdev, or wanting detailed information about how this module works.</p>
-
-
-
-
-<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
-
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-Title
-</th>
-<th>
-Description
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-listing-file-modified-sort="1684384471620" data-listing-reading-time-sort="0.43" data-listing-title-sort="Canvas Group Creation" data-listing-filename-sort="03_canvas.ipynb">
-<td class="listing-title">
-<a href="../api/canvas.html" class="title">Canvas Group Creation</a>
-</td>
-<td class="listing-description">
-Create canvas group via Canvas API
-</td>
-</tr>
-<tr data-index="1" data-listing-file-modified-sort="1684384471597" data-listing-reading-time-sort="3.735" data-listing-title-sort="GitHub Group Creation" data-listing-filename-sort="02_github.ipynb">
-<td class="listing-title">
-<a href="../api/github.html" class="title">GitHub Group Creation</a>
-</td>
-<td class="listing-description">
-Create GitHub group based on the provided group information
-</td>
-</tr>
-<tr data-index="2" data-listing-file-modified-sort="1684384471677" data-listing-reading-time-sort="0.155" data-listing-title-sort="GroupEngAssign" data-listing-filename-sort="01_GroupEng_assign.ipynb">
-<td class="listing-title">
-<a href="../api/groupeng_assign.html" class="title">GroupEngAssign</a>
-</td>
-<td class="listing-description">
-Invoke Package Group Eng to Assign Students in Groups
-</td>
-</tr>
-<tr data-index="3" data-listing-file-modified-sort="1684384471578" data-listing-reading-time-sort="0.13" data-listing-title-sort="Project Grading" data-listing-filename-sort="04_project_grading.ipynb">
-<td class="listing-title">
-<a href="../api/project_grading.html" class="title">Project Grading</a>
-</td>
-<td class="listing-description">
-Manage grading rubrics and grade posting on the groups grade.
-</td>
-</tr>
-</tbody>
-
-</table>
-<div class="listing-no-matching d-none">
-No matching items
+<!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> CanvasGroupy <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>credentials_fp <span class="op">=</span> <span class="st">"../credentials.json"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>ghg <span class="op">=</span> GitHubGroup(credentials_fp, org<span class="op">=</span><span class="st">"COGS118A"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Successfully Authenticated. GitHub account:  scott-yj-yang 
+Target Organization Set:  COGS118A </code></pre>
 </div>
-</div></main> <!-- /main -->
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">40</span>):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    repo_name <span class="op">=</span> <span class="ss">f"Group</span><span class="sc">{</span>i<span class="sc">:03}</span><span class="ss">-SP23"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    repo <span class="op">=</span> ghg.get_repo(repo_name)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    ghg.create_issue_from_md(repo, <span class="st">"../CanvasGroupy/nbs/feedback_template/proposal_feedback.md"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    time.sleep(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>In the repo: Group021-SP23,
+Issue Project Proposal Feedback Created!
+In the repo: Group022-SP23,
+Issue Project Proposal Feedback Created!
+In the repo: Group023-SP23,
+Issue Project Proposal Feedback Created!
+In the repo: Group024-SP23,
+Issue Project Proposal Feedback Created!
+In the repo: Group025-SP23,
+Issue Project Proposal Feedback Created!
+In the repo: Group026-SP23,
+Issue Project Proposal Feedback Created!
+In the repo: Group027-SP23,
+Issue Project Proposal Feedback Created!
+In the repo: Group028-SP23,
+Issue Project Proposal Feedback Created!
+In the repo: Group029-SP23,
+Issue Project Proposal Feedback Created!
+In the repo: Group030-SP23,
+Issue Project Proposal Feedback Created!
+In the repo: Group031-SP23,
+Issue Project Proposal Feedback Created!
+In the repo: Group032-SP23,
+Issue Project Proposal Feedback Created!
+In the repo: Group033-SP23,
+Issue Project Proposal Feedback Created!
+In the repo: Group034-SP23,
+Issue Project Proposal Feedback Created!
+In the repo: Group035-SP23,
+Issue Project Proposal Feedback Created!
+In the repo: Group036-SP23,
+Issue Project Proposal Feedback Created!
+In the repo: Group037-SP23,
+Issue Project Proposal Feedback Created!
+In the repo: Group038-SP23,
+Issue Project Proposal Feedback Created!
+In the repo: Group039-SP23,
+Issue Project Proposal Feedback Created!</code></pre>
+</div>
+</div>
+
+
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
