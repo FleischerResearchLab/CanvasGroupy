@@ -17,6 +17,6 @@ dependencies:
   - nbdev
   - pip
   - pip:
-    - git+https://github.com/scott-yj-yang/groupeng.git@dev
+    - git+https://github.com/tdimiduk/groupeng.git
     - PyGithub
     - canvasapi
