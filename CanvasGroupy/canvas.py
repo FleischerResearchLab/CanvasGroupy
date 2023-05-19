@@ -138,8 +138,8 @@ class CanvasGroup():
         return edited
 
     def get_email_by_name(self,
-                          name_fussy: str # search by first name or last name of student
-                         ) -> str: # email of search student
+                          name_fussy: str # search by first name or last name of a student
+                         ) -> str: # email of a search student
         name_fussy = name_fussy.lower()
         for email, name in self.email_to_name.items():
             if name_fussy in name.lower():
@@ -156,6 +156,8 @@ class CanvasGroup():
         except KeyError:
             raise KeyError(f"{category_name} did not found in the group categories. "
                            f"Try to create one with CanvasGroup.create_group_category")
+        if self.verbosity != 0:
+            print(f"Setting Group Category... ")
         self.groups = list(self.group_category.get_groups())
         self.group_to_emails = {
             group.name: [
@@ -179,7 +181,7 @@ class CanvasGroup():
         return self.course
     
     def get_group_categories(self) -> dict: # return a name / group category object
-        "Grab all existing group category (group set) in this course"
+        "Grab all existing group categories (group set) in this course"
         categories = list(self.course.get_group_categories())
         self.group_categories = {cat.name: cat for cat in categories}
         return {cat.name: cat for cat in categories}

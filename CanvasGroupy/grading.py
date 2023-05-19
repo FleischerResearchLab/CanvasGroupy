@@ -25,8 +25,8 @@ class bcolors:
 # %% ../nbs/api/04_project_grading.ipynb 5
 class Grading:
     def __init__(self,
-                 ghg=None, # authenticated GitHub object
-                 cg=None, # authenticated canvas object
+                 ghg:GitHubGroup=None, # authenticated GitHub object
+                 cg:CanvasGroup=None, # authenticated canvas object
                 ):
         self.ghg = ghg
         self.cg = cg
@@ -44,13 +44,13 @@ class Grading:
                     ) -> github.Issue.Issue:
         "Fetch the issue on GitHub repo and choose related one"
         for issue in list(repo.get_issues()):
-            if component in issue.title:
+            if component.lower() in issue.title.lower():
                 return issue
         raise ValueError(f"Issue related to {component} did not found.")
 
     def parse_score_from_issue(self,
                                repo:github.Repository.Repository, # target repository to create issue
-                               component:str, # the component of the project grading, let it be proposal/checkpoint/final. Need to match the issue's title
+                               component:str, # The component of the project grading, let it be proposal/checkpoint/final. Need to match the issue's title
                                ) -> int: # the fetched score of that component
         "parse score from the template issue"
         issue = self.fetch_issue(repo, component)
@@ -64,39 +64,55 @@ class Grading:
                          f"Issue URL: {issue.url}")
 
     def update_canvas_score(self,
-                            group_name:str, # target group name on canvas group
+                            group_name:str, # target group name on a canvas group
                             assignment_id, # assignment id of the related component
                             score:float, # score of that component
+                            issue:github.Issue.Issue=None,
                             post=False, # whether to post score via api. for testing purposes
                             ):
         "Post score to canvas"
+        if self.cg.group_category is None:
+            raise ValueError("CanvasGroup's group_category not set.")
         members = self.cg.group_to_emails[group_name]
         self.cg.link_assignment(assignment_id)
         for member in members:
             student_id = self.cg.email_to_canvas_id[member]
+            text_comment = f"Group: {group_name}"
+            if issue is not None:
+                text_comment += f"\nView at {issue.url.replace('https://api.github.com/repos', 'https://github.com')}"
             if post:
                 self.cg.post_grade(
                     student_id=student_id,
                     grade=score,
-                    text_comment=f"Group: {group_name}"
+                    text_comment=text_comment
                 )
             else:
                 print(f"{bcolors.WARNING}Post Disable{bcolors.ENDC}")
                 print(f"For student: {member}, the score is {score}")
+                print(f"Comments: {text_comment}")
 
     def grade_project(self,
                       repo:github.Repository.Repository, # target repository to grade
-                      component:str, # the component of the project grading, let it be proposal/checkpoint/final. Need to match the issue's title
+                      component:str, # The component of the project grading, let it be proposal/checkpoint/final. Need to match the issue's title
                       assignment_id:int, # assignment id that link to that component of the project
-                      canvas_group_name=None, # mapping from GitHub repo name to Group name. If not specified, the repository name will be used.
-                      post=False, # whether to post score via api. For testing purposes
+                      canvas_group_name:dict=None, # mapping from GitHub repo name to Group name. If not specified, the repository name will be used.
+                      canvas_group_category:str=None, # canvas group category (set)
+                      post:bool=False, # whether to post score via api. For testing purposes
                       ):
         "grade github project components"
+        # set the category if you haven't
+        if canvas_group_category is not None:
+            self.cg.set_group_category(canvas_group_category)
         score = self.parse_score_from_issue(repo, component)
+        # create mapping from GitHub repo name to canvas group name
         if canvas_group_name is not None:
             group_name = canvas_group_name[repo.name]
         else:
             group_name = repo.name
-        self.update_canvas_score(group_name, assignment_id, score, post)
+        if score is ...:
+            print(f"{bcolors.WARNING}{group_name}'s {component} Not Graded. {bcolors.ENDC}")
+            return
+        issue = self.fetch_issue(repo, component)
+        self.update_canvas_score(group_name, assignment_id, score, issue, post)
 
 
