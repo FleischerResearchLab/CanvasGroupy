@@ -4,8 +4,7 @@
 __all__ = ['bcolors', 'Grading']
 
 # %% ../nbs/api/04_project_grading.ipynb 3
-from .github import GitHubGroup
-from .canvas import CanvasGroup
+from . import *
 import github
 import canvasapi
 from ast import literal_eval
@@ -91,6 +90,18 @@ class Grading:
                 print(f"For student: {member}, the score is {score}")
                 print(f"Comments: {text_comment}")
 
+    def check_graded(self,
+                     repo:github.Repository.Repository, # target repository to grade
+                     component:str, # The component of the project grading, let it be proposal/checkpoint/final. Need to match the issue's title
+                    ) -> bool: # Whether the repo is graded.
+        "Check whether a component for a group project is graded"
+        score = self.parse_score_from_issue(repo, component)
+        if score is ...:
+            print(f"{bcolors.WARNING}{repo.name}'s {component} Not Graded. {bcolors.ENDC}")
+            return False
+        print(f"{bcolors.OKGREEN}{repo.name}'s {component} Graded. {bcolors.ENDC}")
+        return True
+
     def grade_project(self,
                       repo:github.Repository.Repository, # target repository to grade
                       component:str, # The component of the project grading, let it be proposal/checkpoint/final. Need to match the issue's title
@@ -109,8 +120,8 @@ class Grading:
             group_name = canvas_group_name[repo.name]
         else:
             group_name = repo.name
-        if score is ...:
-            print(f"{bcolors.WARNING}{group_name}'s {component} Not Graded. {bcolors.ENDC}")
+        graded = self.check_graded(repo, component)
+        if graded:
             return
         issue = self.fetch_issue(repo, component)
         self.update_canvas_score(group_name, assignment_id, score, issue, post)
