@@ -1,0 +1,1553 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="In this example, we created GitHub group repositories to student groups based on the group information on canvas.">
+
+<title>CanvasGroupy - Example Workflow - Create GitHub Group from Canvas Group</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+<meta property="og:title" content="CanvasGroupy - Example Workflow - Create GitHub Group from Canvas Group">
+<meta property="og:description" content="In this example, we created GitHub group repositories to student groups based on the group information on canvas.">
+<meta property="og:site-name" content="CanvasGroupy">
+<meta name="twitter:title" content="CanvasGroupy - Example Workflow - Create GitHub Group from Canvas Group">
+<meta name="twitter:description" content="In this example, we created GitHub group repositories to student groups based on the group information on canvas.">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">CanvasGroupy</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools ms-auto">
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/authentications.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../tutorials/create github group from canvas group.html">Example Workflow - Create GitHub Group from Canvas Group</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CanvasGroupy</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Tutorials</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/authentications.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GitHub / Canvas Authentications</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/create github group from canvas group.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Example Workflow - Create GitHub Group from Canvas Group</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/create template issues.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Populate Grading Rubric Template on GitHub Repositories</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../api/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">API</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/groupeng_assign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GroupEngAssign</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/github.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GitHub Group Creation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/canvas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Canvas Group Creation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/project_grading.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project Grading</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Project Feedback Template</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../feedback_template/checkpoint_feedback.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project Checkpoint Feedback</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../feedback_template/final_project_feedback.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Final Project Feedback</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../feedback_template/proposal_feedback.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project Proposal Feedback</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#canvas-get-groups-github-username" id="toc-canvas-get-groups-github-username" class="nav-link active" data-scroll-target="#canvas-get-groups-github-username">Canvas Get Groups / GitHub Username</a>
+  <ul class="collapse">
+  <li><a href="#fetch-github-username-from-quiz" id="toc-fetch-github-username-from-quiz" class="nav-link" data-scroll-target="#fetch-github-username-from-quiz">Fetch GitHub Username from Quiz</a></li>
+  </ul></li>
+  <li><a href="#check-github-username-validity" id="toc-check-github-username-validity" class="nav-link" data-scroll-target="#check-github-username-validity">Check GitHub Username Validity</a></li>
+  <li><a href="#get-group-member-information" id="toc-get-group-member-information" class="nav-link" data-scroll-target="#get-group-member-information">Get Group Member Information</a></li>
+  <li><a href="#github-repository-creation" id="toc-github-repository-creation" class="nav-link" data-scroll-target="#github-repository-creation">GitHub Repository Creation</a></li>
+  <li><a href="#resent-invitations" id="toc-resent-invitations" class="nav-link" data-scroll-target="#resent-invitations">Resent Invitations</a></li>
+  <li><a href="#the-end-of-the-workflow" id="toc-the-end-of-the-workflow" class="nav-link" data-scroll-target="#the-end-of-the-workflow">The End of the Workflow</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/FleischerResearchLab/CanvasGroupy/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Example Workflow - Create GitHub Group from Canvas Group</h1>
+</div>
+
+<div>
+  <div class="description">
+    In this example, we created GitHub group repositories to student groups based on the group information on canvas.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
+<p>This example workflow was used in Spring 2023, for COGS 118A at UC San Diego. his workflow demonstrated a component of the <code>CanvasGroupy</code>, where we already have group information based on the canvas group. In addition, students’ GitHub usernames were collected via a canvas quiz, where we fetched, validated, and stored the GitHub Username directly. This workflow was run after the fact that all students were successfully assigned a group, and all students have <em>correctly</em> completed their GitHub Username quiz.</p>
+<p>As usual, to execute those API calls, you will have to provide the system with necessary credentials. You can find more information based on the <em>???TODO</em> tutorial.</p>
+<p><strong>Note:</strong> The output of some cells are long, and the output might affect your reading experience. I recommend you to use the hyperlink on the right hand side bar to skip to the next section if needed.</p>
+<section id="canvas-get-groups-github-username" class="level2">
+<h2 class="anchored" data-anchor-id="canvas-get-groups-github-username">Canvas Get Groups / GitHub Username</h2>
+<p>We need to get the group member information at Canvas. This is achieved by pulling the people list on the group category page.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> CanvasGroupy.canvas <span class="im">import</span> CanvasGroup</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> CanvasGroupy.github <span class="im">import</span> GitHubGroup</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>cg <span class="op">=</span> CanvasGroup(<span class="st">"Group_Eng/credentials.json"</span>, course_id<span class="op">=</span><span class="dv">45059</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Authorization Successful!
+Course Set:  COGS 118A - Supvr/Mach Learning Algorithms - Fleischer [SP23] 
+Getting List of Users... This might take a while...
+Users Fetch Complete! The course has 161 students.</code></pre>
+</div>
+</div>
+<section id="fetch-github-username-from-quiz" class="level3">
+<h3 class="anchored" data-anchor-id="fetch-github-username-from-quiz">Fetch GitHub Username from Quiz</h3>
+<p>See more info at <a href="https://FleischerResearchLab.github.io/CanvasGroupy/api/canvas.html#canvasgroup.fetch_username_from_quiz"><code>CanvasGroup.fetch_username_from_quiz</code></a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>github_usernames <span class="op">=</span> cg.fetch_username_from_quiz(quiz_id<span class="op">=</span><span class="dv">139061</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Quiz: GitHub Username fetch! 
+Generating Student Analaysis...
+[====================] 100%
+Report Generated!
+The Question asked is 1389031: What is your GitHub Username? Absolutely No Typo Please.. 
+Make sure this is the correct question where you asked student for their GitHub id.
+If you need to change the index of columns, change the col_index argument of this call.</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="check-github-username-validity" class="level2">
+<h2 class="anchored" data-anchor-id="check-github-username-validity">Check GitHub Username Validity</h2>
+<p>We use GitHub API to search for a target user. See more info at <a href="https://FleischerResearchLab.github.io/CanvasGroupy/api/canvas.html#canvasgroup.check_github_usernames"><code>CanvasGroup.check_github_usernames</code></a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>cg.check_github_usernames(github_usernames,</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                          send_canvas_email<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                          send_undone_reminder<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                          quiz_url<span class="op">=</span><span class="st">"https://canvas.ucsd.edu/courses/45059/quizzes/139061"</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Student ax008708 did not submit their github username.
+Notification Sent!
+Student a8chu did not submit their github username.
+Notification Sent!
+Student j3dong did not submit their github username.
+Notification Sent!
+Student n6garcia did not submit their github username.
+Notification Sent!
+Student kehu did not submit their github username.
+Notification Sent!
+Student qil016 did not submit their github username.
+Notification Sent!
+Student ttp007 did not submit their github username.
+Notification Sent!
+Student zshao did not submit their github username.
+Notification Sent!</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre><code>{}</code></pre>
+</div>
+</div>
+</section>
+<section id="get-group-member-information" class="level2">
+<h2 class="anchored" data-anchor-id="get-group-member-information">Get Group Member Information</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>groups <span class="op">=</span> cg.get_groups(<span class="st">"Final Project"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>groups</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>{'Group001-SP23': ['h5he', 'zmao', 'xiw013', 'j6wen', 'j5zhu'],
+ 'Group002-SP23': ['cmcmanig', 'jup006', 'ssuthar', 'd3yu'],
+ 'Group003-SP23': ['yic055', 'yuz191', 'xiz068'],
+ 'Group004-SP23': ['dac020', 'nilu', 'tyap', 'g6zhu'],
+ 'Group005-SP23': ['kechen', 'a8chu', 'cdelira', 'wolee', 'arshukla'],
+ 'Group006-SP23': ['ax008707', 'ax008724', 'ax008777'],
+ 'Group007-SP23': ['yuchi', 'j3dong', 'y3ge', 'x6he', 'xiz031'],
+ 'Group008-SP23': ['zifeng', 'ax008740', 'jul121', 'yuy047'],
+ 'Group009-SP23': ['ax008573', 'ckavanagh', 'v1lu', 'vvishnus'],
+ 'Group010-SP23': ['jwc002', 'tjamal', 'jsliang', 'tdn003'],
+ 'Group011-SP23': ['khchuang', 'emdavis', 'jejiang', 'nrejai'],
+ 'Group012-SP23': ['afleschn', 'rlharsono', 'jjsanchez', 'asengupt'],
+ 'Group013-SP23': ['kehu', 'jnhuang', 'shperry', 'alvalenc'],
+ 'Group014-SP23': ['gsroberts', 'cvillafa', 'shw089', 'yiz095'],
+ 'Group015-SP23': ['aanna', 'sdsilva', 'asivayog', 'nyanekch'],
+ 'Group016-SP23': ['yuche', 'y3guo', 'e1hu', 'zhl023', 'qil012'],
+ 'Group017-SP23': ['s3chowdhury', 'llennema', 'psodhi', 'svirk'],
+ 'Group018-SP23': ['ajcagle', 'ahewig', 's2malik', 'mnodini', 'musman'],
+ 'Group019-SP23': ['sasingh', 'nsit', 'dsun'],
+ 'Group020-SP23': ['akaji', 'm1manzan', 'j3mendez', 'mpareek', 'atrapena'],
+ 'Group021-SP23': ['jkrentse', 'jmlai', 'zel012', 'sserafin'],
+ 'Group022-SP23': ['ax008708', 'anc024', 'gng', 'reyang'],
+ 'Group023-SP23': ['raguinakang', 'phelcl', 'vjayanan', 'crochez', 'kpstern'],
+ 'Group024-SP23': ['nabansal', 'ccaban', 'mvfang', 'asim'],
+ 'Group025-SP23': ['nschaefe', 'hshaikh', 'jww001', 'bjyan'],
+ 'Group026-SP23': ['e1dong', 'aaolivas', 'h5park', 'yuz821'],
+ 'Group027-SP23': ['jddeleon', 'ndnguyen', 'ttp007', 'jzs002'],
+ 'Group028-SP23': ['mabdilah', 'yuh045', 'ktnakai', 'jonza'],
+ 'Group029-SP23': ['lmitbo', 'jsalce', 'lskerrett', 'jubamadu'],
+ 'Group030-SP23': ['ruc003', 'shh035', 'btn003', 'knino'],
+ 'Group031-SP23': ['shc007', 'n6garcia', 'ken010', 'mmpak'],
+ 'Group032-SP23': ['zachao', 'smurase', 'j1xu', 'z5zhang'],
+ 'Group033-SP23': ['sbodhisartha', 'ndeepak', 'arlu', 'trucker', 'jaxu'],
+ 'Group034-SP23': ['kabalaji', 'rchaklas', 'vspillai', 'jmvillal'],
+ 'Group035-SP23': ['cantoniohernandez', 'rpuranam', 'rsedano', 'zshao'],
+ 'Group036-SP23': ['malkhalifah', 'djjani', 'rkohli', 'smtrived'],
+ 'Group037-SP23': ['nazpeitia', 'g2hong', 'gkweon'],
+ 'Group038-SP23': ['qil016', 'msherrick', 'yiw085', 'r4zhou'],
+ 'Group039-SP23': ['cgutierrezgodoy', 'z8jiang', 'dar005', 'jtaolan']}</code></pre>
+</div>
+</div>
+</section>
+<section id="github-repository-creation" class="level2">
+<h2 class="anchored" data-anchor-id="github-repository-creation">GitHub Repository Creation</h2>
+<p>Given the gathered information about both group membership and students’ GitHub Username, we are ready to create group repositories for them.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ggroup <span class="op">=</span> GitHubGroup(<span class="st">"Group_Eng/credentials.json"</span>, verbosity<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ggroup.set_org(<span class="st">"COGS118A"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Successfully Authenticated. GitHub account:  scott-yj-yang 
+Target Organization Set:  COGS118A </code></pre>
+</div>
+</div>
+<p>In the following for loop, we create the group repositories via a series of <a href="https://FleischerResearchLab.github.io/CanvasGroupy/api/github.html#githubgroup.create_group_repo"><code>GitHubGroup.create_group_repo</code></a> command. This is the place where we can get personalized (or I shall say <em>groupalized</em>) repositories. Be sure to change the appropriate parameters.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>repos <span class="op">=</span> []</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> group_name, members <span class="kw">in</span> groups.items():</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    group_git_usernames <span class="op">=</span> []</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> email <span class="kw">in</span> members:</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>            <span class="co"># try to get the git username for each student.</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>            <span class="co"># not all students completed their quiz.</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>            group_git_usernames.append(github_usernames[email])</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> <span class="pp">KeyError</span>:</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>email<span class="sc">}</span><span class="ss">'s GitHub Username not found"</span>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    repo <span class="op">=</span> ggroup.create_group_repo(</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>        repo_name<span class="op">=</span>group_name,</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>        collaborators<span class="op">=</span>group_git_usernames,</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>        permission<span class="op">=</span><span class="st">"write"</span>,</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>        repo_template<span class="op">=</span><span class="st">"COGS118A/group_template"</span>,</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>        rename_files<span class="op">=</span>{</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Checkpoint_groupXXX.ipynb"</span>: <span class="ss">f"Checkpoint_</span><span class="sc">{</span>group_name<span class="sc">}</span><span class="ss">.ipynb"</span>,</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>            <span class="st">"FinalProject_groupXXX.ipynb"</span>: <span class="ss">f"FinalProject_</span><span class="sc">{</span>group_name<span class="sc">}</span><span class="ss">.ipynb"</span>,</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Proposal_groupXXX.ipynb"</span>: <span class="ss">f"Proposal_</span><span class="sc">{</span>group_name<span class="sc">}</span><span class="ss">.ipynb"</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>        },</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>        private<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>        description<span class="op">=</span><span class="ss">f"COGS118A Final Project </span><span class="sc">{</span>group_name<span class="sc">}</span><span class="ss"> Repository"</span>,</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>        team_slug<span class="op">=</span><span class="st">"Instructors_Sp23"</span>,</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>        team_permission<span class="op">=</span><span class="st">"admin"</span></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">""</span>)</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>    repos.append(repo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Repo  Group001-SP23  Created... Wait for 3 sec to updates
+File Successfully Renamed from   Checkpoint_groupXXX.ipynb   to  Checkpoint_Group001-SP23.ipynb 
+File Successfully Renamed from   FinalProject_groupXXX.ipynb   to  FinalProject_Group001-SP23.ipynb 
+File Successfully Renamed from   Proposal_groupXXX.ipynb   to  Proposal_Group001-SP23.ipynb 
+Added Collaborator:  TaraaHe  to:  Group001-SP23  with permission:  write 
+Added Collaborator:  demimao  to:  Group001-SP23  with permission:  write 
+Added Collaborator:  xiw013  to:  Group001-SP23  with permission:  write 
+Added Collaborator:  willwen96  to:  Group001-SP23  with permission:  write 
+Added Collaborator:  Ju-dyz  to:  Group001-SP23  with permission:  write 
+Team  Instructors_Sp23  added to  Group001-SP23  with permission  admin 
+Group Repo:  Group001-SP23  successfuly created!
+Repo URL: https://github.com/COGS118A/Group001-SP23
+
+Repo  Group002-SP23  Created... Wait for 3 sec to updates
+File Successfully Renamed from   Checkpoint_groupXXX.ipynb   to  Checkpoint_Group002-SP23.ipynb 
+File Successfully Renamed from   FinalProject_groupXXX.ipynb   to  FinalProject_Group002-SP23.ipynb 
+File Successfully Renamed from   Proposal_groupXXX.ipynb   to  Proposal_Group002-SP23.ipynb 
+Added Collaborator:  connormcmanigal  to:  Group002-SP23  with permission:  write 
+Added Collaborator:  jup006  to:  Group002-SP23  with permission:  write 
+Added Collaborator:  ssutharucsd  to:  Group002-SP23  with permission:  write 
+Added Collaborator:  d3yu  to:  Group002-SP23  with permission:  write 
+Team  Instructors_Sp23  added to  Group002-SP23  with permission  admin 
+Group Repo:  Group002-SP23  successfuly created!
+Repo URL: https://github.com/COGS118A/Group002-SP23
+
+Repo  Group003-SP23  Created... Wait for 3 sec to updates
+File Successfully Renamed from   Checkpoint_groupXXX.ipynb   to  Checkpoint_Group003-SP23.ipynb 
+File Successfully Renamed from   FinalProject_groupXXX.ipynb   to  FinalProject_Group003-SP23.ipynb 
+File Successfully Renamed from   Proposal_groupXXX.ipynb   to  Proposal_Group003-SP23.ipynb 
+Added Collaborator:  Cyl200215  to:  Group003-SP23  with permission:  write 
+Added Collaborator:  scottieboyzhang  to:  Group003-SP23  with permission:  write 
+Added Collaborator:  Orang1s  to:  Group003-SP23  with permission:  write 
+Team  Instructors_Sp23  added to  Group003-SP23  with permission  admin 
+Group Repo:  Group003-SP23  successfuly created!
+Repo URL: https://github.com/COGS118A/Group003-SP23
+
+Repo  Group004-SP23  Created... Wait for 3 sec to updates
+File Successfully Renamed from   Checkpoint_groupXXX.ipynb   to  Checkpoint_Group004-SP23.ipynb 
+File Successfully Renamed from   FinalProject_groupXXX.ipynb   to  FinalProject_Group004-SP23.ipynb 
+File Successfully Renamed from   Proposal_groupXXX.ipynb   to  Proposal_Group004-SP23.ipynb 
+Added Collaborator:  CDavid99  to:  Group004-SP23  with permission:  write 
+Added Collaborator:  nilu0311  to:  Group004-SP23  with permission:  write 
+Added Collaborator:  cookingoil88  to:  Group004-SP23  with permission:  write 
+Added Collaborator:  g6zhu  to:  Group004-SP23  with permission:  write 
+Team  Instructors_Sp23  added to  Group004-SP23  with permission  admin 
+Group Repo:  Group004-SP23  successfuly created!
+Repo URL: https://github.com/COGS118A/Group004-SP23
+
+a8chu's GitHub Username not found
+Repo  Group005-SP23  Created... Wait for 3 sec to updates
+File Successfully Renamed from   Checkpoint_groupXXX.ipynb   to  Checkpoint_Group005-SP23.ipynb 
+File Successfully Renamed from   FinalProject_groupXXX.ipynb   to  FinalProject_Group005-SP23.ipynb 
+File Successfully Renamed from   Proposal_groupXXX.ipynb   to  Proposal_Group005-SP23.ipynb 
+Added Collaborator:  kchen283  to:  Group005-SP23  with permission:  write 
+Added Collaborator:  cdelira9  to:  Group005-SP23  with permission:  write 
+Added Collaborator:  wj6801  to:  Group005-SP23  with permission:  write 
+Added Collaborator:  arth-shukla  to:  Group005-SP23  with permission:  write 
+Team  Instructors_Sp23  added to  Group005-SP23  with permission  admin 
+Group Repo:  Group005-SP23  successfuly created!
+Repo URL: https://github.com/COGS118A/Group005-SP23
+
+Repo  Group006-SP23  Created... Wait for 3 sec to updates
+File Successfully Renamed from   Checkpoint_groupXXX.ipynb   to  Checkpoint_Group006-SP23.ipynb 
+File Successfully Renamed from   FinalProject_groupXXX.ipynb   to  FinalProject_Group006-SP23.ipynb 
+File Successfully Renamed from   Proposal_groupXXX.ipynb   to  Proposal_Group006-SP23.ipynb 
+Added Collaborator:  Leoooo333  to:  Group006-SP23  with permission:  write 
+Added Collaborator:  qdh-2002  to:  Group006-SP23  with permission:  write 
+Added Collaborator:  Chihhsinli  to:  Group006-SP23  with permission:  write 
+Team  Instructors_Sp23  added to  Group006-SP23  with permission  admin 
+Group Repo:  Group006-SP23  successfuly created!
+Repo URL: https://github.com/COGS118A/Group006-SP23
+
+j3dong's GitHub Username not found
+Repo  Group007-SP23  Created... Wait for 3 sec to updates
+File Successfully Renamed from   Checkpoint_groupXXX.ipynb   to  Checkpoint_Group007-SP23.ipynb 
+File Successfully Renamed from   FinalProject_groupXXX.ipynb   to  FinalProject_Group007-SP23.ipynb 
+File Successfully Renamed from   Proposal_groupXXX.ipynb   to  Proposal_Group007-SP23.ipynb 
+Added Collaborator:  YunxiangChi  to:  Group007-SP23  with permission:  write 
+Added Collaborator:  alien-invader  to:  Group007-SP23  with permission:  write 
+Added Collaborator:  XiaoyanHe0713  to:  Group007-SP23  with permission:  write 
+Added Collaborator:  Andrina-iris  to:  Group007-SP23  with permission:  write 
+Team  Instructors_Sp23  added to  Group007-SP23  with permission  admin 
+Group Repo:  Group007-SP23  successfuly created!
+Repo URL: https://github.com/COGS118A/Group007-SP23
+
+Repo  Group008-SP23  Created... Wait for 3 sec to updates
+File Successfully Renamed from   Checkpoint_groupXXX.ipynb   to  Checkpoint_Group008-SP23.ipynb 
+File Successfully Renamed from   FinalProject_groupXXX.ipynb   to  FinalProject_Group008-SP23.ipynb 
+File Successfully Renamed from   Proposal_groupXXX.ipynb   to  Proposal_Group008-SP23.ipynb 
+Added Collaborator:  wwjasperww  to:  Group008-SP23  with permission:  write 
+Added Collaborator:  ChengqinLi1206  to:  Group008-SP23  with permission:  write 
+Added Collaborator:  junyuelin  to:  Group008-SP23  with permission:  write 
+Added Collaborator:  fergusyyang  to:  Group008-SP23  with permission:  write 
+Team  Instructors_Sp23  added to  Group008-SP23  with permission  admin 
+Group Repo:  Group008-SP23  successfuly created!
+Repo URL: https://github.com/COGS118A/Group008-SP23
+
+Repo  Group009-SP23  Created... Wait for 3 sec to updates
+File Successfully Renamed from   Checkpoint_groupXXX.ipynb   to  Checkpoint_Group009-SP23.ipynb 
+File Successfully Renamed from   FinalProject_groupXXX.ipynb   to  FinalProject_Group009-SP23.ipynb 
+File Successfully Renamed from   Proposal_groupXXX.ipynb   to  Proposal_Group009-SP23.ipynb 
+Added Collaborator:  thaiscodafond  to:  Group009-SP23  with permission:  write 
+Added Collaborator:  ckavanagh21  to:  Group009-SP23  with permission:  write 
+Added Collaborator:  404EZRA  to:  Group009-SP23  with permission:  write 
+Added Collaborator:  vvishnus  to:  Group009-SP23  with permission:  write 
+Team  Instructors_Sp23  added to  Group009-SP23  with permission  admin 
+Group Repo:  Group009-SP23  successfuly created!
+Repo URL: https://github.com/COGS118A/Group009-SP23
+
+Repo  Group010-SP23  Created... Wait for 3 sec to updates
+File Successfully Renamed from   Checkpoint_groupXXX.ipynb   to  Checkpoint_Group010-SP23.ipynb 
+File Successfully Renamed from   FinalProject_groupXXX.ipynb   to  FinalProject_Group010-SP23.ipynb 
+File Successfully Renamed from   Proposal_groupXXX.ipynb   to  Proposal_Group010-SP23.ipynb 
+Added Collaborator:  strawhatwilson23  to:  Group010-SP23  with permission:  write 
+Added Collaborator:  tjamalcodes  to:  Group010-SP23  with permission:  write 
+Added Collaborator:  jaysunl  to:  Group010-SP23  with permission:  write 
+Added Collaborator:  idereknguyen  to:  Group010-SP23  with permission:  write 
+Team  Instructors_Sp23  added to  Group010-SP23  with permission  admin 
+Group Repo:  Group010-SP23  successfuly created!
+Repo URL: https://github.com/COGS118A/Group010-SP23
+
+Repo  Group011-SP23  Created... Wait for 3 sec to updates
+File Successfully Renamed from   Checkpoint_groupXXX.ipynb   to  Checkpoint_Group011-SP23.ipynb 
+File Successfully Renamed from   FinalProject_groupXXX.ipynb   to  FinalProject_Group011-SP23.ipynb 
+File Successfully Renamed from   Proposal_groupXXX.ipynb   to  Proposal_Group011-SP23.ipynb 
+Added Collaborator:  khchuang12  to:  Group011-SP23  with permission:  write 
+Added Collaborator:  Emdavis02  to:  Group011-SP23  with permission:  write 
+Added Collaborator:  jennifer-jiang  to:  Group011-SP23  with permission:  write 
+Added Collaborator:  nrejai  to:  Group011-SP23  with permission:  write 
+Team  Instructors_Sp23  added to  Group011-SP23  with permission  admin 
+Group Repo:  Group011-SP23  successfuly created!
+Repo URL: https://github.com/COGS118A/Group011-SP23
+
+Repo  Group012-SP23  Created... Wait for 3 sec to updates
+File Successfully Renamed from   Checkpoint_groupXXX.ipynb   to  Checkpoint_Group012-SP23.ipynb 
+File Successfully Renamed from   FinalProject_groupXXX.ipynb   to  FinalProject_Group012-SP23.ipynb 
+File Successfully Renamed from   Proposal_groupXXX.ipynb   to  Proposal_Group012-SP23.ipynb 
+Added Collaborator:  afleschner  to:  Group012-SP23  with permission:  write 
+Added Collaborator:  githubharsono  to:  Group012-SP23  with permission:  write 
+Added Collaborator:  JJSanchez23  to:  Group012-SP23  with permission:  write 
+Added Collaborator:  antarasengupta26  to:  Group012-SP23  with permission:  write 
+Team  Instructors_Sp23  added to  Group012-SP23  with permission  admin 
+Group Repo:  Group012-SP23  successfuly created!
+Repo URL: https://github.com/COGS118A/Group012-SP23
+
+kehu's GitHub Username not found
+Repo  Group013-SP23  Created... Wait for 3 sec to updates
+File Successfully Renamed from   Checkpoint_groupXXX.ipynb   to  Checkpoint_Group013-SP23.ipynb 
+File Successfully Renamed from   FinalProject_groupXXX.ipynb   to  FinalProject_Group013-SP23.ipynb 
+File Successfully Renamed from   Proposal_groupXXX.ipynb   to  Proposal_Group013-SP23.ipynb 
+Added Collaborator:  jnhuang02  to:  Group013-SP23  with permission:  write 
+Added Collaborator:  Sean1572  to:  Group013-SP23  with permission:  write 
+Added Collaborator:  valenciaaalberto  to:  Group013-SP23  with permission:  write 
+Team  Instructors_Sp23  added to  Group013-SP23  with permission  admin 
+Group Repo:  Group013-SP23  successfuly created!
+Repo URL: https://github.com/COGS118A/Group013-SP23
+
+Repo  Group014-SP23  Created... Wait for 3 sec to updates
+File Successfully Renamed from   Checkpoint_groupXXX.ipynb   to  Checkpoint_Group014-SP23.ipynb 
+File Successfully Renamed from   FinalProject_groupXXX.ipynb   to  FinalProject_Group014-SP23.ipynb 
+File Successfully Renamed from   Proposal_groupXXX.ipynb   to  Proposal_Group014-SP23.ipynb 
+Added Collaborator:  empire-penguin  to:  Group014-SP23  with permission:  write 
+Added Collaborator:  villafun  to:  Group014-SP23  with permission:  write 
+Added Collaborator:  50ShadesOfShawn  to:  Group014-SP23  with permission:  write 
+Added Collaborator:  ericzyl  to:  Group014-SP23  with permission:  write 
+Team  Instructors_Sp23  added to  Group014-SP23  with permission  admin 
+Group Repo:  Group014-SP23  successfuly created!
+Repo URL: https://github.com/COGS118A/Group014-SP23
+
+Repo  Group015-SP23  Created... Wait for 3 sec to updates
+File Successfully Renamed from   Checkpoint_groupXXX.ipynb   to  Checkpoint_Group015-SP23.ipynb 
+File Successfully Renamed from   FinalProject_groupXXX.ipynb   to  FinalProject_Group015-SP23.ipynb 
+File Successfully Renamed from   Proposal_groupXXX.ipynb   to  Proposal_Group015-SP23.ipynb 
+Added Collaborator:  arjunanna  to:  Group015-SP23  with permission:  write 
+Added Collaborator:  sdsilva1  to:  Group015-SP23  with permission:  write 
+Added Collaborator:  abi2020  to:  Group015-SP23  with permission:  write 
+Added Collaborator:  nikothomas  to:  Group015-SP23  with permission:  write 
+Team  Instructors_Sp23  added to  Group015-SP23  with permission  admin 
+Group Repo:  Group015-SP23  successfuly created!
+Repo URL: https://github.com/COGS118A/Group015-SP23
+
+Repo  Group016-SP23  Created... Wait for 3 sec to updates
+File Successfully Renamed from   Checkpoint_groupXXX.ipynb   to  Checkpoint_Group016-SP23.ipynb 
+File Successfully Renamed from   FinalProject_groupXXX.ipynb   to  FinalProject_Group016-SP23.ipynb 
+File Successfully Renamed from   Proposal_groupXXX.ipynb   to  Proposal_Group016-SP23.ipynb 
+Added Collaborator:  shendu11  to:  Group016-SP23  with permission:  write 
+Added Collaborator:  Y3GUO  to:  Group016-SP23  with permission:  write 
+Added Collaborator:  EthanHu0  to:  Group016-SP23  with permission:  write 
+Added Collaborator:  claireZHL  to:  Group016-SP23  with permission:  write 
+Added Collaborator:  QilunLiu5216  to:  Group016-SP23  with permission:  write 
+Team  Instructors_Sp23  added to  Group016-SP23  with permission  admin 
+Group Repo:  Group016-SP23  successfuly created!
+Repo URL: https://github.com/COGS118A/Group016-SP23
+
+Repo  Group017-SP23  Created... Wait for 3 sec to updates
+File Successfully Renamed from   Checkpoint_groupXXX.ipynb   to  Checkpoint_Group017-SP23.ipynb 
+File Successfully Renamed from   FinalProject_groupXXX.ipynb   to  FinalProject_Group017-SP23.ipynb 
+File Successfully Renamed from   Proposal_groupXXX.ipynb   to  Proposal_Group017-SP23.ipynb 
+Added Collaborator:  sreetama02  to:  Group017-SP23  with permission:  write 
+Added Collaborator:  llennemann  to:  Group017-SP23  with permission:  write 
+Added Collaborator:  pabbi5  to:  Group017-SP23  with permission:  write 
+Added Collaborator:  AstuteFern  to:  Group017-SP23  with permission:  write 
+Team  Instructors_Sp23  added to  Group017-SP23  with permission  admin 
+Group Repo:  Group017-SP23  successfuly created!
+Repo URL: https://github.com/COGS118A/Group017-SP23
+
+Repo  Group018-SP23  Created... Wait for 3 sec to updates
+File Successfully Renamed from   Checkpoint_groupXXX.ipynb   to  Checkpoint_Group018-SP23.ipynb 
+File Successfully Renamed from   FinalProject_groupXXX.ipynb   to  FinalProject_Group018-SP23.ipynb 
+File Successfully Renamed from   Proposal_groupXXX.ipynb   to  Proposal_Group018-SP23.ipynb 
+Added Collaborator:  ajcagle8  to:  Group018-SP23  with permission:  write 
+Added Collaborator:  aHewig  to:  Group018-SP23  with permission:  write 
+Added Collaborator:  notSaranshMalik  to:  Group018-SP23  with permission:  write 
+Added Collaborator:  mnodini  to:  Group018-SP23  with permission:  write 
+Added Collaborator:  maryamkusman  to:  Group018-SP23  with permission:  write 
+Team  Instructors_Sp23  added to  Group018-SP23  with permission  admin 
+Group Repo:  Group018-SP23  successfuly created!
+Repo URL: https://github.com/COGS118A/Group018-SP23
+
+Repo  Group019-SP23  Created... Wait for 3 sec to updates
+File Successfully Renamed from   Checkpoint_groupXXX.ipynb   to  Checkpoint_Group019-SP23.ipynb 
+File Successfully Renamed from   FinalProject_groupXXX.ipynb   to  FinalProject_Group019-SP23.ipynb 
+File Successfully Renamed from   Proposal_groupXXX.ipynb   to  Proposal_Group019-SP23.ipynb 
+Added Collaborator:  SSingh44343  to:  Group019-SP23  with permission:  write 
+Added Collaborator:  nathansit  to:  Group019-SP23  with permission:  write 
+Added Collaborator:  DaimengSun  to:  Group019-SP23  with permission:  write 
+Team  Instructors_Sp23  added to  Group019-SP23  with permission  admin 
+Group Repo:  Group019-SP23  successfuly created!
+Repo URL: https://github.com/COGS118A/Group019-SP23
+
+Repo  Group020-SP23  Created... Wait for 3 sec to updates
+File Successfully Renamed from   Checkpoint_groupXXX.ipynb   to  Checkpoint_Group020-SP23.ipynb 
+File Successfully Renamed from   FinalProject_groupXXX.ipynb   to  FinalProject_Group020-SP23.ipynb 
+File Successfully Renamed from   Proposal_groupXXX.ipynb   to  Proposal_Group020-SP23.ipynb 
+Added Collaborator:  ashesh8500  to:  Group020-SP23  with permission:  write </code></pre>
+</div>
+</div>
+</section>
+<section id="resent-invitations" class="level2">
+<h2 class="anchored" data-anchor-id="resent-invitations">Resent Invitations</h2>
+<p>GitHub collaboration invites will be <a href="https://docs.github.com/en/organizations/managing-membership-in-your-organization/inviting-users-to-join-your-organization#retrying-or-canceling-expired-invitations">expired automatically</a> when the user did not accept the invite after a certain period of time. After all the group repositories are created, the command <a href="https://FleischerResearchLab.github.io/CanvasGroupy/api/github.html#githubgroup.resent_invitations_team_repos"><code>GitHubGroup.resent_invitations_team_repos</code></a> will rescind all pending invitations and resent invitation to that collaborators.</p>
+<p>This command is particularly useful when managing a large volume of repositories as it painlessly re-validated and re-sent all pending invitations of all repositories under a team. We ran this command daily to constantly remind student to accept their GitHub invitations, until all students have a valid permission to the target repository.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ggroup.resent_invitations_team_repos(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    team_slug<span class="op">=</span><span class="st">"Instructors_Sp23"</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Repository  AssignmentNotebooksSource_SP23 :
+The list of pending invitation:
+[]
+Repository  AssignmentNotebooks_SP23 :
+The list of pending invitation:
+[]
+Repository  DiscussionSectionNotebooks :
+The list of pending invitation:
+[]
+Repository  Dockerfiles :
+The list of pending invitation:
+[]
+Repository  Group001-SP23 :
+The list of pending invitation:
+[NamedUser(login="demimao"),
+ NamedUser(login="xiw013"),
+ NamedUser(login="Ju-dyz"),
+ NamedUser(login="TaraaHe")]
+demimao Invite Revoked 
+Added Collaborator:  demimao  to:  Group001-SP23  with permission:  write 
+ Invite Resent to demimao 
+xiw013 Invite Revoked 
+Added Collaborator:  xiw013  to:  Group001-SP23  with permission:  write 
+ Invite Resent to xiw013 
+Ju-dyz Invite Revoked 
+Added Collaborator:  Ju-dyz  to:  Group001-SP23  with permission:  write 
+ Invite Resent to Ju-dyz 
+TaraaHe Invite Revoked 
+Added Collaborator:  TaraaHe  to:  Group001-SP23  with permission:  write 
+ Invite Resent to TaraaHe 
+Repository  Group002-SP23 :
+The list of pending invitation:
+[NamedUser(login="jup006"),
+ NamedUser(login="ssutharucsd"),
+ NamedUser(login="connormcmanigal"),
+ NamedUser(login="d3yu")]
+jup006 Invite Revoked 
+Added Collaborator:  jup006  to:  Group002-SP23  with permission:  write 
+ Invite Resent to jup006 
+ssutharucsd Invite Revoked 
+Added Collaborator:  ssutharucsd  to:  Group002-SP23  with permission:  write 
+ Invite Resent to ssutharucsd 
+connormcmanigal Invite Revoked 
+Added Collaborator:  connormcmanigal  to:  Group002-SP23  with permission:  write 
+ Invite Resent to connormcmanigal 
+d3yu Invite Revoked 
+Added Collaborator:  d3yu  to:  Group002-SP23  with permission:  write 
+ Invite Resent to d3yu 
+Repository  Group003-SP23 :
+The list of pending invitation:
+[NamedUser(login="scottieboyzhang"), NamedUser(login="Orang1s")]
+scottieboyzhang Invite Revoked 
+Added Collaborator:  scottieboyzhang  to:  Group003-SP23  with permission:  write 
+ Invite Resent to scottieboyzhang 
+Orang1s Invite Revoked 
+Added Collaborator:  Orang1s  to:  Group003-SP23  with permission:  write 
+ Invite Resent to Orang1s 
+Repository  Group004-SP23 :
+The list of pending invitation:
+[NamedUser(login="CDavid99"),
+ NamedUser(login="nilu0311"),
+ NamedUser(login="g6zhu")]
+CDavid99 Invite Revoked 
+Added Collaborator:  CDavid99  to:  Group004-SP23  with permission:  write 
+ Invite Resent to CDavid99 
+nilu0311 Invite Revoked 
+Added Collaborator:  nilu0311  to:  Group004-SP23  with permission:  write 
+ Invite Resent to nilu0311 
+g6zhu Invite Revoked 
+Added Collaborator:  g6zhu  to:  Group004-SP23  with permission:  write 
+ Invite Resent to g6zhu 
+Repository  Group005-SP23 :
+The list of pending invitation:
+[NamedUser(login="arth-shukla"),
+ NamedUser(login="kchen283"),
+ NamedUser(login="cdelira9")]
+arth-shukla Invite Revoked 
+Added Collaborator:  arth-shukla  to:  Group005-SP23  with permission:  write 
+ Invite Resent to arth-shukla 
+kchen283 Invite Revoked 
+Added Collaborator:  kchen283  to:  Group005-SP23  with permission:  write 
+ Invite Resent to kchen283 
+cdelira9 Invite Revoked 
+Added Collaborator:  cdelira9  to:  Group005-SP23  with permission:  write 
+ Invite Resent to cdelira9 
+Repository  Group006-SP23 :
+The list of pending invitation:
+[NamedUser(login="qdh-2002"), NamedUser(login="Chihhsinli")]
+qdh-2002 Invite Revoked 
+Added Collaborator:  qdh-2002  to:  Group006-SP23  with permission:  write 
+ Invite Resent to qdh-2002 
+Chihhsinli Invite Revoked 
+Added Collaborator:  Chihhsinli  to:  Group006-SP23  with permission:  write 
+ Invite Resent to Chihhsinli 
+Repository  Group007-SP23 :
+The list of pending invitation:
+[NamedUser(login="YunxiangChi"),
+ NamedUser(login="Andrina-iris"),
+ NamedUser(login="alien-invader")]
+YunxiangChi Invite Revoked 
+Added Collaborator:  YunxiangChi  to:  Group007-SP23  with permission:  write 
+ Invite Resent to YunxiangChi 
+Andrina-iris Invite Revoked 
+Added Collaborator:  Andrina-iris  to:  Group007-SP23  with permission:  write 
+ Invite Resent to Andrina-iris 
+alien-invader Invite Revoked 
+Added Collaborator:  alien-invader  to:  Group007-SP23  with permission:  write 
+ Invite Resent to alien-invader 
+Repository  Group008-SP23 :
+The list of pending invitation:
+[NamedUser(login="wwjasperww")]
+wwjasperww Invite Revoked 
+Added Collaborator:  wwjasperww  to:  Group008-SP23  with permission:  write 
+ Invite Resent to wwjasperww 
+Repository  Group009-SP23 :
+The list of pending invitation:
+[NamedUser(login="404EZRA"), NamedUser(login="vvishnus")]
+404EZRA Invite Revoked 
+Added Collaborator:  404EZRA  to:  Group009-SP23  with permission:  write 
+ Invite Resent to 404EZRA 
+vvishnus Invite Revoked 
+Added Collaborator:  vvishnus  to:  Group009-SP23  with permission:  write 
+ Invite Resent to vvishnus 
+Repository  Group010-SP23 :
+The list of pending invitation:
+[NamedUser(login="idereknguyen"),
+ NamedUser(login="jaysunl"),
+ NamedUser(login="tjamalcodes"),
+ NamedUser(login="strawhatwilson23")]
+idereknguyen Invite Revoked 
+Added Collaborator:  idereknguyen  to:  Group010-SP23  with permission:  write 
+ Invite Resent to idereknguyen 
+jaysunl Invite Revoked 
+Added Collaborator:  jaysunl  to:  Group010-SP23  with permission:  write 
+ Invite Resent to jaysunl 
+tjamalcodes Invite Revoked 
+Added Collaborator:  tjamalcodes  to:  Group010-SP23  with permission:  write 
+ Invite Resent to tjamalcodes 
+strawhatwilson23 Invite Revoked 
+Added Collaborator:  strawhatwilson23  to:  Group010-SP23  with permission:  write 
+ Invite Resent to strawhatwilson23 
+Repository  Group011-SP23 :
+The list of pending invitation:
+[NamedUser(login="khchuang12"),
+ NamedUser(login="nrejai"),
+ NamedUser(login="emdavis02")]
+khchuang12 Invite Revoked 
+Added Collaborator:  khchuang12  to:  Group011-SP23  with permission:  write 
+ Invite Resent to khchuang12 
+nrejai Invite Revoked 
+Added Collaborator:  nrejai  to:  Group011-SP23  with permission:  write 
+ Invite Resent to nrejai 
+emdavis02 Invite Revoked 
+Added Collaborator:  emdavis02  to:  Group011-SP23  with permission:  write 
+ Invite Resent to emdavis02 
+Repository  Group012-SP23 :
+The list of pending invitation:
+[NamedUser(login="githubharsono"),
+ NamedUser(login="JJSanchez23"),
+ NamedUser(login="antarasengupta26")]
+githubharsono Invite Revoked 
+Added Collaborator:  githubharsono  to:  Group012-SP23  with permission:  write 
+ Invite Resent to githubharsono 
+JJSanchez23 Invite Revoked 
+Added Collaborator:  JJSanchez23  to:  Group012-SP23  with permission:  write 
+ Invite Resent to JJSanchez23 
+antarasengupta26 Invite Revoked 
+Added Collaborator:  antarasengupta26  to:  Group012-SP23  with permission:  write 
+ Invite Resent to antarasengupta26 
+Repository  Group013-SP23 :
+The list of pending invitation:
+[NamedUser(login="Sean1572"), NamedUser(login="jnhuang02")]
+Sean1572 Invite Revoked 
+Added Collaborator:  Sean1572  to:  Group013-SP23  with permission:  write 
+ Invite Resent to Sean1572 
+jnhuang02 Invite Revoked 
+Added Collaborator:  jnhuang02  to:  Group013-SP23  with permission:  write 
+ Invite Resent to jnhuang02 
+Repository  Group014-SP23 :
+The list of pending invitation:
+[NamedUser(login="ericzyl"),
+ NamedUser(login="50ShadesOfShawn"),
+ NamedUser(login="villafun")]
+ericzyl Invite Revoked 
+Added Collaborator:  ericzyl  to:  Group014-SP23  with permission:  write 
+ Invite Resent to ericzyl 
+50ShadesOfShawn Invite Revoked 
+Added Collaborator:  50ShadesOfShawn  to:  Group014-SP23  with permission:  write 
+ Invite Resent to 50ShadesOfShawn 
+villafun Invite Revoked 
+Added Collaborator:  villafun  to:  Group014-SP23  with permission:  write 
+ Invite Resent to villafun 
+Repository  Group015-SP23 :
+The list of pending invitation:
+[NamedUser(login="nikothomas"),
+ NamedUser(login="abi2020"),
+ NamedUser(login="arjunanna"),
+ NamedUser(login="sdsilva1")]
+nikothomas Invite Revoked 
+Added Collaborator:  nikothomas  to:  Group015-SP23  with permission:  write 
+ Invite Resent to nikothomas 
+abi2020 Invite Revoked 
+Added Collaborator:  abi2020  to:  Group015-SP23  with permission:  write 
+ Invite Resent to abi2020 
+arjunanna Invite Revoked 
+Added Collaborator:  arjunanna  to:  Group015-SP23  with permission:  write 
+ Invite Resent to arjunanna 
+sdsilva1 Invite Revoked 
+Added Collaborator:  sdsilva1  to:  Group015-SP23  with permission:  write 
+ Invite Resent to sdsilva1 
+Repository  Group016-SP23 :
+The list of pending invitation:
+[NamedUser(login="shendu11"),
+ NamedUser(login="EthanHu0"),
+ NamedUser(login="QilunLiu5216"),
+ NamedUser(login="Y3GUO"),
+ NamedUser(login="claireZHL")]
+shendu11 Invite Revoked 
+Added Collaborator:  shendu11  to:  Group016-SP23  with permission:  write 
+ Invite Resent to shendu11 
+EthanHu0 Invite Revoked 
+Added Collaborator:  EthanHu0  to:  Group016-SP23  with permission:  write 
+ Invite Resent to EthanHu0 
+QilunLiu5216 Invite Revoked 
+Added Collaborator:  QilunLiu5216  to:  Group016-SP23  with permission:  write 
+ Invite Resent to QilunLiu5216 
+Y3GUO Invite Revoked 
+Added Collaborator:  Y3GUO  to:  Group016-SP23  with permission:  write 
+ Invite Resent to Y3GUO 
+claireZHL Invite Revoked 
+Added Collaborator:  claireZHL  to:  Group016-SP23  with permission:  write 
+ Invite Resent to claireZHL 
+Repository  Group017-SP23 :
+The list of pending invitation:
+[NamedUser(login="AstuteFern"),
+ NamedUser(login="sreetama02"),
+ NamedUser(login="pabbi5")]
+AstuteFern Invite Revoked 
+Added Collaborator:  AstuteFern  to:  Group017-SP23  with permission:  write 
+ Invite Resent to AstuteFern 
+sreetama02 Invite Revoked 
+Added Collaborator:  sreetama02  to:  Group017-SP23  with permission:  write 
+ Invite Resent to sreetama02 
+pabbi5 Invite Revoked 
+Added Collaborator:  pabbi5  to:  Group017-SP23  with permission:  write 
+ Invite Resent to pabbi5 
+Repository  Group018-SP23 :
+The list of pending invitation:
+[NamedUser(login="notSaranshMalik"),
+ NamedUser(login="mnodini"),
+ NamedUser(login="Maryamkusman"),
+ NamedUser(login="ajcagle8")]
+notSaranshMalik Invite Revoked 
+Added Collaborator:  notSaranshMalik  to:  Group018-SP23  with permission:  write 
+ Invite Resent to notSaranshMalik 
+mnodini Invite Revoked 
+Added Collaborator:  mnodini  to:  Group018-SP23  with permission:  write 
+ Invite Resent to mnodini 
+Maryamkusman Invite Revoked 
+Added Collaborator:  Maryamkusman  to:  Group018-SP23  with permission:  write 
+ Invite Resent to Maryamkusman 
+ajcagle8 Invite Revoked 
+Added Collaborator:  ajcagle8  to:  Group018-SP23  with permission:  write 
+ Invite Resent to ajcagle8 
+Repository  Group019-SP23 :
+The list of pending invitation:
+[NamedUser(login="nathansit"),
+ NamedUser(login="SSingh44343"),
+ NamedUser(login="DaimengSun")]
+nathansit Invite Revoked 
+Added Collaborator:  nathansit  to:  Group019-SP23  with permission:  write 
+ Invite Resent to nathansit 
+SSingh44343 Invite Revoked 
+Added Collaborator:  SSingh44343  to:  Group019-SP23  with permission:  write 
+ Invite Resent to SSingh44343 
+DaimengSun Invite Revoked 
+Added Collaborator:  DaimengSun  to:  Group019-SP23  with permission:  write 
+ Invite Resent to DaimengSun 
+Repository  Group020-SP23 :
+The list of pending invitation:
+[NamedUser(login="ashesh8500"),
+ NamedUser(login="ATrapenard"),
+ NamedUser(login="meghapareek2003")]
+ashesh8500 Invite Revoked 
+Added Collaborator:  ashesh8500  to:  Group020-SP23  with permission:  write 
+ Invite Resent to ashesh8500 
+ATrapenard Invite Revoked 
+Added Collaborator:  ATrapenard  to:  Group020-SP23  with permission:  write 
+ Invite Resent to ATrapenard 
+meghapareek2003 Invite Revoked 
+Added Collaborator:  meghapareek2003  to:  Group020-SP23  with permission:  write 
+ Invite Resent to meghapareek2003 
+Repository  Group021-SP23 :
+The list of pending invitation:
+[NamedUser(login="JasonKrentsel"),
+ NamedUser(login="shantellemeganserafin"),
+ NamedUser(login="orangejustin"),
+ NamedUser(login="jmlai08")]
+JasonKrentsel Invite Revoked 
+Added Collaborator:  JasonKrentsel  to:  Group021-SP23  with permission:  write 
+ Invite Resent to JasonKrentsel 
+shantellemeganserafin Invite Revoked 
+Added Collaborator:  shantellemeganserafin  to:  Group021-SP23  with permission:  write 
+ Invite Resent to shantellemeganserafin 
+orangejustin Invite Revoked 
+Added Collaborator:  orangejustin  to:  Group021-SP23  with permission:  write 
+ Invite Resent to orangejustin 
+jmlai08 Invite Revoked 
+Added Collaborator:  jmlai08  to:  Group021-SP23  with permission:  write 
+ Invite Resent to jmlai08 
+Repository  Group022-SP23 :
+The list of pending invitation:
+[NamedUser(login="anchen31"), NamedUser(login="nggalen")]
+anchen31 Invite Revoked 
+Added Collaborator:  anchen31  to:  Group022-SP23  with permission:  write 
+ Invite Resent to anchen31 
+nggalen Invite Revoked 
+Added Collaborator:  nggalen  to:  Group022-SP23  with permission:  write 
+ Invite Resent to nggalen 
+Repository  Group023-SP23 :
+The list of pending invitation:
+[NamedUser(login="VigneshJ14"),
+ NamedUser(login="helclp"),
+ NamedUser(login="rioak"),
+ NamedUser(login="chrishrochez"),
+ NamedUser(login="kpstern")]
+VigneshJ14 Invite Revoked 
+Added Collaborator:  VigneshJ14  to:  Group023-SP23  with permission:  write 
+ Invite Resent to VigneshJ14 
+helclp Invite Revoked 
+Added Collaborator:  helclp  to:  Group023-SP23  with permission:  write 
+ Invite Resent to helclp 
+rioak Invite Revoked 
+Added Collaborator:  rioak  to:  Group023-SP23  with permission:  write 
+ Invite Resent to rioak 
+chrishrochez Invite Revoked 
+Added Collaborator:  chrishrochez  to:  Group023-SP23  with permission:  write 
+ Invite Resent to chrishrochez 
+kpstern Invite Revoked 
+Added Collaborator:  kpstern  to:  Group023-SP23  with permission:  write 
+ Invite Resent to kpstern 
+Repository  Group024-SP23 :
+The list of pending invitation:
+[NamedUser(login="MoMo339610"),
+ NamedUser(login="ccaban6"),
+ NamedUser(login="Nakshatra120"),
+ NamedUser(login="sim-anna")]
+MoMo339610 Invite Revoked 
+Added Collaborator:  MoMo339610  to:  Group024-SP23  with permission:  write 
+ Invite Resent to MoMo339610 
+ccaban6 Invite Revoked 
+Added Collaborator:  ccaban6  to:  Group024-SP23  with permission:  write 
+ Invite Resent to ccaban6 
+Nakshatra120 Invite Revoked 
+Added Collaborator:  Nakshatra120  to:  Group024-SP23  with permission:  write 
+ Invite Resent to Nakshatra120 
+sim-anna Invite Revoked 
+Added Collaborator:  sim-anna  to:  Group024-SP23  with permission:  write 
+ Invite Resent to sim-anna 
+Repository  Group025-SP23 :
+The list of pending invitation:
+[NamedUser(login="Shayfe"),
+ NamedUser(login="jenniferwong1808"),
+ NamedUser(login="belindayan1000"),
+ NamedUser(login="hibask")]
+Shayfe Invite Revoked 
+Added Collaborator:  Shayfe  to:  Group025-SP23  with permission:  write 
+ Invite Resent to Shayfe 
+jenniferwong1808 Invite Revoked 
+Added Collaborator:  jenniferwong1808  to:  Group025-SP23  with permission:  write 
+ Invite Resent to jenniferwong1808 
+belindayan1000 Invite Revoked 
+Added Collaborator:  belindayan1000  to:  Group025-SP23  with permission:  write 
+ Invite Resent to belindayan1000 
+hibask Invite Revoked 
+Added Collaborator:  hibask  to:  Group025-SP23  with permission:  write 
+ Invite Resent to hibask 
+Repository  Group026-SP23 :
+The list of pending invitation:
+[NamedUser(login="e81786"),
+ NamedUser(login="hyun04p"),
+ NamedUser(login="Yuanzhen-Zhu"),
+ NamedUser(login="aaolivas")]
+e81786 Invite Revoked 
+Added Collaborator:  e81786  to:  Group026-SP23  with permission:  write 
+ Invite Resent to e81786 
+hyun04p Invite Revoked 
+Added Collaborator:  hyun04p  to:  Group026-SP23  with permission:  write 
+ Invite Resent to hyun04p 
+Yuanzhen-Zhu Invite Revoked 
+Added Collaborator:  Yuanzhen-Zhu  to:  Group026-SP23  with permission:  write 
+ Invite Resent to Yuanzhen-Zhu 
+aaolivas Invite Revoked 
+Added Collaborator:  aaolivas  to:  Group026-SP23  with permission:  write 
+ Invite Resent to aaolivas 
+Repository  Group027-SP23 :
+The list of pending invitation:
+[NamedUser(login="Jddeleon1981"),
+ NamedUser(login="natenyul"),
+ NamedUser(login="jifsus")]
+Jddeleon1981 Invite Revoked 
+Added Collaborator:  Jddeleon1981  to:  Group027-SP23  with permission:  write 
+ Invite Resent to Jddeleon1981 
+natenyul Invite Revoked 
+Added Collaborator:  natenyul  to:  Group027-SP23  with permission:  write 
+ Invite Resent to natenyul 
+jifsus Invite Revoked 
+Added Collaborator:  jifsus  to:  Group027-SP23  with permission:  write 
+ Invite Resent to jifsus 
+Repository  Group028-SP23 :
+The list of pending invitation:
+[NamedUser(login="mabdilahCSE"),
+ NamedUser(login="kylenakai"),
+ NamedUser(login="valar23"),
+ NamedUser(login="johnpaulonza")]
+mabdilahCSE Invite Revoked 
+Added Collaborator:  mabdilahCSE  to:  Group028-SP23  with permission:  write 
+ Invite Resent to mabdilahCSE 
+kylenakai Invite Revoked 
+Added Collaborator:  kylenakai  to:  Group028-SP23  with permission:  write 
+ Invite Resent to kylenakai 
+valar23 Invite Revoked 
+Added Collaborator:  valar23  to:  Group028-SP23  with permission:  write 
+ Invite Resent to valar23 
+johnpaulonza Invite Revoked 
+Added Collaborator:  johnpaulonza  to:  Group028-SP23  with permission:  write 
+ Invite Resent to johnpaulonza 
+Repository  Group029-SP23 :
+The list of pending invitation:
+[NamedUser(login="joshsalce"),
+ NamedUser(login="lmitbo"),
+ NamedUser(login="LukeSkerrett"),
+ NamedUser(login="jubamadu")]
+joshsalce Invite Revoked 
+Added Collaborator:  joshsalce  to:  Group029-SP23  with permission:  write 
+ Invite Resent to joshsalce 
+lmitbo Invite Revoked 
+Added Collaborator:  lmitbo  to:  Group029-SP23  with permission:  write 
+ Invite Resent to lmitbo 
+LukeSkerrett Invite Revoked 
+Added Collaborator:  LukeSkerrett  to:  Group029-SP23  with permission:  write 
+ Invite Resent to LukeSkerrett 
+jubamadu Invite Revoked 
+Added Collaborator:  jubamadu  to:  Group029-SP23  with permission:  write 
+ Invite Resent to jubamadu 
+Repository  Group030-SP23 :
+The list of pending invitation:
+[NamedUser(login="kmbnino"),
+ NamedUser(login="hiiminbush"),
+ NamedUser(login="RafferyChen"),
+ NamedUser(login="bonzonwin")]
+kmbnino Invite Revoked 
+Added Collaborator:  kmbnino  to:  Group030-SP23  with permission:  write 
+ Invite Resent to kmbnino 
+hiiminbush Invite Revoked 
+Added Collaborator:  hiiminbush  to:  Group030-SP23  with permission:  write 
+ Invite Resent to hiiminbush 
+RafferyChen Invite Revoked 
+Added Collaborator:  RafferyChen  to:  Group030-SP23  with permission:  write 
+ Invite Resent to RafferyChen 
+bonzonwin Invite Revoked 
+Added Collaborator:  bonzonwin  to:  Group030-SP23  with permission:  write 
+ Invite Resent to bonzonwin 
+Repository  Group031-SP23 :
+The list of pending invitation:
+[NamedUser(login="kendrick010"), NamedUser(login="getpakt")]
+kendrick010 Invite Revoked 
+Added Collaborator:  kendrick010  to:  Group031-SP23  with permission:  write 
+ Invite Resent to kendrick010 
+getpakt Invite Revoked 
+Added Collaborator:  getpakt  to:  Group031-SP23  with permission:  write 
+ Invite Resent to getpakt 
+Repository  Group032-SP23 :
+The list of pending invitation:
+[NamedUser(login="CharlesXu-Jingyue"),
+ NamedUser(login="hinyzee"),
+ NamedUser(login="Zachary-chao"),
+ NamedUser(login="smurase")]
+CharlesXu-Jingyue Invite Revoked 
+Added Collaborator:  CharlesXu-Jingyue  to:  Group032-SP23  with permission:  write 
+ Invite Resent to CharlesXu-Jingyue 
+hinyzee Invite Revoked 
+Added Collaborator:  hinyzee  to:  Group032-SP23  with permission:  write 
+ Invite Resent to hinyzee 
+Zachary-chao Invite Revoked 
+Added Collaborator:  Zachary-chao  to:  Group032-SP23  with permission:  write 
+ Invite Resent to Zachary-chao 
+smurase Invite Revoked 
+Added Collaborator:  smurase  to:  Group032-SP23  with permission:  write 
+ Invite Resent to smurase 
+Repository  Group033-SP23 :
+The list of pending invitation:
+[NamedUser(login="jason886595"),
+ NamedUser(login="cqrnik"),
+ NamedUser(login="AnyaBoo"),
+ NamedUser(login="areenlu"),
+ NamedUser(login="TydenRucker")]
+jason886595 Invite Revoked 
+Added Collaborator:  jason886595  to:  Group033-SP23  with permission:  write 
+ Invite Resent to jason886595 
+cqrnik Invite Revoked 
+Added Collaborator:  cqrnik  to:  Group033-SP23  with permission:  write 
+ Invite Resent to cqrnik 
+AnyaBoo Invite Revoked 
+Added Collaborator:  AnyaBoo  to:  Group033-SP23  with permission:  write 
+ Invite Resent to AnyaBoo 
+areenlu Invite Revoked 
+Added Collaborator:  areenlu  to:  Group033-SP23  with permission:  write 
+ Invite Resent to areenlu 
+TydenRucker Invite Revoked 
+Added Collaborator:  TydenRucker  to:  Group033-SP23  with permission:  write 
+ Invite Resent to TydenRucker 
+Repository  Group034-SP23 :
+The list of pending invitation:
+[NamedUser(login="vinaypillai"),
+ NamedUser(login="rchaklas"),
+ NamedUser(login="kavyaabalaji"),
+ NamedUser(login="Juan2002V")]
+vinaypillai Invite Revoked 
+Added Collaborator:  vinaypillai  to:  Group034-SP23  with permission:  write 
+ Invite Resent to vinaypillai 
+rchaklas Invite Revoked 
+Added Collaborator:  rchaklas  to:  Group034-SP23  with permission:  write 
+ Invite Resent to rchaklas 
+kavyaabalaji Invite Revoked 
+Added Collaborator:  kavyaabalaji  to:  Group034-SP23  with permission:  write 
+ Invite Resent to kavyaabalaji 
+Juan2002V Invite Revoked 
+Added Collaborator:  Juan2002V  to:  Group034-SP23  with permission:  write 
+ Invite Resent to Juan2002V 
+Repository  Group035-SP23 :
+The list of pending invitation:
+[NamedUser(login="hyperburn777"),
+ NamedUser(login="CristianAH"),
+ NamedUser(login="rihusedesign")]
+hyperburn777 Invite Revoked 
+Added Collaborator:  hyperburn777  to:  Group035-SP23  with permission:  write 
+ Invite Resent to hyperburn777 
+CristianAH Invite Revoked 
+Added Collaborator:  CristianAH  to:  Group035-SP23  with permission:  write 
+ Invite Resent to CristianAH 
+rihusedesign Invite Revoked 
+Added Collaborator:  rihusedesign  to:  Group035-SP23  with permission:  write 
+ Invite Resent to rihusedesign 
+Repository  Group036-SP23 :
+The list of pending invitation:
+[NamedUser(login="kohlir2020"),
+ NamedUser(login="dhavaljjani"),
+ NamedUser(login="Mkhlf"),
+ NamedUser(login="esti28")]
+kohlir2020 Invite Revoked 
+Added Collaborator:  kohlir2020  to:  Group036-SP23  with permission:  write 
+ Invite Resent to kohlir2020 
+dhavaljjani Invite Revoked 
+Added Collaborator:  dhavaljjani  to:  Group036-SP23  with permission:  write 
+ Invite Resent to dhavaljjani 
+Mkhlf Invite Revoked 
+Added Collaborator:  Mkhlf  to:  Group036-SP23  with permission:  write 
+ Invite Resent to Mkhlf 
+esti28 Invite Revoked 
+Added Collaborator:  esti28  to:  Group036-SP23  with permission:  write 
+ Invite Resent to esti28 
+Repository  Group037-SP23 :
+The list of pending invitation:
+[NamedUser(login="gyuj"),
+ NamedUser(login="NickAzp"),
+ NamedUser(login="kleumas")]
+gyuj Invite Revoked 
+Added Collaborator:  gyuj  to:  Group037-SP23  with permission:  write 
+ Invite Resent to gyuj 
+NickAzp Invite Revoked 
+Added Collaborator:  NickAzp  to:  Group037-SP23  with permission:  write 
+ Invite Resent to NickAzp 
+kleumas Invite Revoked 
+Added Collaborator:  kleumas  to:  Group037-SP23  with permission:  write 
+ Invite Resent to kleumas 
+Repository  Group038-SP23 :
+The list of pending invitation:
+[NamedUser(login="crickwang"),
+ NamedUser(login="the-bruz"),
+ NamedUser(login="m-sherrick")]
+crickwang Invite Revoked 
+Added Collaborator:  crickwang  to:  Group038-SP23  with permission:  write 
+ Invite Resent to crickwang 
+the-bruz Invite Revoked 
+Added Collaborator:  the-bruz  to:  Group038-SP23  with permission:  write 
+ Invite Resent to the-bruz 
+m-sherrick Invite Revoked 
+Added Collaborator:  m-sherrick  to:  Group038-SP23  with permission:  write 
+ Invite Resent to m-sherrick 
+Repository  Group039-SP23 :
+The list of pending invitation:
+[NamedUser(login="dannyr742"),
+ NamedUser(login="clarissagtz"),
+ NamedUser(login="z8jiang"),
+ NamedUser(login="jtaolan")]
+dannyr742 Invite Revoked 
+Added Collaborator:  dannyr742  to:  Group039-SP23  with permission:  write 
+ Invite Resent to dannyr742 
+clarissagtz Invite Revoked 
+Added Collaborator:  clarissagtz  to:  Group039-SP23  with permission:  write 
+ Invite Resent to clarissagtz 
+z8jiang Invite Revoked 
+Added Collaborator:  z8jiang  to:  Group039-SP23  with permission:  write 
+ Invite Resent to z8jiang 
+jtaolan Invite Revoked 
+Added Collaborator:  jtaolan  to:  Group039-SP23  with permission:  write 
+ Invite Resent to jtaolan 
+Repository  Lectures :
+The list of pending invitation:
+[]
+Repository  Notebooks :
+The list of pending invitation:
+[]</code></pre>
+</div>
+</div>
+</section>
+<section id="the-end-of-the-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="the-end-of-the-workflow">The End of the Workflow</h2>
+<p>If you still have concerns, please reach out via GitHub Issue (on the RHS bar) or reach out me directly via email: <a href="mailto:yuy004@ucsd.edu" class="email">yuy004@ucsd.edu</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

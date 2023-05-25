@@ -1,0 +1,11 @@
+[
+  {
+    "listing": "/api/index.html",
+    "items": [
+      "/api/canvas.html",
+      "/api/github.html",
+      "/api/groupeng_assign.html",
+      "/api/project_grading.html"
+    ]
+  }
+]
