@@ -99,6 +99,7 @@ class AssignGroup:
     def create_github_group(
         self,
         username_quiz_id: int,
+        **repo_kwargs,
     ):
         """Create GitHub repositories for each group.
 
@@ -108,6 +109,9 @@ class AssignGroup:
         Args:
             username_quiz_id: Canvas quiz ID where students submitted
                 their GitHub usernames.
+            **repo_kwargs: Additional keyword arguments forwarded to
+                ``ghg.create_group_repo()`` (e.g. ``repo_template``,
+                ``description``, ``team_slug``, ``team_permission``).
         """
         if not self.groups:
             raise ValueError(
@@ -127,6 +131,7 @@ class AssignGroup:
                 collaborators=group_git_usernames,
                 permission="write",
                 private=True,
+                **repo_kwargs,
             )
             repos.append(repo)
         return repos

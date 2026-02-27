@@ -1,6 +1,6 @@
 import pytest
 import pandas as pd
-from unittest.mock import MagicMock, call
+from unittest.mock import MagicMock
 from CanvasGroupy.assign import AssignGroup
 
 
@@ -62,6 +62,18 @@ class TestLoadGroups:
         with pytest.raises(ValueError, match="group_name"):
             ag.load_groups(df)
 
+    def test_constructor_groups_parameter_auto_loads(self, mock_services):
+        ghg, cg = mock_services
+        df = pd.DataFrame({
+            "group_name": ["Team1", "Team1", "Team2"],
+            "student_id": ["alice", "bob", "carol"],
+        })
+        ag = AssignGroup(ghg=ghg, cg=cg, groups=df)
+        assert ag.groups == {
+            "Team1": ["alice", "bob"],
+            "Team2": ["carol"],
+        }
+
 
 class TestCreateCanvasGroup:
     def test_calls_assign_canvas_group_for_each_group(self, loaded_ag):
@@ -104,6 +116,22 @@ class TestCreateCanvasGroup:
         ag = AssignGroup(ghg=ghg, cg=cg)
         with pytest.raises(ValueError, match="No groups loaded"):
             ag.create_canvas_group(in_group_category="Anything")
+
+    def test_works_with_group_category_none_and_explicit_category(self, loaded_ag):
+        ag, ghg, cg = loaded_ag
+        cg.group_category = None
+        ag.create_canvas_group(in_group_category="Explicit Category")
+        assert cg.assign_canvas_group.call_count == 2
+        cg.assign_canvas_group.assert_any_call(
+            group_name="Group1",
+            group_members=["alice", "bob"],
+            in_group_category="Explicit Category",
+        )
+        cg.assign_canvas_group.assert_any_call(
+            group_name="Group2",
+            group_members=["carol"],
+            in_group_category="Explicit Category",
+        )
 
 
 class TestCreateGitHubGroup:
@@ -150,3 +178,28 @@ class TestCreateGitHubGroup:
         ag = AssignGroup(ghg=ghg, cg=cg)
         with pytest.raises(ValueError, match="No groups loaded"):
             ag.create_github_group(username_quiz_id=42)
+
+    def test_forwards_repo_kwargs_to_create_group_repo(self, loaded_ag):
+        ag, ghg, cg = loaded_ag
+        cg.fetch_username_from_quiz.return_value = {
+            "alice": "alice_gh",
+            "bob": "bob_gh",
+            "carol": "carol_gh",
+        }
+        ag.create_github_group(
+            username_quiz_id=42,
+            repo_template="org/template",
+            description="A project repo",
+            team_slug="Instructors",
+            team_permission="admin",
+        )
+        ghg.create_group_repo.assert_any_call(
+            repo_name="Group1",
+            collaborators=["alice_gh", "bob_gh"],
+            permission="write",
+            private=True,
+            repo_template="org/template",
+            description="A project repo",
+            team_slug="Instructors",
+            team_permission="admin",
+        )
