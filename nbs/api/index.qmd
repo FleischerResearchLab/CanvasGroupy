@@ -8,4 +8,4 @@ listing:
   filter-ui: false
 ---
 
-This section contains API details for each of CanvasGroupy python submodules. This reference documentation is mainly useful for people looking to customise or build on top of nbdev, or wanting detailed information about how this module works.
+This section contains API details for each of CanvasGroupy python submodules. This reference documentation is mainly useful for people looking to customise or build on top of CanvasGroupy, or wanting detailed information about how this module works.

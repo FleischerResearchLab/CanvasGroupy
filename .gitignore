@@ -131,6 +131,9 @@ dmypy.json
 # additional files
 .DS_Store
 nbs/groups_example*
-_proc/groups_example*
 nbs/api/github_username.csv
 .idea
+
+# nbdev build artifacts (removed)
+_proc/
+_docs/

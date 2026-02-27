@@ -6,9 +6,23 @@ permissions:
 
 on:
   push:
-    branches: [ "main", "master" ]
+    branches: ["main", "master"]
   workflow_dispatch:
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    steps: [uses: fastai/workflows/quarto-ghp@master]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: quarto-dev/quarto-actions/setup@v2
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+      - name: Install Python dependencies
+        run: uv sync --all-extras
+      - name: Render Quarto site
+        run: cd nbs && uv run quarto render
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./nbs/_docs

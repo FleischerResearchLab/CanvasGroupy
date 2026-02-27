@@ -1,5 +1,6 @@
 project:
   type: website
+  output-dir: _docs
 
 format:
   html:
@@ -8,6 +9,11 @@ format:
     toc: true
 
 website:
+  title: "CanvasGroupy"
+  site-url: "https://FleischerResearchLab.github.io/CanvasGroupy"
+  description: "Canvas Grouping Python Script"
+  repo-branch: main
+  repo-url: "https://github.com/FleischerResearchLab/CanvasGroupy"
   twitter-card: true
   open-graph: true
   repo-actions: [issue]
@@ -24,5 +30,3 @@ website:
         contents: api/*
       - section: Project Feedback Template
         contents: feedback_template/*
-
-metadata-files: [nbdev.yml]
