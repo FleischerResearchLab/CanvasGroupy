@@ -23,6 +23,22 @@ class bcolors:
     UNDERLINE = '\033[4m'
 
 class CanvasGroup():
+    """Manage Canvas LMS group operations including roster, grading, and messaging.
+
+    Provides methods to authenticate with the Canvas API, manage courses and
+    group categories, create and populate groups, post grades, and send
+    messages to students.
+
+    Attributes:
+        API_URL: The Canvas instance base URL.
+        canvas: Authenticated Canvas API client.
+        course: The currently selected Canvas course.
+        group_category: The active group category (group set).
+        users: List of enrolled students in the course.
+        assignment: The currently linked assignment for grading.
+        verbosity: Controls output verbosity (0 = silent, 1 = print all).
+    """
+
     def __init__(self,
                  credentials_fp = "", # credential file path. [Template of the credentials.json](https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/nbs/credentials.json)
                  API_URL="https://canvas.ucsd.edu", # the domain name of canvas
@@ -30,7 +46,16 @@ class CanvasGroup():
                  group_category="", # target group category (set) of interests
                  verbosity=1 # Controls the verbosity: 0 = Silent, 1 = print all messages
                 ):
-        "Initialize Canvas Group within a Group Set and its appropriate memberships"
+        """Initialize a CanvasGroup instance and optionally authenticate and configure.
+
+        Args:
+            credentials_fp: Path to the credentials JSON file containing API
+                tokens. See the template at the project repository.
+            API_URL: The Canvas instance base URL (e.g., ``https://canvas.ucsd.edu``).
+            course_id: The Canvas course ID, found in the course URL.
+            group_category: Name of the target group category (group set).
+            verbosity: Controls output verbosity (0 = silent, 1 = print all).
+        """
         self.API_URL = API_URL
         self.canvas = None
         self.course = None
@@ -61,7 +86,20 @@ class CanvasGroup():
     def auth_canvas(self,
                     credentials_fp: str # the Authenticator key generated from canvas
                    ):
-        "Authorize the canvas module with API_KEY"
+        """Authenticate with the Canvas API using a credentials file.
+
+        Reads the Canvas API token from the JSON credentials file and
+        initializes the Canvas API client. Verifies the token by fetching
+        the activity stream summary.
+
+        Args:
+            credentials_fp: Path to the JSON file containing a
+                ``"Canvas Token"`` key.
+
+        Raises:
+            FileNotFoundError: If the credentials file does not exist.
+            canvasapi.exceptions.InvalidAccessToken: If the token is invalid.
+        """
         self.credentials_fp = credentials_fp
         with open(credentials_fp, "r") as f:
             credentials = json.load(f)
@@ -75,7 +113,18 @@ class CanvasGroup():
     def set_course(self,
                    course_id: int # the course id of the target course
                   ):
-        "Set the target course by the course ID"
+        """Set the target course and fetch the student roster.
+
+        Retrieves the course by ID, fetches all enrolled students, and
+        builds lookup dictionaries mapping emails to Canvas IDs and names.
+
+        Args:
+            course_id: The numeric Canvas course ID.
+
+        Raises:
+            canvasapi.exceptions.ResourceDoesNotExist: If the course ID is
+                invalid.
+        """
         self.course = self.canvas.get_course(course_id)
         if self.verbosity != 0:
             print(f"Course Set: {bcolors.OKGREEN} {self.course.name} {bcolors.ENDC}")
@@ -99,7 +148,22 @@ class CanvasGroup():
     def link_assignment(self,
                         assignment_id: int # assignment id, found at the url of assignmnet tab
                        ) -> canvasapi.assignment.Assignment: # target assignment
-        "Link the target assignment on canvas"
+        """Link a Canvas assignment for grading.
+
+        Fetches the assignment by ID and stores it for subsequent grading
+        operations such as ``post_grade``.
+
+        Args:
+            assignment_id: The Canvas assignment ID, found in the
+                assignment URL.
+
+        Returns:
+            The linked Canvas assignment object.
+
+        Raises:
+            canvasapi.exceptions.ResourceDoesNotExist: If the assignment ID
+                is invalid.
+        """
         assignment = self.course.get_assignment(assignment_id)
         if self.verbosity != 0:
             print(f"Assignment {bcolors.OKGREEN+assignment.name+bcolors.ENDC} Link!")
@@ -112,7 +176,25 @@ class CanvasGroup():
                     text_comment="", # text comment of the submission. Can feed
                     force=False, # whether force to post grade for all students. If False (default), it will skip post for the same score.
                   ) -> canvasapi.submission.Submission: # created submission
-        "Post grade and comment to canvas to the target assignment"
+        """Post a grade and optional comment to the linked Canvas assignment.
+
+        Submits a grade for a specific student on the currently linked
+        assignment. If ``force`` is False and the existing score matches
+        the new grade, the submission is skipped.
+
+        Args:
+            student_id: The Canvas user ID of the student, obtainable
+                from ``self.email_to_canvas_id``.
+            grade: The numeric grade to post.
+            text_comment: An optional text comment to attach to the
+                submission.
+            force: If False (default), skip posting when the existing
+                score already matches ``grade``.
+
+        Returns:
+            The updated submission object, or None if the post was
+            skipped.
+        """
         submission = self.assignment.get_submission(student_id)
         if not force and submission.score == grade:
             if self.verbosity != 0:
@@ -134,6 +216,21 @@ class CanvasGroup():
     def get_email_by_name(self,
                           name_fussy: str # search by first name or last name of a student
                          ) -> str: # email of a search student
+        """Look up a student's email prefix by a partial name match.
+
+        Performs a case-insensitive substring search against all student
+        names in the roster and returns the first matching email prefix.
+
+        Args:
+            name_fussy: A partial or full student name to search for
+                (first name, last name, or substring).
+
+        Returns:
+            The email prefix (SIS Login ID) of the first matching student.
+
+        Raises:
+            ValueError: If no student name contains the search string.
+        """
         name_fussy = name_fussy.lower()
         for email, name in self.email_to_name.items():
             if name_fussy in name.lower():
@@ -144,6 +241,22 @@ class CanvasGroup():
     def set_group_category(self,
                            category_name: str # the target group category
                           ) -> canvasapi.group.GroupCategory: # target group category object
+        """Set the active group category and fetch its groups.
+
+        Selects a group category (group set) by name and retrieves all
+        groups and their member email lists within that category.
+
+        Args:
+            category_name: The exact name of the group category to
+                activate.
+
+        Returns:
+            The selected group category object.
+
+        Raises:
+            KeyError: If ``category_name`` does not match any existing
+                group category in the course.
+        """
         _ = self.get_group_categories()
         try:
             self.group_category = self.group_categories[category_name]
@@ -164,6 +277,23 @@ class CanvasGroup():
     def get_groups(self,
                    category_name="" # the target group category. If not provided, will look for self.group_category
                   ) -> dict: # {group_name: [student_emails]}
+        """Get groups and their members in the current or specified category.
+
+        Returns a dictionary mapping group names to lists of member email
+        prefixes. If ``category_name`` is provided, the category is set
+        first.
+
+        Args:
+            category_name: Optional group category name. If empty, uses
+                the currently active group category.
+
+        Returns:
+            A dict mapping group names to lists of student email prefixes.
+
+        Raises:
+            ValueError: If no group category is set and ``category_name``
+                is empty.
+        """
         if category_name != "":
             self.set_group_category(category_name)
             return self.group_to_emails
@@ -172,10 +302,23 @@ class CanvasGroup():
         return self.group_to_emails
 
     def get_course(self):
+        """Get the current course object.
+
+        Returns:
+            The currently selected Canvas course object, or None if no
+            course has been set.
+        """
         return self.course
 
     def get_group_categories(self) -> dict: # return a name / group category object
-        "Grab all existing group categories (group set) in this course"
+        """List all group categories (group sets) in the current course.
+
+        Fetches every group category from the Canvas course and caches
+        them in ``self.group_categories``.
+
+        Returns:
+            A dict mapping category names to their GroupCategory objects.
+        """
         categories = list(self.course.get_group_categories())
         self.group_categories = {cat.name: cat for cat in categories}
         return {cat.name: cat for cat in categories}
@@ -183,14 +326,35 @@ class CanvasGroup():
     def create_group_category(self,
                               params: dict # the parameter of canvas group category API @ [this link](https://canvas.instructure.com/doc/api/group_categories.html#method.group_categories.create)
                              ) -> canvasapi.group.GroupCategory: # the generated group category object
-        "Create group category (group set) in this course"
+        """Create a new group category (group set) in the current course.
+
+        Args:
+            params: A dictionary of parameters for the Canvas group
+                category API. See the Canvas API documentation for
+                ``group_categories.create``.
+
+        Returns:
+            The newly created group category object.
+        """
         self.group_category = self.course.create_group_category(**params)
         return self.group_category
 
     def create_group(self,
                      params: dict, #the parameter of canvas group create API at [this link](https://canvas.instructure.com/doc/api/groups.html#method.groups.create)
                     ) -> canvasapi.group.Group: # the generated target group object
-        "Create canvas group under the target group category"
+        """Create a group under the currently active group category.
+
+        Args:
+            params: A dictionary of parameters for the Canvas group
+                creation API, which must include a ``"name"`` key. See
+                the Canvas API documentation for ``groups.create``.
+
+        Returns:
+            The newly created group object.
+
+        Raises:
+            ValueError: If no group category has been set or created.
+        """
         if self.group_category is None:
             raise ValueError("Have you specified or create a group category (group set)?")
         group = self.group_category.create_group(**params)
@@ -203,7 +367,20 @@ class CanvasGroup():
                           group: canvasapi.group.Group, # the group that students will join
                           group_members:[str], # list of group member's SIS Login (email prefix, before the @.)
                          ) -> [str]: # list of unsuccessful join
-        "Add membership access of each group member into the group"
+        """Add students to a Canvas group by their email prefixes.
+
+        Iterates over the provided member list and creates a group
+        membership for each student. Students whose email prefixes are
+        not found in the roster are collected and returned.
+
+        Args:
+            group: The Canvas group object to add members to.
+            group_members: List of student SIS Login IDs (email prefixes,
+                the part before the ``@``).
+
+        Returns:
+            A list of email prefixes for students who could not be added.
+        """
         unsuccessful_join = []
         for group_member in group_members:
             try:
@@ -221,7 +398,22 @@ class CanvasGroup():
                                  quiz_id: int, # quiz id of the username quiz
                                  col_index=7, # canvas quiz generated csv's question field column index
                                 ) -> dict: # {SIS Login ID: github username} dictionary
-        "Fetch the GitHub user name from the canvas quiz"
+        """Extract GitHub usernames from a Canvas quiz student analysis.
+
+        Downloads the student analysis report for the specified quiz,
+        parses the CSV, and builds a mapping from student email prefixes
+        to their submitted GitHub usernames.
+
+        Args:
+            quiz_id: The Canvas quiz ID containing GitHub username
+                submissions.
+            col_index: The zero-based column index in the generated CSV
+                that contains the GitHub username question response.
+
+        Returns:
+            A dict mapping student email prefixes (SIS Login IDs) to
+            their submitted GitHub usernames.
+        """
         header = {'Authorization': 'Bearer ' + self.API_KEY}
         quiz = self.course.get_quiz(quiz_id)
         if self.verbosity != 0:
@@ -286,7 +478,25 @@ class CanvasGroup():
                                send_undone_reminder=False, # send quiz undone reminder using canvas email
                                quiz_url="", # include a quiz url in the conversation for student to quickly complete the quiz.
                               ) -> dict: # {email: github username} of unreasonable GitHub id
-        "batch check GitHub username from student inputs."
+        """Batch validate GitHub usernames and optionally notify students.
+
+        Checks each GitHub username against the GitHub API. Optionally
+        sends Canvas messages to students with invalid usernames and to
+        students who have not yet submitted the quiz.
+
+        Args:
+            github_usernames: A dict mapping email prefixes to GitHub
+                usernames, typically from ``fetch_username_from_quiz``.
+            send_canvas_email: If True, send a Canvas notification to
+                students with invalid GitHub usernames.
+            send_undone_reminder: If True, send a Canvas reminder to
+                students who have not submitted the quiz.
+            quiz_url: URL of the quiz to include in reminder messages.
+
+        Returns:
+            A dict of email prefixes to GitHub usernames that could not
+            be validated on GitHub.
+        """
         unsuccessful = {}
         for email, github_username in github_usernames.items():
             valid = self._check_single_github_username(email, github_username)
@@ -340,7 +550,21 @@ class CanvasGroup():
                             group_members:[str], # list of group member's SIS Login
                             in_group_category: str, # specify which group category the group belongs to
                            ) -> (canvasapi.group.Group, [str]): # list of unsuccessful join
-        "Create new groups and assign group member into the class in the `self.group_category`"
+        """Create a Canvas group and assign members to it.
+
+        Sets the group category, creates a new group, and adds the
+        specified students as members.
+
+        Args:
+            group_name: Display name for the new group on Canvas.
+            group_members: List of student SIS Login IDs (email prefixes).
+            in_group_category: Name of the group category (group set)
+                the new group belongs to.
+
+        Returns:
+            A tuple of (created group object, list of email prefixes
+            for students who could not be added).
+        """
         self.set_group_category(in_group_category)
         group = self.create_group({"name": group_name})
         unsuccessful_join = self.join_canvas_group(group, group_members)
@@ -353,7 +577,19 @@ class CanvasGroup():
                             subject:str, # subject of the conversation
                             body:str, # The message to be sent
                            ) -> canvasapi.conversation.Conversation: # created conversation
-        "Create a conversation with the target user"
+        """Send a Canvas message (conversation) to a student.
+
+        Creates a new conversation in the context of the current course.
+
+        Args:
+            recipients: Recipient Canvas user ID, or a course/group ID
+                prefixed with ``'course_'`` or ``'group_'``.
+            subject: Subject line of the conversation.
+            body: The message body text.
+
+        Returns:
+            The created Canvas conversation object.
+        """
         conv = self.canvas.create_conversation(
             [recipients],
             body=body,
