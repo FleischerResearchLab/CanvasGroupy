@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "CanvasGroupy"
-version = "0.0.3"
+version = "0.1.0"
 description = "Canvas Grouping Python Script"
 readme = "README.md"
 license = "Apache-2.0"
@@ -27,16 +27,12 @@ dependencies = [
     "numpy",
     "PyGithub",
     "canvasapi",
-    "groupeng @ git+https://github.com/scott-yj-yang/groupeng.git@dev",
 ]
 
 [project.optional-dependencies]
 dev = [
     "pytest",
 ]
-
-[tool.hatch.metadata]
-allow-direct-references = true
 
 [project.urls]
 Homepage = "https://github.com/FleischerResearchLab/CanvasGroupy"
