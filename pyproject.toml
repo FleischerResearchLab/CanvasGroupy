@@ -33,6 +33,10 @@ dependencies = [
 dev = [
     "pytest",
 ]
+docs = [
+    "mkdocs-material",
+    "mkdocstrings[python]",
+]
 
 [project.urls]
 Homepage = "https://github.com/FleischerResearchLab/CanvasGroupy"
