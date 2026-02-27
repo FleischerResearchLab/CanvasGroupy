@@ -1,87 +1,125 @@
-__all__ = ['AssignGroup']
+__all__ = ["AssignGroup"]
 
 import os
-import GroupEng
-import canvasapi
-import github
+import pandas as pd
 from . import GitHubGroup, CanvasGroup
 
+
 class AssignGroup:
-    def __init__(self,
-                 ghg: GitHubGroup, # authenticated GitHub object
-                 cg: CanvasGroup, # authenticated canvas object
-                 groupeng_config="", # Directory for the GroupEng config yml file
-                ):
-        "Initializer for Assign Group"
-        self.status = None
-        self.out_dir = None
-        self.prefix = None
+    """Orchestrate group creation across Canvas LMS and GitHub.
+
+    Accepts group assignments as a CSV file path or pandas DataFrame
+    with columns ``group_name`` and ``student_id``, then creates
+    corresponding groups on Canvas and/or GitHub.
+
+    Args:
+        ghg: Authenticated GitHubGroup instance.
+        cg: Authenticated CanvasGroup instance.
+        groups: Optional CSV path or DataFrame to load immediately.
+    """
+
+    def __init__(
+        self,
+        ghg: GitHubGroup,
+        cg: CanvasGroup,
+        groups=None,
+    ):
         self.cg = cg
         self.ghg = ghg
-        # Initialize if appropriate parameters are defined
-        if groupeng_config != "":
-            self.assign_groups(groupeng_config)
+        self.groups: dict[str, list[str]] = {}
 
-    def assign_groups(self,
-                      groupeng_config:str, # Directory for the GroupEng config yml file
-                      assign_canvas_group=False, # directly assign canvas groups
-                      create_gh_repo=False, # directly create GitHub repos
-                      username_quiz_id=-1, # username quiz id from canvas course
-                      in_group_category="", # specify which group category the group belongs to
-                      suffix="", # suffix to the group name
-                     ) -> (bool, str): # Status and output directory of the compiled file.
-        status, out_dir = GroupEng.run(groupeng_config)
-        self.status, self.out_dir = status, out_dir
-        file = os.path.split(groupeng_config)[1]
-        self.prefix = os.path.splitext(file)[0]
-        if assign_canvas_group:
-            if self.cg.group_category is None and in_group_category == "":
-                raise ValueError("Have to specify in_group_category to create canvas group")
-            self.create_canvas_group(in_group_category, suffix)
-        if create_gh_repo:
-            if username_quiz_id == -1:
-                raise ValueError("Have to specify the canvas username quiz id")
-            self.create_github_group(username_quiz_id)
-        return status, out_dir
+        if groups is not None:
+            self.load_groups(groups)
 
-    def create_canvas_group(self,
-                            in_group_category="", # specify which group category the group belongs to
-                            suffix="", # suffix to the group name
-                            ):
-        "Create canvas groups based on the generated group configuration"
-        if self.out_dir is None:
-            raise ValueError("The group configuration has not been set. Please assign group via assign_groups")
-        if self.cg.group_category is None:
-            raise ValueError("The group category has not been set.")
+    def load_groups(self, source) -> dict[str, list[str]]:
+        """Load group assignments from a CSV file path or DataFrame.
+
+        The input must have columns ``group_name`` and ``student_id``.
+
+        Args:
+            source: A file path (str) to a CSV or a pandas DataFrame.
+
+        Returns:
+            Dictionary mapping group names to lists of student IDs.
+
+        Raises:
+            TypeError: If source is not a str or DataFrame.
+            ValueError: If required columns are missing.
+        """
+        if isinstance(source, str):
+            source = pd.read_csv(source)
+        if not isinstance(source, pd.DataFrame):
+            raise TypeError(
+                f"Expected a file path (str) or DataFrame, got {type(source).__name__}"
+            )
+        for col in ("group_name", "student_id"):
+            if col not in source.columns:
+                raise ValueError(
+                    f"Missing required column: '{col}'. "
+                    f"Got columns: {list(source.columns)}"
+                )
+        self.groups = (
+            source.groupby("group_name")["student_id"]
+            .apply(list)
+            .to_dict()
+        )
+        return self.groups
+
+    def create_canvas_group(
+        self,
+        in_group_category: str = "",
+        suffix: str = "",
+    ):
+        """Create Canvas groups from loaded group assignments.
+
+        Args:
+            in_group_category: Canvas group category name. Falls back to
+                the category already set on the CanvasGroup instance.
+            suffix: Suffix to append to each group name.
+
+        Raises:
+            ValueError: If no groups are loaded or no group category is set.
+        """
+        if not self.groups:
+            raise ValueError(
+                "No groups loaded. Call load_groups() first."
+            )
+        if self.cg.group_category is None and in_group_category == "":
+            raise ValueError(
+                "Specify in_group_category or set it on the CanvasGroup instance."
+            )
         if in_group_category == "":
             in_group_category = self.cg.group_category.name
-        # load the generated configuration file
-        groups_generated_fp = os.path.join(self.out_dir, f"{self.prefix}_groups.csv")
-        with open(groups_generated_fp, "r") as f:
-            groups = f.read().splitlines()
-        # create canvas groups for each.
-        for group in groups:
-            group = group.replace(" ", "").split(",")
-            group_name, group_members = group[0], group[1:]
+        for group_name, members in self.groups.items():
             self.cg.assign_canvas_group(
                 group_name=f"{group_name}{suffix}",
-                group_members=group_members,
-                in_group_category=in_group_category
+                group_members=members,
+                in_group_category=in_group_category,
             )
 
-    def create_github_group(self,
-                            username_quiz_id:int # username quiz id from canvas course
-                            ):
+    def create_github_group(
+        self,
+        username_quiz_id: int,
+    ):
+        """Create GitHub repositories for each group.
+
+        Fetches GitHub usernames from a Canvas quiz, then creates
+        a repository per group with appropriate collaborators.
+
+        Args:
+            username_quiz_id: Canvas quiz ID where students submitted
+                their GitHub usernames.
+        """
+        if not self.groups:
+            raise ValueError(
+                "No groups loaded. Call load_groups() first."
+            )
         github_usernames = self.cg.fetch_username_from_quiz(username_quiz_id)
-        self.cg.set_group_category(cg.group_category.name)
-        groups = self.cg.group_to_emails
         repos = []
-        for group_name, members in groups.items():
+        for group_name, members in self.groups.items():
             group_git_usernames = []
             for email in members:
                 try:
-                    # try to get the git username for each student.
-                    # not all students completed their quiz.
                     group_git_usernames.append(github_usernames[email])
                 except KeyError:
                     print(f"{email}'s GitHub Username not found")
@@ -89,17 +127,7 @@ class AssignGroup:
                 repo_name=group_name,
                 collaborators=group_git_usernames,
                 permission="write",
-                repo_template="COGS118A/group_template",
-                rename_files={
-                    "Checkpoint_groupXXX.ipynb": f"Checkpoint_{group_name}.ipynb",
-                    "FinalProject_groupXXX.ipynb": f"FinalProject_{group_name}.ipynb",
-                    "Proposal_groupXXX.ipynb": f"Proposal_{group_name}.ipynb"
-                },
                 private=True,
-                description=f"COGS118A Final Project {group_name} Repository",
-                team_slug="Instructors_Sp23",
-                team_permission="admin"
             )
-            print("")
             repos.append(repo)
         return repos
