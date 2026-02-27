@@ -1,6 +1,5 @@
 __all__ = ["AssignGroup"]
 
-import os
 import pandas as pd
 from . import GitHubGroup, CanvasGroup
 
