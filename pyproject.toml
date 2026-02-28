@@ -1,0 +1,47 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "CanvasGroupy"
+version = "0.1.0"
+description = "Canvas Grouping Python Script"
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.12"
+authors = [
+    { name = "scottyang", email = "yuy004@ucsd.edu" },
+]
+keywords = ["canvas", "github", "grouping", "education"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "License :: OSI Approved :: Apache Software License",
+]
+dependencies = [
+    "pandas",
+    "numpy",
+    "PyGithub",
+    "canvasapi",
+    "requests",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "black",
+]
+docs = [
+    "mkdocs-material",
+    "mkdocstrings[python]",
+    "mkdocs-jupyter",
+]
+
+[project.urls]
+Homepage = "https://github.com/FleischerResearchLab/CanvasGroupy"
+Documentation = "https://FleischerResearchLab.github.io/CanvasGroupy"
+Repository = "https://github.com/FleischerResearchLab/CanvasGroupy"
