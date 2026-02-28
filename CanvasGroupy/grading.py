@@ -1,20 +1,22 @@
-__all__ = ['bcolors', 'Grading']
+__all__ = ["bcolors", "Grading"]
 
 from . import *
 import github
 import canvasapi
 from ast import literal_eval
 
+
 class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKCYAN = '\033[96m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
+    HEADER = "\033[95m"
+    OKBLUE = "\033[94m"
+    OKCYAN = "\033[96m"
+    OKGREEN = "\033[92m"
+    WARNING = "\033[93m"
+    FAIL = "\033[91m"
+    ENDC = "\033[0m"
+    BOLD = "\033[1m"
+    UNDERLINE = "\033[4m"
+
 
 class Grading:
     """Orchestrate grading between GitHub and Canvas LMS.
@@ -28,10 +30,11 @@ class Grading:
         cg: An authenticated CanvasGroup instance.
     """
 
-    def __init__(self,
-                 ghg:GitHubGroup=None, # authenticated GitHub object
-                 cg:CanvasGroup=None, # authenticated canvas object
-                ):
+    def __init__(
+        self,
+        ghg: GitHubGroup = None,  # authenticated GitHub object
+        cg: CanvasGroup = None,  # authenticated canvas object
+    ):
         """Initialize a Grading instance with GitHub and Canvas clients.
 
         Args:
@@ -43,10 +46,11 @@ class Grading:
         self.ghg = ghg
         self.cg = cg
 
-    def create_issue_from_md(self,
-                              repo:github.Repository.Repository, # target repository to create issue
-                              md_fp: str # file path of the feedback markdown file
-                              ) -> github.Issue.Issue: # open issue
+    def create_issue_from_md(
+        self,
+        repo: github.Repository.Repository,  # target repository to create issue
+        md_fp: str,  # file path of the feedback markdown file
+    ) -> github.Issue.Issue:  # open issue
         """Create a GitHub issue from a markdown file.
 
         Delegates to the underlying GitHubGroup instance to read the
@@ -61,10 +65,11 @@ class Grading:
         """
         return self.ghg.create_issue_from_md(repo, md_fp)
 
-    def fetch_issue(self,
-                    repo:github.Repository.Repository, # target repository to fetch issue
-                    component:str, # the component of the project grading, let it be proposal/checkpoint/final. Need to match the issue's title
-                    ) -> github.Issue.Issue:
+    def fetch_issue(
+        self,
+        repo: github.Repository.Repository,  # target repository to fetch issue
+        component: str,  # the component of the project grading, let it be proposal/checkpoint/final. Need to match the issue's title
+    ) -> github.Issue.Issue:
         """Fetch a specific issue by matching the component name in its title.
 
         Searches all issues in the repository and returns the first one
@@ -87,10 +92,11 @@ class Grading:
                 return issue
         raise ValueError(f"Issue related to {component} did not found.")
 
-    def parse_score_from_issue(self,
-                               repo:github.Repository.Repository, # target repository to create issue
-                               component:str, # The component of the project grading, let it be proposal/checkpoint/final. Need to match the issue's title
-                               ) -> int: # the fetched score of that component
+    def parse_score_from_issue(
+        self,
+        repo: github.Repository.Repository,  # target repository to create issue
+        component: str,  # The component of the project grading, let it be proposal/checkpoint/final. Need to match the issue's title
+    ) -> int:  # the fetched score of that component
         """Parse the numeric score from a GitHub issue grading template.
 
         Fetches the issue matching the given component and scans its
@@ -115,16 +121,19 @@ class Grading:
             if "Score =" in line and "[comment]" not in line:
                 score = literal_eval(line.split("=")[1])
                 return score
-        raise ValueError(f"Score Parse Error. please check the score format on github. \n"
-                         f"Issue URL: {issue.url}")
+        raise ValueError(
+            f"Score Parse Error. please check the score format on github. \n"
+            f"Issue URL: {issue.url}"
+        )
 
-    def update_canvas_score(self,
-                            group_name:str, # target group name on a canvas group
-                            assignment_id, # assignment id of the related component
-                            score:float, # score of that component
-                            issue:github.Issue.Issue=None,
-                            post=False, # whether to post score via api. for testing purposes
-                            ):
+    def update_canvas_score(
+        self,
+        group_name: str,  # target group name on a canvas group
+        assignment_id,  # assignment id of the related component
+        score: float,  # score of that component
+        issue: github.Issue.Issue = None,
+        post=False,  # whether to post score via api. for testing purposes
+    ):
         """Post a score to Canvas for all members of a group.
 
         Links the assignment, iterates over every member in the
@@ -156,19 +165,18 @@ class Grading:
                 text_comment += f"\nView at {issue.url.replace('https://api.github.com/repos', 'https://github.com')}"
             if post:
                 self.cg.post_grade(
-                    student_id=student_id,
-                    grade=score,
-                    text_comment=text_comment
+                    student_id=student_id, grade=score, text_comment=text_comment
                 )
             else:
                 print(f"{bcolors.WARNING}Post Disable{bcolors.ENDC}")
                 print(f"For student: {member}, the score is {score}")
                 print(f"Comments: {text_comment}")
 
-    def check_graded(self,
-                     repo:github.Repository.Repository, # target repository to grade
-                     component:str, # The component of the project grading, let it be proposal/checkpoint/final. Need to match the issue's title
-                    ) -> bool: # Whether the repo is graded.
+    def check_graded(
+        self,
+        repo: github.Repository.Repository,  # target repository to grade
+        component: str,  # The component of the project grading, let it be proposal/checkpoint/final. Need to match the issue's title
+    ) -> bool:  # Whether the repo is graded.
         """Check if a project component has been graded.
 
         Parses the score from the GitHub issue template. If the score
@@ -186,19 +194,22 @@ class Grading:
         """
         score = self.parse_score_from_issue(repo, component)
         if score is ...:
-            print(f"{bcolors.WARNING}{repo.name}'s {component} Not Graded. {bcolors.ENDC}")
+            print(
+                f"{bcolors.WARNING}{repo.name}'s {component} Not Graded. {bcolors.ENDC}"
+            )
             return False
         print(f"{bcolors.OKGREEN}{repo.name}'s {component} Graded. {bcolors.ENDC}")
         return True
 
-    def grade_project(self,
-                      repo:github.Repository.Repository, # target repository to grade
-                      component:str, # The component of the project grading, let it be proposal/checkpoint/final. Need to match the issue's title
-                      assignment_id:int, # assignment id that link to that component of the project
-                      canvas_group_name:dict=None, # mapping from GitHub repo name to Group name. If not specified, the repository name will be used.
-                      canvas_group_category:str=None, # canvas group category (set)
-                      post:bool=False, # whether to post score via api. For testing purposes
-                      ):
+    def grade_project(
+        self,
+        repo: github.Repository.Repository,  # target repository to grade
+        component: str,  # The component of the project grading, let it be proposal/checkpoint/final. Need to match the issue's title
+        assignment_id: int,  # assignment id that link to that component of the project
+        canvas_group_name: dict = None,  # mapping from GitHub repo name to Group name. If not specified, the repository name will be used.
+        canvas_group_category: str = None,  # canvas group category (set)
+        post: bool = False,  # whether to post score via api. For testing purposes
+    ):
         """Grade a project component end-to-end.
 
         Parses the score from the GitHub issue, maps the repository to

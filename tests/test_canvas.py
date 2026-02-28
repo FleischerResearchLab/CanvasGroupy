@@ -12,7 +12,9 @@ class TestAuthCanvas:
         cg = CanvasGroup(verbosity=0)
         cg.auth_canvas(credentials)
 
-        MockCanvas.assert_called_once_with("https://canvas.ucsd.edu", "fake-canvas-token")
+        MockCanvas.assert_called_once_with(
+            "https://canvas.ucsd.edu", "fake-canvas-token"
+        )
         canvas_instance.get_activity_stream_summary.assert_called_once()
         assert cg.API_KEY == "fake-canvas-token"
 
@@ -32,7 +34,9 @@ class TestAuthCanvas:
             MockCanvas.return_value = MagicMock()
             cg = CanvasGroup(API_URL="https://custom.canvas.edu", verbosity=0)
             cg.auth_canvas(credentials)
-            MockCanvas.assert_called_once_with("https://custom.canvas.edu", "fake-canvas-token")
+            MockCanvas.assert_called_once_with(
+                "https://custom.canvas.edu", "fake-canvas-token"
+            )
 
 
 class TestSetCourse:
@@ -175,7 +179,9 @@ class TestGroupOperations:
         unsuccessful = cg.join_canvas_group(group, ["alice", "nonexistent_student"])
         assert "nonexistent_student" in unsuccessful
 
-    def test_assign_canvas_group_creates_and_joins(self, credentials, mock_canvas_api, mock_group_category):
+    def test_assign_canvas_group_creates_and_joins(
+        self, credentials, mock_canvas_api, mock_group_category
+    ):
         cg = self._setup_cg(credentials, mock_canvas_api)
 
         new_group = MagicMock()
@@ -219,7 +225,9 @@ class TestGradePosting:
         assert result.name == "Homework 1"
 
     def test_post_grade(self, credentials, mock_canvas_api):
-        cg, mock_assignment = self._setup_cg_with_assignment(credentials, mock_canvas_api)
+        cg, mock_assignment = self._setup_cg_with_assignment(
+            credentials, mock_canvas_api
+        )
 
         mock_submission = MagicMock()
         mock_submission.score = 0  # different from new grade
@@ -232,7 +240,9 @@ class TestGradePosting:
         )
 
     def test_post_grade_skips_same_score(self, credentials, mock_canvas_api):
-        cg, mock_assignment = self._setup_cg_with_assignment(credentials, mock_canvas_api)
+        cg, mock_assignment = self._setup_cg_with_assignment(
+            credentials, mock_canvas_api
+        )
 
         mock_submission = MagicMock()
         mock_submission.score = 95.0  # same as new grade
@@ -243,7 +253,9 @@ class TestGradePosting:
         assert result is None
 
     def test_post_grade_force_overrides_skip(self, credentials, mock_canvas_api):
-        cg, mock_assignment = self._setup_cg_with_assignment(credentials, mock_canvas_api)
+        cg, mock_assignment = self._setup_cg_with_assignment(
+            credentials, mock_canvas_api
+        )
 
         mock_submission = MagicMock()
         mock_submission.score = 95.0  # same score, but force=True

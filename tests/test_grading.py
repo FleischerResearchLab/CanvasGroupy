@@ -44,10 +44,7 @@ class TestParseScore:
         """Score lines with [comment] should be skipped."""
         issue = MagicMock()
         issue.title = "Checkpoint Feedback"
-        issue.body = (
-            "[comment]: # (Score = ...)\n"
-            "Score = 9.0\n"
-        )
+        issue.body = "[comment]: # (Score = ...)\n" "Score = 9.0\n"
         repo = MagicMock()
         repo.get_issues.return_value = [issue]
 
@@ -208,6 +205,7 @@ class TestGradeProject:
         # Simulate set_group_category actually setting the attribute
         def _set_gc(name):
             cg.group_category = MagicMock(name=name)
+
         cg.set_group_category.side_effect = _set_gc
 
         repo = MagicMock()

@@ -1,4 +1,4 @@
-__all__ = ['bcolors', 'CanvasGroup']
+__all__ = ["bcolors", "CanvasGroup"]
 
 from canvasapi import Canvas
 from github import Github
@@ -11,18 +11,20 @@ import numpy as np
 import pandas as pd
 from io import StringIO
 
-class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKCYAN = '\033[96m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
 
-class CanvasGroup():
+class bcolors:
+    HEADER = "\033[95m"
+    OKBLUE = "\033[94m"
+    OKCYAN = "\033[96m"
+    OKGREEN = "\033[92m"
+    WARNING = "\033[93m"
+    FAIL = "\033[91m"
+    ENDC = "\033[0m"
+    BOLD = "\033[1m"
+    UNDERLINE = "\033[4m"
+
+
+class CanvasGroup:
     """Manage Canvas LMS group operations including roster, grading, and messaging.
 
     Provides methods to authenticate with the Canvas API, manage courses and
@@ -39,13 +41,14 @@ class CanvasGroup():
         verbosity: Controls output verbosity (0 = silent, 1 = print all).
     """
 
-    def __init__(self,
-                 credentials_fp = "", # credential file path. See docs/getting-started/authentication.md for the template.
-                 API_URL="https://canvas.ucsd.edu", # the domain name of canvas
-                 course_id="", # Course ID, can be found in the course url
-                 group_category="", # target group category (set) of interests
-                 verbosity=1 # Controls the verbosity: 0 = Silent, 1 = print all messages
-                ):
+    def __init__(
+        self,
+        credentials_fp="",  # credential file path. See docs/getting-started/authentication.md for the template.
+        API_URL="https://canvas.ucsd.edu",  # the domain name of canvas
+        course_id="",  # Course ID, can be found in the course url
+        group_category="",  # target group category (set) of interests
+        verbosity=1,  # Controls the verbosity: 0 = Silent, 1 = print all messages
+    ):
         """Initialize a CanvasGroup instance and optionally authenticate and configure.
 
         Args:
@@ -83,9 +86,9 @@ class CanvasGroup():
         if group_category != "":
             self.set_group_category(group_category)
 
-    def auth_canvas(self,
-                    credentials_fp: str # the Authenticator key generated from canvas
-                   ):
+    def auth_canvas(
+        self, credentials_fp: str  # the Authenticator key generated from canvas
+    ):
         """Authenticate with the Canvas API using a credentials file.
 
         Reads the Canvas API token from the JSON credentials file and
@@ -110,9 +113,7 @@ class CanvasGroup():
         if self.verbosity != 0:
             print(f"{bcolors.OKGREEN}Authorization Successful!{bcolors.ENDC}")
 
-    def set_course(self,
-                   course_id: int # the course id of the target course
-                  ):
+    def set_course(self, course_id: int):  # the course id of the target course
         """Set the target course and fetch the student roster.
 
         Retrieves the course by ID, fetches all enrolled students, and
@@ -129,9 +130,11 @@ class CanvasGroup():
         if self.verbosity != 0:
             print(f"Course Set: {bcolors.OKGREEN} {self.course.name} {bcolors.ENDC}")
             print(f"Getting List of Users... This might take a while...")
-        self.users = list(self.course.get_users(enrollment_type=['student']))
+        self.users = list(self.course.get_users(enrollment_type=["student"]))
         if self.verbosity != 0:
-            print(f"Users Fetch Complete! The course has {bcolors.OKBLUE}{len(self.users)}{bcolors.ENDC} students.")
+            print(
+                f"Users Fetch Complete! The course has {bcolors.OKBLUE}{len(self.users)}{bcolors.ENDC} students."
+            )
         self.email_to_canvas_id = {}
         self.canvas_id_to_email = {}
         self.email_to_name = {}
@@ -142,12 +145,14 @@ class CanvasGroup():
                 self.email_to_name[u.email.split("@")[0]] = u.short_name
             except Exception:
                 if self.verbosity != 0:
-                    print(f"{bcolors.WARNING}Failed to Parse email and id"
-                          f" for {bcolors.UNDERLINE}{u.short_name}{bcolors.ENDC}{bcolors.ENDC}")
+                    print(
+                        f"{bcolors.WARNING}Failed to Parse email and id"
+                        f" for {bcolors.UNDERLINE}{u.short_name}{bcolors.ENDC}{bcolors.ENDC}"
+                    )
 
-    def link_assignment(self,
-                        assignment_id: int # assignment id, found at the url of assignmnet tab
-                       ) -> canvasapi.assignment.Assignment: # target assignment
+    def link_assignment(
+        self, assignment_id: int  # assignment id, found at the url of assignmnet tab
+    ) -> canvasapi.assignment.Assignment:  # target assignment
         """Link a Canvas assignment for grading.
 
         Fetches the assignment by ID and stores it for subsequent grading
@@ -170,12 +175,13 @@ class CanvasGroup():
         self.assignment = assignment
         return assignment
 
-    def post_grade(self,
-                    student_id: int, # canvas student id of student. found in self.email_to_canvas_id
-                    grade: float, # grade of that assignment
-                    text_comment="", # text comment of the submission. Can feed
-                    force=False, # whether force to post grade for all students. If False (default), it will skip post for the same score.
-                  ) -> canvasapi.submission.Submission: # created submission
+    def post_grade(
+        self,
+        student_id: int,  # canvas student id of student. found in self.email_to_canvas_id
+        grade: float,  # grade of that assignment
+        text_comment="",  # text comment of the submission. Can feed
+        force=False,  # whether force to post grade for all students. If False (default), it will skip post for the same score.
+    ) -> canvasapi.submission.Submission:  # created submission
         """Post a grade and optional comment to the linked Canvas assignment.
 
         Submits a grade for a specific student on the currently linked
@@ -198,24 +204,23 @@ class CanvasGroup():
         submission = self.assignment.get_submission(student_id)
         if not force and submission.score == grade:
             if self.verbosity != 0:
-                print(f"Grade for {bcolors.OKGREEN+self.canvas_id_to_email[student_id]+bcolors.ENDC} did not change.\n"
-                      f"{bcolors.OKCYAN}Skipped{bcolors.ENDC}.\n"
-                     )
+                print(
+                    f"Grade for {bcolors.OKGREEN+self.canvas_id_to_email[student_id]+bcolors.ENDC} did not change.\n"
+                    f"{bcolors.OKCYAN}Skipped{bcolors.ENDC}.\n"
+                )
             return
         edited = submission.edit(
-            submission={
-                'posted_grade': grade
-            }, comment={
-                'text_comment': text_comment
-            }
+            submission={"posted_grade": grade}, comment={"text_comment": text_comment}
         )
         if self.verbosity != 0:
-            print(f"Grade for {bcolors.OKGREEN+self.canvas_id_to_email[student_id]+bcolors.ENDC} Posted!")
+            print(
+                f"Grade for {bcolors.OKGREEN+self.canvas_id_to_email[student_id]+bcolors.ENDC} Posted!"
+            )
         return edited
 
-    def get_email_by_name(self,
-                          name_fussy: str # search by first name or last name of a student
-                         ) -> str: # email of a search student
+    def get_email_by_name(
+        self, name_fussy: str  # search by first name or last name of a student
+    ) -> str:  # email of a search student
         """Look up a student's email prefix by a partial name match.
 
         Performs a case-insensitive substring search against all student
@@ -237,10 +242,9 @@ class CanvasGroup():
                 return email
         raise ValueError(f"Name {name_fussy} Not Found.")
 
-
-    def set_group_category(self,
-                           category_name: str # the target group category
-                          ) -> canvasapi.group.GroupCategory: # target group category object
+    def set_group_category(
+        self, category_name: str  # the target group category
+    ) -> canvasapi.group.GroupCategory:  # target group category object
         """Set the active group category and fetch its groups.
 
         Selects a group category (group set) by name and retrieves all
@@ -261,22 +265,25 @@ class CanvasGroup():
         try:
             self.group_category = self.group_categories[category_name]
         except KeyError:
-            raise KeyError(f"{category_name} did not found in the group categories. "
-                           f"Try to create one with CanvasGroup.create_group_category")
+            raise KeyError(
+                f"{category_name} did not found in the group categories. "
+                f"Try to create one with CanvasGroup.create_group_category"
+            )
         if self.verbosity != 0:
             print(f"Setting Group Category... ")
         self.groups = list(self.group_category.get_groups())
         self.group_to_emails = {
-            group.name: [
-                u.login_id for u in list(group.get_users())
-            ] for group in self.groups}
+            group.name: [u.login_id for u in list(group.get_users())]
+            for group in self.groups
+        }
         if self.verbosity != 0:
             print(f"Group Category: {bcolors.OKGREEN+category_name+bcolors.ENDC} Set!")
         return self.group_category
 
-    def get_groups(self,
-                   category_name="" # the target group category. If not provided, will look for self.group_category
-                  ) -> dict: # {group_name: [student_emails]}
+    def get_groups(
+        self,
+        category_name="",  # the target group category. If not provided, will look for self.group_category
+    ) -> dict:  # {group_name: [student_emails]}
         """Get groups and their members in the current or specified category.
 
         Returns a dictionary mapping group names to lists of member email
@@ -310,7 +317,7 @@ class CanvasGroup():
         """
         return self.course
 
-    def get_group_categories(self) -> dict: # return a name / group category object
+    def get_group_categories(self) -> dict:  # return a name / group category object
         """List all group categories (group sets) in the current course.
 
         Fetches every group category from the Canvas course and caches
@@ -323,9 +330,10 @@ class CanvasGroup():
         self.group_categories = {cat.name: cat for cat in categories}
         return {cat.name: cat for cat in categories}
 
-    def create_group_category(self,
-                              params: dict # the parameter of canvas group category API @ [this link](https://canvas.instructure.com/doc/api/group_categories.html#method.group_categories.create)
-                             ) -> canvasapi.group.GroupCategory: # the generated group category object
+    def create_group_category(
+        self,
+        params: dict,  # the parameter of canvas group category API @ [this link](https://canvas.instructure.com/doc/api/group_categories.html#method.group_categories.create)
+    ) -> canvasapi.group.GroupCategory:  # the generated group category object
         """Create a new group category (group set) in the current course.
 
         Args:
@@ -339,9 +347,10 @@ class CanvasGroup():
         self.group_category = self.course.create_group_category(**params)
         return self.group_category
 
-    def create_group(self,
-                     params: dict, #the parameter of canvas group create API at [this link](https://canvas.instructure.com/doc/api/groups.html#method.groups.create)
-                    ) -> canvasapi.group.Group: # the generated target group object
+    def create_group(
+        self,
+        params: dict,  # the parameter of canvas group create API at [this link](https://canvas.instructure.com/doc/api/groups.html#method.groups.create)
+    ) -> canvasapi.group.Group:  # the generated target group object
         """Create a group under the currently active group category.
 
         Args:
@@ -356,17 +365,24 @@ class CanvasGroup():
             ValueError: If no group category has been set or created.
         """
         if self.group_category is None:
-            raise ValueError("Have you specified or create a group category (group set)?")
+            raise ValueError(
+                "Have you specified or create a group category (group set)?"
+            )
         group = self.group_category.create_group(**params)
         if self.verbosity != 0:
-            print(f"In Group Set: {bcolors.OKBLUE+self.group_category.name+bcolors.ENDC},")
+            print(
+                f"In Group Set: {bcolors.OKBLUE+self.group_category.name+bcolors.ENDC},"
+            )
             print(f"Group {bcolors.OKGREEN+params['name']+bcolors.ENDC} Created!")
         return group
 
-    def join_canvas_group(self,
-                          group: canvasapi.group.Group, # the group that students will join
-                          group_members:[str], # list of group member's SIS Login (email prefix, before the @.)
-                         ) -> [str]: # list of unsuccessful join
+    def join_canvas_group(
+        self,
+        group: canvasapi.group.Group,  # the group that students will join
+        group_members: [
+            str
+        ],  # list of group member's SIS Login (email prefix, before the @.)
+    ) -> [str]:  # list of unsuccessful join
         """Add students to a Canvas group by their email prefixes.
 
         Iterates over the provided member list and creates a group
@@ -387,17 +403,22 @@ class CanvasGroup():
                 canvas_id = self.email_to_canvas_id[group_member]
                 group.create_membership(canvas_id)
                 if self.verbosity != 0:
-                    print(f"Member {bcolors.OKGREEN}{group_member}{bcolors.ENDC} Joined group {bcolors.OKGREEN}{group.name}{bcolors.ENDC}")
+                    print(
+                        f"Member {bcolors.OKGREEN}{group_member}{bcolors.ENDC} Joined group {bcolors.OKGREEN}{group.name}{bcolors.ENDC}"
+                    )
             except KeyError as e:
                 unsuccessful_join.append(group_member)
-                print(f"Error adding student {bcolors.WARNING+group_member+bcolors.ENDC} \n into group {group.name}")
+                print(
+                    f"Error adding student {bcolors.WARNING+group_member+bcolors.ENDC} \n into group {group.name}"
+                )
                 print(e)
         return unsuccessful_join
 
-    def fetch_username_from_quiz(self,
-                                 quiz_id: int, # quiz id of the username quiz
-                                 col_index=7, # canvas quiz generated csv's question field column index
-                                ) -> dict: # {SIS Login ID: github username} dictionary
+    def fetch_username_from_quiz(
+        self,
+        quiz_id: int,  # quiz id of the username quiz
+        col_index=7,  # canvas quiz generated csv's question field column index
+    ) -> dict:  # {SIS Login ID: github username} dictionary
         """Extract GitHub usernames from a Canvas quiz student analysis.
 
         Downloads the student analysis report for the specified quiz,
@@ -414,17 +435,18 @@ class CanvasGroup():
             A dict mapping student email prefixes (SIS Login IDs) to
             their submitted GitHub usernames.
         """
-        header = {'Authorization': 'Bearer ' + self.API_KEY}
+        header = {"Authorization": "Bearer " + self.API_KEY}
         quiz = self.course.get_quiz(quiz_id)
         if self.verbosity != 0:
-            print(f"Quiz: {bcolors.OKGREEN+quiz.title+bcolors.ENDC} "
-                  f"fetch! \nGenerating Student Analaysis..."
-                 )
+            print(
+                f"Quiz: {bcolors.OKGREEN+quiz.title+bcolors.ENDC} "
+                f"fetch! \nGenerating Student Analaysis..."
+            )
         report = quiz.create_report("student_analysis")
         progress_url = report.progress_url
         completed = False
         while not completed:
-            status = requests.get(progress_url, headers = header).json()
+            status = requests.get(progress_url, headers=header).json()
             if self.verbosity != 0:
                 self._progress(status["completion"])
                 time.sleep(0.1)
@@ -441,10 +463,11 @@ class CanvasGroup():
         col = list(df.columns)
         # rename column
         if self.verbosity != 0:
-            print(f"The Question asked is {bcolors.OKBLUE}{col[col_index]}{bcolors.ENDC}. \n"
-                  f"Make sure this is the correct question where you asked student for their GitHub id.\n"
-                  f"If you need to change the index of columns, change the col_index argument of this call."
-                 )
+            print(
+                f"The Question asked is {bcolors.OKBLUE}{col[col_index]}{bcolors.ENDC}. \n"
+                f"Make sure this is the correct question where you asked student for their GitHub id.\n"
+                f"If you need to change the index of columns, change the col_index argument of this call."
+            )
         col[col_index] = "GitHub Username"
         df.columns = col
         small = df[["id", "GitHub Username"]].copy()
@@ -452,10 +475,11 @@ class CanvasGroup():
         small = small[["email", "GitHub Username"]].set_index("email")
         return small.to_dict()["GitHub Username"]
 
-    def _check_single_github_username(self,
-                              email:str, # Student email
-                              github_username:str, # student input we want to test
-                             ) -> bool: # whether the username is valid
+    def _check_single_github_username(
+        self,
+        email: str,  # Student email
+        github_username: str,  # student input we want to test
+    ) -> bool:  # whether the username is valid
         "Check a single GitHub username on GitHub"
         if self.credentials_fp is None:
             raise ValueError("Credentials not set. Set it via self.auth_canvas")
@@ -468,16 +492,19 @@ class CanvasGroup():
         try:
             self.github.get_user(github_username)
         except Exception as e:
-            print(f"User: {bcolors.WARNING+github_username+bcolors.ENDC} Not Found on GitHub")
+            print(
+                f"User: {bcolors.WARNING+github_username+bcolors.ENDC} Not Found on GitHub"
+            )
             return False
         return True
 
-    def check_github_usernames(self,
-                               github_usernames:dict, # {email: github username} of student inputs, generated from self.fetch_username_from_quiz
-                               send_canvas_email=False, # whether send a reminder for students who have an invalid GitHub username
-                               send_undone_reminder=False, # send quiz undone reminder using canvas email
-                               quiz_url="", # include a quiz url in the conversation for student to quickly complete the quiz.
-                              ) -> dict: # {email: github username} of unreasonable GitHub id
+    def check_github_usernames(
+        self,
+        github_usernames: dict,  # {email: github username} of student inputs, generated from self.fetch_username_from_quiz
+        send_canvas_email=False,  # whether send a reminder for students who have an invalid GitHub username
+        send_undone_reminder=False,  # send quiz undone reminder using canvas email
+        quiz_url="",  # include a quiz url in the conversation for student to quickly complete the quiz.
+    ) -> dict:  # {email: github username} of unreasonable GitHub id
         """Batch validate GitHub usernames and optionally notify students.
 
         Checks each GitHub username against the GitHub API. Optionally
@@ -506,11 +533,12 @@ class CanvasGroup():
                     self.create_conversation(
                         self.email_to_canvas_id[email],
                         subject="Unidentifiable GitHub Username",
-                        body=(f"Hi {email}, \n Your GitHub Username: {github_username} "
-                              f"is unidentifiable on github.com. \n Please complete the quiz GitHub Username Quiz again.\n"
-                              f"{quiz_url} \n"
-                              f"Thank You."
-                             )
+                        body=(
+                            f"Hi {email}, \n Your GitHub Username: {github_username} "
+                            f"is unidentifiable on github.com. \n Please complete the quiz GitHub Username Quiz again.\n"
+                            f"{quiz_url} \n"
+                            f"Thank You."
+                        ),
                     )
                     if self.verbosity != 0:
                         print(f"{bcolors.OKGREEN}Notification Sent!{bcolors.ENDC}")
@@ -519,37 +547,38 @@ class CanvasGroup():
             for email in self.email_to_canvas_id.keys():
                 if email not in submitted:
                     if self.verbosity != 0:
-                        print(f"Student {bcolors.WARNING}{email}{bcolors.ENDC} did not"
-                              f" submit their github username."
-                             )
+                        print(
+                            f"Student {bcolors.WARNING}{email}{bcolors.ENDC} did not"
+                            f" submit their github username."
+                        )
                     # means student did not submit the quiz
                     if send_canvas_email:
                         self.create_conversation(
                             self.email_to_canvas_id[email],
                             subject="GitHub Username Quiz Not Completed",
-                            body=(f"Hi {email}, \n You did not complete the GitHub Quiz."
-                                  f"\n Please complete the quiz GitHub Username Quiz ASAP\n"
-                                  f"{quiz_url} \n"
-                                  f"Thank You."
-                                 )
+                            body=(
+                                f"Hi {email}, \n You did not complete the GitHub Quiz."
+                                f"\n Please complete the quiz GitHub Username Quiz ASAP\n"
+                                f"{quiz_url} \n"
+                                f"Thank You."
+                            ),
                         )
                         if self.verbosity != 0:
                             print(f"{bcolors.OKGREEN}Notification Sent!{bcolors.ENDC}")
         return unsuccessful
 
-    def _progress(self,
-                  percentage:int # percentage of the progress
-                 ):
-        sys.stdout.write('\r')
+    def _progress(self, percentage: int):  # percentage of the progress
+        sys.stdout.write("\r")
         # the exact output you're looking for:
-        sys.stdout.write("[%-20s] %d%%" % ('='*int(percentage//5), percentage))
+        sys.stdout.write("[%-20s] %d%%" % ("=" * int(percentage // 5), percentage))
         sys.stdout.flush()
 
-    def assign_canvas_group(self,
-                            group_name: str, # group name, display on canvas
-                            group_members:[str], # list of group member's SIS Login
-                            in_group_category: str, # specify which group category the group belongs to
-                           ) -> (canvasapi.group.Group, [str]): # list of unsuccessful join
+    def assign_canvas_group(
+        self,
+        group_name: str,  # group name, display on canvas
+        group_members: [str],  # list of group member's SIS Login
+        in_group_category: str,  # specify which group category the group belongs to
+    ) -> (canvasapi.group.Group, [str]):  # list of unsuccessful join
         """Create a Canvas group and assign members to it.
 
         Sets the group category, creates a new group, and adds the
@@ -572,11 +601,12 @@ class CanvasGroup():
             print(f"Group {bcolors.OKGREEN+group_name+bcolors.ENDC} created!")
         return group, unsuccessful_join
 
-    def create_conversation(self,
-                            recipients:int, #  recipient ids. These may be user ids or course/group ids prefixed with 'course_' or 'group_' respectively.
-                            subject:str, # subject of the conversation
-                            body:str, # The message to be sent
-                           ) -> canvasapi.conversation.Conversation: # created conversation
+    def create_conversation(
+        self,
+        recipients: int,  #  recipient ids. These may be user ids or course/group ids prefixed with 'course_' or 'group_' respectively.
+        subject: str,  # subject of the conversation
+        body: str,  # The message to be sent
+    ) -> canvasapi.conversation.Conversation:  # created conversation
         """Send a Canvas message (conversation) to a student.
 
         Creates a new conversation in the context of the current course.

@@ -4,10 +4,10 @@ import json
 import pytest
 from unittest.mock import MagicMock, patch
 
-
 # ---------------------------------------------------------------------------
 # Credential fixtures
 # ---------------------------------------------------------------------------
+
 
 @pytest.fixture
 def credentials(tmp_path):
@@ -29,6 +29,7 @@ def bad_credentials(tmp_path):
 # ---------------------------------------------------------------------------
 # Canvas mock fixtures
 # ---------------------------------------------------------------------------
+
 
 def _make_mock_user(email_prefix, canvas_id, short_name=None):
     """Helper to create a mock Canvas user object."""
@@ -91,6 +92,7 @@ def mock_canvas_api(mock_course, mock_group_category):
 # GitHub mock fixtures
 # ---------------------------------------------------------------------------
 
+
 @pytest.fixture
 def mock_github_api():
     """Patch PyGithub's Github class and return (MockGithub, github_instance, mock_org)."""
@@ -115,6 +117,7 @@ def mock_github_api():
 # ---------------------------------------------------------------------------
 # Grading fixtures
 # ---------------------------------------------------------------------------
+
 
 @pytest.fixture
 def mock_issue():

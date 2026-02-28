@@ -1,4 +1,4 @@
-__all__ = ['bcolors', 'GitHubGroup']
+__all__ = ["bcolors", "GitHubGroup"]
 
 from github import Github
 import github
@@ -8,16 +8,18 @@ import os
 import glob
 from pprint import pprint
 
+
 class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKCYAN = '\033[96m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
+    HEADER = "\033[95m"
+    OKBLUE = "\033[94m"
+    OKCYAN = "\033[96m"
+    OKGREEN = "\033[92m"
+    WARNING = "\033[93m"
+    FAIL = "\033[91m"
+    ENDC = "\033[0m"
+    BOLD = "\033[1m"
+    UNDERLINE = "\033[4m"
+
 
 class GitHubGroup:
     """Manage GitHub organization repositories, teams, and collaborators.
@@ -32,11 +34,12 @@ class GitHubGroup:
         verbosity: Controls output verbosity (0 = silent, 1 = print status).
     """
 
-    def __init__(self,
-                 credentials_fp="", # the file path to the credential json
-                 org="", # the organization name
-                 verbosity=1 # Controls the verbosity: 0=silent, 1=print status
-                ):
+    def __init__(
+        self,
+        credentials_fp="",  # the file path to the credential json
+        org="",  # the organization name
+        verbosity=1,  # Controls the verbosity: 0=silent, 1=print status
+    ):
         """Initialize a GitHubGroup instance and optionally authenticate.
 
         Args:
@@ -55,9 +58,10 @@ class GitHubGroup:
         if org != "":
             self.set_org(org)
 
-    def auth_github(self,
-                    credentials_fp: str # the personal access token generated at GitHub Settings
-                   ):
+    def auth_github(
+        self,
+        credentials_fp: str,  # the personal access token generated at GitHub Settings
+    ):
         """Authenticate with GitHub using a credentials file.
 
         Reads the GitHub personal access token from the JSON credentials
@@ -78,12 +82,12 @@ class GitHubGroup:
         # check authorization
         _ = self.github.get_user().get_repos()[0]
         if self.verbosity != 0:
-            print(f"Successfully Authenticated. "
-                  f"GitHub account: {bcolors.OKGREEN} {self.github.get_user().login} {bcolors.ENDC}")
+            print(
+                f"Successfully Authenticated. "
+                f"GitHub account: {bcolors.OKGREEN} {self.github.get_user().login} {bcolors.ENDC}"
+            )
 
-    def set_org(self,
-                org: str # the target organization name
-               ):
+    def set_org(self, org: str):  # the target organization name
         """Set the target GitHub organization.
 
         Retrieves the organization object by name and stores it for
@@ -98,15 +102,18 @@ class GitHubGroup:
         """
         self.org = self.github.get_organization(org)
         if self.verbosity != 0:
-            print(f"Target Organization Set: {bcolors.OKGREEN} {self.org.login} {bcolors.ENDC}")
+            print(
+                f"Target Organization Set: {bcolors.OKGREEN} {self.org.login} {bcolors.ENDC}"
+            )
 
-    def create_repo(self,
-                    repo_name: str, # repository name
-                    repo_template="", # template repository that new repo will use. If empty string, an empty repo will be created. Put in the format of "<owner>/<repo>"
-                    private=True, # visibility of the created repository
-                    description="", # description for the GitHub repository
-                    personal_account=False, # create repos in personal GitHub account
-                    ) -> github.Repository.Repository:
+    def create_repo(
+        self,
+        repo_name: str,  # repository name
+        repo_template="",  # template repository that new repo will use. If empty string, an empty repo will be created. Put in the format of "<owner>/<repo>"
+        private=True,  # visibility of the created repository
+        description="",  # description for the GitHub repository
+        personal_account=False,  # create repos in personal GitHub account
+    ) -> github.Repository.Repository:
         """Create a repository, either blank or from a template.
 
         Creates a new repository under the target organization (or
@@ -138,9 +145,7 @@ class GitHubGroup:
             parent = self.org
         if repo_template == "":
             return parent.create_repo(
-                name=repo_name,
-                private=private,
-                description=description
+                name=repo_name, private=private, description=description
             )
         # create from template
         return parent.create_repo_from_template(
@@ -150,9 +155,9 @@ class GitHubGroup:
             description=description,
         )
 
-    def get_repo(self,
-                 repo_full_name: str # full name of the target repository
-                ) -> github.Repository.Repository:
+    def get_repo(
+        self, repo_full_name: str  # full name of the target repository
+    ) -> github.Repository.Repository:
         """Get a repository by its full name.
 
         Attempts to fetch the repository directly by full name. If that
@@ -174,9 +179,9 @@ class GitHubGroup:
         except Exception:
             return self.org.get_repo(repo_full_name)
 
-    def get_org_repo(self,
-                     repo_full_name: str # full name of the target repository
-                    ) -> github.Repository.Repository:
+    def get_org_repo(
+        self, repo_full_name: str  # full name of the target repository
+    ) -> github.Repository.Repository:
         """Get a repository within the target organization.
 
         Args:
@@ -192,10 +197,7 @@ class GitHubGroup:
         """
         return self.org.get_repo(repo_full_name)
 
-
-    def get_team(self,
-                 team_slug:str # team slug of the team
-                ) -> github.Team.Team:
+    def get_team(self, team_slug: str) -> github.Team.Team:  # team slug of the team
         """Get a team by its slug within the target organization.
 
         Args:
@@ -209,14 +211,17 @@ class GitHubGroup:
             github.UnknownObjectException: If the team slug is not found.
         """
         if self.org is None:
-            raise ValueError("The organization has not been set. Please set it via g.set_org")
+            raise ValueError(
+                "The organization has not been set. Please set it via g.set_org"
+            )
         return self.org.get_team_by_slug(team_slug)
 
-    def rename_files(self,
-                     repo: github.Repository.Repository, # the repository that we want to rename file
-                     og_filename: str, # old file name
-                     new_filename: str # new file name
-                    ):
+    def rename_files(
+        self,
+        repo: github.Repository.Repository,  # the repository that we want to rename file
+        og_filename: str,  # old file name
+        new_filename: str,  # new file name
+    ):
         """Rename a file in a repository by creating a copy and deleting the original.
 
         This performs a rename by committing the file content under the
@@ -231,15 +236,18 @@ class GitHubGroup:
         repo.create_file(new_filename, "rename files", file.decoded_content)
         repo.delete_file(og_filename, "delete old files", file.sha)
         if self.verbosity != 0:
-            print(f"File Successfully Renamed from "
-                  f" {bcolors.OKCYAN} {og_filename} {bcolors.ENDC} "
-                  f" to {bcolors.OKGREEN} {new_filename} {bcolors.ENDC}")
+            print(
+                f"File Successfully Renamed from "
+                f" {bcolors.OKCYAN} {og_filename} {bcolors.ENDC} "
+                f" to {bcolors.OKGREEN} {new_filename} {bcolors.ENDC}"
+            )
 
-    def add_collaborator(self,
-                          repo: github.Repository.Repository, # target repository
-                          collaborator:str, # GitHub username of the collaborator
-                          permission:str # `pull`, `push` or `admin`
-                         ):
+    def add_collaborator(
+        self,
+        repo: github.Repository.Repository,  # target repository
+        collaborator: str,  # GitHub username of the collaborator
+        permission: str,  # `pull`, `push` or `admin`
+    ):
         """Add a collaborator to a repository with the specified permission.
 
         Args:
@@ -253,14 +261,17 @@ class GitHubGroup:
         except Exception as e:
             print(f"{bcolors.WARNING}Add Failed for {collaborator}{bcolors.ENDC}")
         if self.verbosity != 0:
-            print(f"Added Collaborator: {bcolors.OKGREEN} {collaborator} {bcolors.ENDC}"
-                  f" to: {bcolors.OKGREEN} {repo.name} {bcolors.ENDC} with "
-                  f"permission: {bcolors.OKGREEN} {permission} {bcolors.ENDC}")
+            print(
+                f"Added Collaborator: {bcolors.OKGREEN} {collaborator} {bcolors.ENDC}"
+                f" to: {bcolors.OKGREEN} {repo.name} {bcolors.ENDC} with "
+                f"permission: {bcolors.OKGREEN} {permission} {bcolors.ENDC}"
+            )
 
-    def remove_collaborator(self,
-                            repo: github.Repository.Repository, # target repository
-                            collaborator:str, # GitHub username of the collaborator
-                           ):
+    def remove_collaborator(
+        self,
+        repo: github.Repository.Repository,  # target repository
+        collaborator: str,  # GitHub username of the collaborator
+    ):
         """Remove a collaborator from a repository.
 
         Args:
@@ -269,9 +280,10 @@ class GitHubGroup:
         """
         repo.remove_from_collaborators(collaborator)
 
-    def resend_invitations(self,
-                          repo: github.Repository.Repository, # target repository
-                         ) -> [github.NamedUser.NamedUser]: # list of re-invited user
+    def resend_invitations(
+        self,
+        repo: github.Repository.Repository,  # target repository
+    ) -> [github.NamedUser.NamedUser]:  # list of re-invited user
         """Resend pending collaboration invitations for a repository.
 
         Revokes each pending invitation and re-invites the user with
@@ -291,15 +303,19 @@ class GitHubGroup:
         for p in pendings:
             repo.remove_invitation(p.id)
             if self.verbosity != 0:
-                print(f"{bcolors.WARNING}{bcolors.UNDERLINE}{p.invitee.login}{bcolors.ENDC} {bcolors.FAIL}Invite Revoked {bcolors.ENDC}")
+                print(
+                    f"{bcolors.WARNING}{bcolors.UNDERLINE}{p.invitee.login}{bcolors.ENDC} {bcolors.FAIL}Invite Revoked {bcolors.ENDC}"
+                )
             self.add_collaborator(repo, p.invitee.login, p.permissions)
             if self.verbosity != 0:
-                print(f"{bcolors.OKGREEN} Invite Resent to {p.invitee.login} {bcolors.ENDC}")
+                print(
+                    f"{bcolors.OKGREEN} Invite Resent to {p.invitee.login} {bcolors.ENDC}"
+                )
         return users
 
-    def resent_invitations_team_repos(self,
-                                      team_slug: str # team slug (name) under the org
-                                     ):
+    def resent_invitations_team_repos(
+        self, team_slug: str  # team slug (name) under the org
+    ):
         """Resend pending invitations for all repositories under a team.
 
         Iterates over every repository associated with the team and
@@ -317,14 +333,17 @@ class GitHubGroup:
             try:
                 _ = self.resend_invitations(repo)
             except Exception as e:
-                print(f"{bcolors.WARNING}Make sure to have proper rights to the target repo{bcolors.ENDC}\n")
+                print(
+                    f"{bcolors.WARNING}Make sure to have proper rights to the target repo{bcolors.ENDC}\n"
+                )
                 print(e)
 
-    def add_team(self,
-                  repo: github.Repository.Repository, # target repository
-                  team_slug: str, # team slug (name)
-                  permission:str # `pull`, `push` or `admin`
-                 ):
+    def add_team(
+        self,
+        repo: github.Repository.Repository,  # target repository
+        team_slug: str,  # team slug (name)
+        permission: str,  # `pull`, `push` or `admin`
+    ):
         """Add a team to a repository with the specified permission.
 
         Args:
@@ -337,15 +356,18 @@ class GitHubGroup:
         team.add_to_repos(repo)
         team.update_team_repository(repo, permission)
         if self.verbosity != 0:
-            print(f"Team {bcolors.OKGREEN} {team.name} {bcolors.ENDC} "
-                  f"added to {bcolors.OKGREEN} {repo.name} {bcolors.ENDC} "
-                  f"with permission {bcolors.OKGREEN} {permission} {bcolors.ENDC}")
+            print(
+                f"Team {bcolors.OKGREEN} {team.name} {bcolors.ENDC} "
+                f"added to {bcolors.OKGREEN} {repo.name} {bcolors.ENDC} "
+                f"with permission {bcolors.OKGREEN} {permission} {bcolors.ENDC}"
+            )
 
-    def create_feedback_dir(self,
-                            repo: github.Repository.Repository, # target repository
-                            template_fp: str,
-                            destination="feedback" # directory path of the template file.
-                           ):
+    def create_feedback_dir(
+        self,
+        repo: github.Repository.Repository,  # target repository
+        template_fp: str,
+        destination="feedback",  # directory path of the template file.
+    ):
         """Create a local feedback directory populated from template files.
 
         Copies all files from the template directory into a
@@ -368,15 +390,17 @@ class GitHubGroup:
             with open(f"{destination}/{repo.name}/{head}", "w+") as f:
                 f.write(file)
             if self.verbosity != 0:
-                print(f"File {bcolors.OKGREEN}{head}{bcolors.ENDC} "
-                      f"created at {bcolors.OKGREEN}{destination}/{repo.name}{bcolors.ENDC}"
-                     )
+                print(
+                    f"File {bcolors.OKGREEN}{head}{bcolors.ENDC} "
+                    f"created at {bcolors.OKGREEN}{destination}/{repo.name}{bcolors.ENDC}"
+                )
 
-    def create_issue(self,
-                     repo: github.Repository.Repository, # target repository
-                     title: str, # title of the issue,
-                     content: str # content of the issue
-                    ) -> github.Issue.Issue: # open issue
+    def create_issue(
+        self,
+        repo: github.Repository.Repository,  # target repository
+        title: str,  # title of the issue,
+        content: str,  # content of the issue
+    ) -> github.Issue.Issue:  # open issue
         """Create a GitHub issue in the target repository.
 
         Args:
@@ -393,10 +417,11 @@ class GitHubGroup:
             print(f"Issue {bcolors.OKGREEN}{title}{bcolors.ENDC} Created!")
         return issue
 
-    def create_issue_from_md(self,
-                             repo: github.Repository.Repository, # target repository,
-                             md_fp: str # file path of the feedback markdown file
-                            ) -> github.Issue.Issue: # open issue
+    def create_issue_from_md(
+        self,
+        repo: github.Repository.Repository,  # target repository,
+        md_fp: str,  # file path of the feedback markdown file
+    ) -> github.Issue.Issue:  # open issue
         """Create a GitHub issue from a markdown file.
 
         Reads the markdown file, uses the first line (without the ``#``
@@ -417,10 +442,11 @@ class GitHubGroup:
         content = md
         return self.create_issue(repo, title, content)
 
-    def release_feedback(self,
-                         md_filename: str, # feedback markdown file name
-                         feedback_dir="feedback", # feedback directory contains the markdown files
-                        ):
+    def release_feedback(
+        self,
+        md_filename: str,  # feedback markdown file name
+        feedback_dir="feedback",  # feedback directory contains the markdown files
+    ):
         """Release feedback via GitHub issues to all groups.
 
         Iterates over every subdirectory in the feedback directory,
@@ -443,21 +469,24 @@ class GitHubGroup:
             except Exception:
                 print(f"Repo: {bcolors.WARNING}{repo_name} NOT FOUND!{bcolors.ENDC}")
                 continue
-            self.create_issue_from_md(repo, os.path.join(feedback_dir, repo_name, md_filename))
+            self.create_issue_from_md(
+                repo, os.path.join(feedback_dir, repo_name, md_filename)
+            )
 
-    def create_group_repo(self,
-                          repo_name: str, # group repository name
-                          collaborators: [str], # list of collaborators GitHub id
-                          permission: str, # the permission of collaborators. `pull`, `push` or `admin`
-                          rename_files=dict(), # dictionary of files renames {<og_name>:<new_name>}
-                          repo_template="", # If empty string, an empty repo will be created. Put in the format of "<owner>/<repo>"
-                          private=True, # visibility of the created repository
-                          description="", # description for the GitHub repository
-                          team_slug="", # team slug, add to this repo
-                          team_permission="", # team permission to this repository `pull`, `push` or `admin`
-                          feedback_dir=False, # whether to create a feedback directory for each repository created
-                          feedback_template_fp="", # the directory of the feedback template
-                         ) -> github.Repository.Repository: # created repository
+    def create_group_repo(
+        self,
+        repo_name: str,  # group repository name
+        collaborators: [str],  # list of collaborators GitHub id
+        permission: str,  # the permission of collaborators. `pull`, `push` or `admin`
+        rename_files=dict(),  # dictionary of files renames {<og_name>:<new_name>}
+        repo_template="",  # If empty string, an empty repo will be created. Put in the format of "<owner>/<repo>"
+        private=True,  # visibility of the created repository
+        description="",  # description for the GitHub repository
+        team_slug="",  # team slug, add to this repo
+        team_permission="",  # team permission to this repository `pull`, `push` or `admin`
+        feedback_dir=False,  # whether to create a feedback directory for each repository created
+        feedback_template_fp="",  # the directory of the feedback template
+    ) -> github.Repository.Repository:  # created repository
         """Create a group repository with collaborators and team permissions.
 
         Creates a repository (optionally from a template), renames files
@@ -495,7 +524,9 @@ class GitHubGroup:
         """
         repo = self.create_repo(repo_name, repo_template, private, description)
         if self.verbosity != 0:
-            print(f"Repo {bcolors.OKGREEN} {repo.name} {bcolors.ENDC} Created... Wait for 3 sec to updates")
+            print(
+                f"Repo {bcolors.OKGREEN} {repo.name} {bcolors.ENDC} Created... Wait for 3 sec to updates"
+            )
         time.sleep(3)
         for og_name, new_name in rename_files.items():
             self.rename_files(repo, og_name, new_name)
@@ -504,7 +535,9 @@ class GitHubGroup:
         if team_slug != "":
             self.add_team(repo, team_slug, team_permission)
         if self.verbosity != 0:
-            print(f"Group Repo: {bcolors.OKGREEN} {repo_name} {bcolors.ENDC} successfuly created!")
+            print(
+                f"Group Repo: {bcolors.OKGREEN} {repo_name} {bcolors.ENDC} successfuly created!"
+            )
             print(f"Repo URL: https://github.com/{self.org.login}/{repo_name}")
         if feedback_dir:
             if feedback_template_fp == "":

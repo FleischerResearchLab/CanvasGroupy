@@ -17,10 +17,12 @@ def loaded_ag(mock_services):
     """AssignGroup with two groups already loaded."""
     ghg, cg = mock_services
     ag = AssignGroup(ghg=ghg, cg=cg)
-    df = pd.DataFrame({
-        "group_name": ["Group1", "Group1", "Group2"],
-        "student_id": ["alice", "bob", "carol"],
-    })
+    df = pd.DataFrame(
+        {
+            "group_name": ["Group1", "Group1", "Group2"],
+            "student_id": ["alice", "bob", "carol"],
+        }
+    )
     ag.load_groups(df)
     return ag, ghg, cg
 
@@ -29,10 +31,12 @@ class TestLoadGroups:
     def test_load_groups_from_dataframe(self, mock_services):
         ghg, cg = mock_services
         ag = AssignGroup(ghg=ghg, cg=cg)
-        df = pd.DataFrame({
-            "group_name": ["Group1", "Group1", "Group2", "Group2"],
-            "student_id": ["alice", "bob", "carol", "dave"],
-        })
+        df = pd.DataFrame(
+            {
+                "group_name": ["Group1", "Group1", "Group2", "Group2"],
+                "student_id": ["alice", "bob", "carol", "dave"],
+            }
+        )
         ag.load_groups(df)
         assert ag.groups == {
             "Group1": ["alice", "bob"],
@@ -43,7 +47,9 @@ class TestLoadGroups:
         ghg, cg = mock_services
         ag = AssignGroup(ghg=ghg, cg=cg)
         csv_path = tmp_path / "groups.csv"
-        csv_path.write_text("group_name,student_id\nGroup1,alice\nGroup1,bob\nGroup2,carol\n")
+        csv_path.write_text(
+            "group_name,student_id\nGroup1,alice\nGroup1,bob\nGroup2,carol\n"
+        )
         ag.load_groups(str(csv_path))
         assert ag.groups == {
             "Group1": ["alice", "bob"],
@@ -65,10 +71,12 @@ class TestLoadGroups:
 
     def test_constructor_groups_parameter_auto_loads(self, mock_services):
         ghg, cg = mock_services
-        df = pd.DataFrame({
-            "group_name": ["Team1", "Team1", "Team2"],
-            "student_id": ["alice", "bob", "carol"],
-        })
+        df = pd.DataFrame(
+            {
+                "group_name": ["Team1", "Team1", "Team2"],
+                "student_id": ["alice", "bob", "carol"],
+            }
+        )
         ag = AssignGroup(ghg=ghg, cg=cg, groups=df)
         assert ag.groups == {
             "Team1": ["alice", "bob"],
@@ -78,10 +86,12 @@ class TestLoadGroups:
     def test_load_groups_warns_on_numeric_student_ids(self, mock_services):
         ghg, cg = mock_services
         ag = AssignGroup(ghg=ghg, cg=cg)
-        df = pd.DataFrame({
-            "group_name": ["Group1", "Group1"],
-            "student_id": ["12345", "67890"],
-        })
+        df = pd.DataFrame(
+            {
+                "group_name": ["Group1", "Group1"],
+                "student_id": ["12345", "67890"],
+            }
+        )
         with warnings.catch_warnings(record=True) as w:
             warnings.simplefilter("always")
             ag.load_groups(df)

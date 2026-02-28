@@ -67,6 +67,7 @@ class AssignGroup:
         sample = source["student_id"].dropna().head(5)
         if sample.apply(lambda v: str(v).isdigit()).all() and len(sample) > 0:
             import warnings
+
             warnings.warn(
                 "All sampled student_id values are numeric. "
                 "student_id should be the email prefix (SIS Login ID), "
@@ -74,11 +75,7 @@ class AssignGroup:
                 UserWarning,
                 stacklevel=2,
             )
-        self.groups = (
-            source.groupby("group_name")["student_id"]
-            .apply(list)
-            .to_dict()
-        )
+        self.groups = source.groupby("group_name")["student_id"].apply(list).to_dict()
         return self.groups
 
     def create_canvas_group(
@@ -97,9 +94,7 @@ class AssignGroup:
             ValueError: If no groups are loaded or no group category is set.
         """
         if not self.groups:
-            raise ValueError(
-                "No groups loaded. Call load_groups() first."
-            )
+            raise ValueError("No groups loaded. Call load_groups() first.")
         if self.cg.group_category is None and in_group_category == "":
             raise ValueError(
                 "Specify in_group_category or set it on the CanvasGroup instance."
@@ -131,9 +126,7 @@ class AssignGroup:
                 ``description``, ``team_slug``, ``team_permission``).
         """
         if not self.groups:
-            raise ValueError(
-                "No groups loaded. Call load_groups() first."
-            )
+            raise ValueError("No groups loaded. Call load_groups() first.")
         github_usernames = self.cg.fetch_username_from_quiz(username_quiz_id)
         repos = []
         for group_name, members in self.groups.items():

@@ -201,7 +201,9 @@ class TestIssues:
         repo.create_issue.return_value = mock_issue
 
         result = ghg.create_issue(repo, "Bug Report", "There is a bug")
-        repo.create_issue.assert_called_once_with(title="Bug Report", body="There is a bug")
+        repo.create_issue.assert_called_once_with(
+            title="Bug Report", body="There is a bug"
+        )
         assert result == mock_issue
 
     def test_create_issue_from_md(self, credentials, mock_github_api, tmp_path):
@@ -242,7 +244,9 @@ class TestIssues:
         mock_org.get_repo.assert_called_with("team-alpha")
         mock_repo.create_issue.assert_called_once()
 
-    def test_release_feedback_skips_missing_repos(self, credentials, mock_github_api, tmp_path):
+    def test_release_feedback_skips_missing_repos(
+        self, credentials, mock_github_api, tmp_path
+    ):
         ghg = GitHubGroup(verbosity=0)
         ghg.auth_github(credentials)
         ghg.set_org("TestOrg")
@@ -298,7 +302,9 @@ class TestCreateGroupRepo:
         return ghg, mock_org
 
     @patch("time.sleep", return_value=None)
-    def test_creates_repo_and_adds_collaborators(self, mock_sleep, credentials, mock_github_api):
+    def test_creates_repo_and_adds_collaborators(
+        self, mock_sleep, credentials, mock_github_api
+    ):
         ghg, mock_org = self._setup_ghg(credentials, mock_github_api)
 
         mock_repo = MagicMock()
@@ -315,7 +321,9 @@ class TestCreateGroupRepo:
         assert mock_repo.add_to_collaborators.call_count == 2
 
     @patch("time.sleep", return_value=None)
-    def test_creates_from_template_with_renames(self, mock_sleep, credentials, mock_github_api):
+    def test_creates_from_template_with_renames(
+        self, mock_sleep, credentials, mock_github_api
+    ):
         ghg, mock_org = self._setup_ghg(credentials, mock_github_api)
         _, github_instance, _ = mock_github_api
 
