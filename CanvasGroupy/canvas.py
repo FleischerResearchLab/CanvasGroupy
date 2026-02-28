@@ -40,7 +40,7 @@ class CanvasGroup():
     """
 
     def __init__(self,
-                 credentials_fp = "", # credential file path. [Template of the credentials.json](https://github.com/FleischerResearchLab/CanvasGroupy/blob/main/nbs/credentials.json)
+                 credentials_fp = "", # credential file path. See docs/getting-started/authentication.md for the template.
                  API_URL="https://canvas.ucsd.edu", # the domain name of canvas
                  course_id="", # Course ID, can be found in the course url
                  group_category="", # target group category (set) of interests
