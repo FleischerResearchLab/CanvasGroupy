@@ -442,6 +442,7 @@ class GitHubGroup:
                 repo = self.org.get_repo(repo_name)
             except Exception:
                 print(f"Repo: {bcolors.WARNING}{repo_name} NOT FOUND!{bcolors.ENDC}")
+                continue
             self.create_issue_from_md(repo, os.path.join(feedback_dir, repo_name, md_filename))
 
     def create_group_repo(self,

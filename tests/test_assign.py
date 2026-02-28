@@ -1,3 +1,4 @@
+import warnings
 import pytest
 import pandas as pd
 from unittest.mock import MagicMock
@@ -73,6 +74,20 @@ class TestLoadGroups:
             "Team1": ["alice", "bob"],
             "Team2": ["carol"],
         }
+
+    def test_load_groups_warns_on_numeric_student_ids(self, mock_services):
+        ghg, cg = mock_services
+        ag = AssignGroup(ghg=ghg, cg=cg)
+        df = pd.DataFrame({
+            "group_name": ["Group1", "Group1"],
+            "student_id": ["12345", "67890"],
+        })
+        with warnings.catch_warnings(record=True) as w:
+            warnings.simplefilter("always")
+            ag.load_groups(df)
+            assert len(w) == 1
+            assert "numeric" in str(w[0].message).lower()
+            assert "email prefix" in str(w[0].message).lower()
 
 
 class TestCreateCanvasGroup:

@@ -33,13 +33,18 @@ class AssignGroup:
     def load_groups(self, source) -> dict[str, list[str]]:
         """Load group assignments from a CSV file path or DataFrame.
 
-        The input must have columns ``group_name`` and ``student_id``.
+        The input must have columns ``group_name`` and ``student_id``,
+        where ``student_id`` is the student's email prefix (SIS Login ID,
+        the part before the ``@``), matching the keys used by Canvas
+        (``CanvasGroup.email_to_canvas_id``) and by
+        ``fetch_username_from_quiz``.
 
         Args:
             source: A file path (str) to a CSV or a pandas DataFrame.
 
         Returns:
-            Dictionary mapping group names to lists of student IDs.
+            Dictionary mapping group names to lists of student email
+            prefixes.
 
         Raises:
             TypeError: If source is not a str or DataFrame.
@@ -57,6 +62,18 @@ class AssignGroup:
                     f"Missing required column: '{col}'. "
                     f"Got columns: {list(source.columns)}"
                 )
+        # Warn early if student_id values look like numeric Canvas IDs
+        # rather than email prefixes (SIS Login IDs).
+        sample = source["student_id"].dropna().head(5)
+        if sample.apply(lambda v: str(v).isdigit()).all() and len(sample) > 0:
+            import warnings
+            warnings.warn(
+                "All sampled student_id values are numeric. "
+                "student_id should be the email prefix (SIS Login ID), "
+                "not the Canvas numeric user ID.",
+                UserWarning,
+                stacklevel=2,
+            )
         self.groups = (
             source.groupby("group_name")["student_id"]
             .apply(list)

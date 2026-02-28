@@ -242,6 +242,34 @@ class TestIssues:
         mock_org.get_repo.assert_called_with("team-alpha")
         mock_repo.create_issue.assert_called_once()
 
+    def test_release_feedback_skips_missing_repos(self, credentials, mock_github_api, tmp_path):
+        ghg = GitHubGroup(verbosity=0)
+        ghg.auth_github(credentials)
+        ghg.set_org("TestOrg")
+
+        _, _, mock_org = mock_github_api
+
+        # Create feedback structure with two repos
+        feedback_dir = tmp_path / "feedback"
+        (feedback_dir / "missing-repo").mkdir(parents=True)
+        (feedback_dir / "missing-repo" / "checkpoint.md").write_text("# Feedback\n")
+        (feedback_dir / "good-repo").mkdir(parents=True)
+        (feedback_dir / "good-repo" / "checkpoint.md").write_text("# Feedback\n")
+
+        good_repo = MagicMock()
+        good_repo.name = "good-repo"
+
+        def get_repo_side_effect(name):
+            if name == "missing-repo":
+                raise Exception("Not found")
+            return good_repo
+
+        mock_org.get_repo.side_effect = get_repo_side_effect
+
+        # Should not raise; should skip missing-repo and still process good-repo
+        ghg.release_feedback("checkpoint.md", feedback_dir=str(feedback_dir))
+        good_repo.create_issue.assert_called_once()
+
 
 class TestResendInvitations:
     def test_resend_invitations(self, credentials, mock_github_api):

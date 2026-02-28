@@ -27,6 +27,7 @@ dependencies = [
     "numpy",
     "PyGithub",
     "canvasapi",
+    "requests",
 ]
 
 [project.optional-dependencies]
